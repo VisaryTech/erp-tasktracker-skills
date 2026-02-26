@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tasktracker Ready To Dev"
+  short_description: "Проверка задачи и генерация плана"
+  default_prompt: "Use $tasktracker-autocheck-plan to validate a TaskTracker task URL and either post review comments or save an implementation plan."

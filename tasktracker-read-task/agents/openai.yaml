@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tasktracker Read Task"
+  short_description: "Чтение задачи по ссылке"
+  default_prompt: "Use $tasktracker-read-task to fetch TaskId, Title, Description from an ERP TaskTracker task URL."
