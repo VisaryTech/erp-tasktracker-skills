@@ -1,6 +1,6 @@
 ---
 name: tasktracker-api
-description: Унифицированная работа с ERP TaskTracker через API: чтение задачи по URL, создание задачи и публикация комментария. Использовать, когда пользователь просит получить содержание задачи, создать новую задачу в проекте или добавить комментарий к задаче.
+description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи по URL или ID, создание задачи и публикация комментария. Использовать, когда пользователь просит получить содержание задачи, создать новую задачу в проекте или добавить комментарий к задаче."
 ---
 
 # TaskTracker API
@@ -18,19 +18,26 @@ description: Унифицированная работа с ERP TaskTracker че
 
 ## Read Task
 
-Используй для чтения задачи по URL. Возвращай только `TaskId`, `Title`, `Description`.
+Используй для чтения задачи по URL или по `TaskId`. Возвращай только `TaskId`, `Title`, `Description`.
 
-Команда:
+Команда (по URL):
 
 ```bash
 python <skill_dir>/scripts/get_task_data.py --url "<erp_base_url>/tasktracker/projects/{ProjectId}/tasks/{TaskId}"
 ```
 
+Команда (по ID):
+
+```bash
+python <skill_dir>/scripts/get_task_data.py --task-id "12345" --erp-base-url "<erp_base_url>"
+```
+
 Порядок:
 
-1. Проверь, что передан URL задачи.
-2. Запусти `get_task_data.py`.
-3. Верни пользователю только `TaskId`, `Title`, `Description` из JSON-ответа.
+1. Проверь, что передан `url` или `taskId`.
+2. Для `taskId` проверь, что доступен базовый URL: `--erp-base-url` или `erp_base_url` в `.env`.
+3. Запусти `get_task_data.py`.
+4. Верни пользователю только `TaskId`, `Title`, `Description` из JSON-ответа.
 
 ## Create Task
 
