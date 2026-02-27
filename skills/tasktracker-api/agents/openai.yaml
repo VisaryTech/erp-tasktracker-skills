@@ -1,4 +1,3 @@
 interface:
-  display_name: "Tasktracker API"
-  short_description: "Чтение, создание и комментарии задач TaskTracker"
-  default_prompt: "Use $tasktracker-api to read task or epic data by URL or ID, create TaskTracker tasks, and post comments by task ID."
+  display_name: "TaskTracker API"
+  short_description: "Read task/epic by URL or ID, create tasks, and post task comments via ERP API"
