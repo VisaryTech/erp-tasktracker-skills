@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tasktracker Comment Task"
-  short_description: "Публикация комментария в TaskTracker"
-  default_prompt: "Use $tasktracker-comment-task to post a comment to a TaskTracker task ID."

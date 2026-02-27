@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tasktracker API"
+  short_description: "Чтение, создание и комментарии задач TaskTracker"
+  default_prompt: "Use $tasktracker-api to read task data by URL, create TaskTracker tasks, and post comments by task ID."

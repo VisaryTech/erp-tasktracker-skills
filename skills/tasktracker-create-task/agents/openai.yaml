@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tasktracker Create Task"
-  short_description: "Создание задачи в TaskTracker"
-  default_prompt: "Use $tasktracker-create-task to create a new ERP TaskTracker task with required fields."
