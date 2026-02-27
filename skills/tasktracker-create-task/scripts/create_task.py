@@ -4,7 +4,7 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
@@ -96,73 +96,140 @@ def get_base_url(cli_base_url: Optional[str]) -> str:
     return raw_value.strip()
 
 
-def build_comment_text(text: Optional[str], text_file: Optional[str]) -> str:
-    if text and text_file:
-        raise ValueError("Use either --text or --text-file, not both")
+def parse_csv_ints(raw: Optional[str], arg_name: str) -> List[int]:
+    if not raw:
+        return []
 
-    if text_file:
-        content = Path(text_file).read_text(encoding="utf-8")
-    else:
-        content = text or ""
+    values: List[int] = []
+    for chunk in raw.split(","):
+        value = chunk.strip()
+        if not value:
+            continue
+        if not value.isdigit():
+            raise ValueError(f"{arg_name} must contain integers separated by commas")
+        values.append(int(value))
 
-    comment = content.strip()
-    if not comment:
-        raise ValueError("Comment text is empty")
-
-    return comment
+    return values
 
 
-def create_task_comment(base_url: str, task_id: str, token: str, text: str, timeout: int) -> Any:
-    create_url = f"{base_url.rstrip('/')}/api/tasktracker/taskComment/command/Create"
-    payload = {
-        "taskId": task_id,
-        "parentId": None,
-        "text": text,
-        "files": None,
+def get_project_id(cli_value: Optional[int]) -> int:
+    if cli_value is not None:
+        return cli_value
+
+    env_value = (
+        os.getenv("erp_tasktracker_project_id")
+        or os.getenv("erp-tasktracker-project-id")
+        or os.getenv("project-id")
+        or os.getenv("projectId")
+    )
+    if env_value is None:
+        raise ValueError(
+            "projectId is required: pass --project-id or set erp_tasktracker_project_id in .env"
+        )
+
+    env_value = env_value.strip()
+    if not env_value.isdigit():
+        raise ValueError("erp_tasktracker_project_id in .env must be an integer")
+    return int(env_value)
+
+
+def require_non_empty(value: str, field_name: str) -> str:
+    cleaned = value.strip()
+    if not cleaned:
+        raise ValueError(f"{field_name} is required and cannot be empty")
+    return cleaned
+
+
+def build_payload(args: argparse.Namespace) -> Dict[str, Any]:
+    title = require_non_empty(args.title, "Title")
+    description = require_non_empty(args.description, "Description")
+    project_id = get_project_id(args.project_id)
+
+    payload: Dict[str, Any] = {
+        "LabelIds": parse_csv_ints(args.label_ids, "label-ids"),
+        "AssigneeIds": [],
+        "CurrentAssigneeId": None,
+        "Weight": args.weight,
+        "Description": description,
+        "Files": "",
+        "SprintId": args.sprint_id,
+        "MilestoneId": args.milestone_id,
+        "TemplateId": None,
+        "Title": title,
+        "EpicId": args.epic_id,
+        "projectId": project_id,
     }
+
+    return payload
+
+
+def create_task(base_url: str, token: str, payload: Dict[str, Any], timeout: int) -> Any:
+    create_url = f"{base_url.rstrip('/')}/api/tasktracker/task/command/create"
     return http_post_json(create_url, token, payload, timeout)
+
+
+def get_first_present_value(data: Dict[str, Any], keys: Tuple[str, ...]) -> Any:
+    for key in keys:
+        if key in data:
+            return data[key]
+    return None
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Create TaskTracker task comment by task ID"
+        description="Create TaskTracker task using ERP client credentials token"
     )
+    parser.add_argument("--title", required=True, help="Task title")
+    parser.add_argument("--description", required=True, help="Task description")
     parser.add_argument(
-        "--task-id",
-        required=True,
-        help="Task ID, e.g. 12345",
+        "--project-id",
+        type=int,
+        help="Project ID (fallback: .env erp_tasktracker_project_id)",
     )
+    parser.add_argument("--epic-id", type=int, help="Epic ID")
+    parser.add_argument("--label-ids", help="Comma-separated label IDs, e.g. 6,73")
+    parser.add_argument("--weight", type=int, help="Task weight")
+    parser.add_argument("--sprint-id", type=int, help="Sprint ID")
+    parser.add_argument("--milestone-id", type=int, help="Milestone ID")
     parser.add_argument(
         "--erp-base-url",
         help="ERP base URL (fallback: .env erp_base_url)",
     )
-    parser.add_argument("--text", help="Comment text")
-    parser.add_argument("--text-file", help="Path to UTF-8 file with comment text")
     parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
 
     args = parser.parse_args()
 
     try:
         load_env_from_dotenv()
-        comment_text = build_comment_text(args.text, args.text_file)
+        payload = build_payload(args)
         base_url, auth_base_url = derive_base_urls(get_base_url(args.erp_base_url))
-        task_id = str(args.task_id).strip()
-        if not task_id:
-            raise ValueError("Task ID is empty")
         token = get_token(auth_base_url, args.timeout)
-        response = create_task_comment(base_url, task_id, token, comment_text, args.timeout)
+        response = create_task(base_url, token, payload, args.timeout)
+
+        if isinstance(response, dict):
+            task_id = get_first_present_value(response, ("TaskId", "taskId", "Id", "id"))
+            title = get_first_present_value(response, ("Title", "title")) or payload["Title"]
+            description = (
+                get_first_present_value(response, ("Description", "description"))
+                or payload["Description"]
+            )
+            project_id = get_first_present_value(response, ("projectId", "ProjectId")) or payload["projectId"]
+        else:
+            task_id = None
+            title = payload["Title"]
+            description = payload["Description"]
+            project_id = payload["projectId"]
 
         result = {
-            "taskId": task_id,
+            "TaskId": task_id,
+            "Title": title,
+            "Description": description,
+            "projectId": project_id,
             "baseUrl": base_url,
-            "commentText": comment_text,
             "apiResponse": response,
         }
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
-    except FileNotFoundError as exc:
-        print(f"Execution error: file not found: {exc}", file=sys.stderr)
-        return 1
     except HTTPError as exc:
         body = ""
         try:

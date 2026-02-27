@@ -108,7 +108,7 @@ def main() -> int:
     parser.add_argument(
         "--url",
         required=True,
-        help="Task URL, e.g. https://erp.visary.cloud/tasktracker/projects/{projectId}/tasks/{taskId}",
+        help="Task URL, e.g. <erp_base_url>/tasktracker/projects/{projectId}/tasks/{taskId}",
     )
     parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
 
@@ -150,3 +150,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

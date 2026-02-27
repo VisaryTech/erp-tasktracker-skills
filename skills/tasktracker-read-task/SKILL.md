@@ -10,8 +10,10 @@ description: Чтение задачи из ERP TaskTracker по ссылке с
 Пример запуска:
 
 ```bash
-python C:/Users/<user>/.codex/skills/tasktracker-read-task/scripts/get_task_data.py --url "https://erp.visary.cloud/tasktracker/projects/{ProjectId}/tasks/{TaskId}"
+python <skill_dir>/scripts/get_task_data.py --url "<erp_base_url>/tasktracker/projects/{ProjectId}/tasks/{TaskId}"
 ```
+
+Где `<skill_dir>` — директория текущего скилла (путь, из которого открыт этот `SKILL.md`).
 
 Запускать команду с `workdir` в корень пользовательского проекта (где находится `.env`), а не из директории skill.
 
@@ -32,7 +34,9 @@ python C:/Users/<user>/.codex/skills/tasktracker-read-task/scripts/get_task_data
 ## Требования к устойчивости
 
 - Используй `.env` или переменные окружения `erp_client_id` и `erp_client_secret`.
+- Для домена ERP используй `erp_base_url` из `.env`, формируя URL задачи без хардкода домена.
 - Загружай `.env` из корня пользовательского проекта через корректный `workdir`; не запускай из директории skill.
 - Для получения задачи используй только `scripts/get_task_data.py`.
 - Не подставляй значения вручную при ошибках API или авторизации.
 - Завершай выполнение с явной причиной при критических ошибках (token/task fetch).
+

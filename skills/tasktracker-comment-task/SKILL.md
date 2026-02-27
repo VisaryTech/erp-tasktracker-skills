@@ -1,6 +1,6 @@
 ---
 name: tasktracker-comment-task
-description: Публикация комментария в задачу ERP TaskTracker по ID задачи с авторизацией через client_credentials. Использовать, когда пользователь просит оставить комментарий в задаче TaskTracker, опубликовать замечания/уточнения в задаче или добавить структурированный фидбек по конкретному taskId.
+description: Публикация комментария в задачу ERP TaskTracker по ID задачи. Использовать, когда пользователь просит оставить комментарий в задаче ERP TaskTracker, опубликовать замечания/уточнения в задаче или добавить структурированный фидбек по конкретному taskId.
 ---
 
 # TaskTracker Comment Task
@@ -24,26 +24,29 @@ description: Публикация комментария в задачу ERP Tas
 Опубликовать комментарий строкой:
 
 ```bash
-python C:/Users/<user>/.codex/skills/tasktracker-comment-task/scripts/post_task_comment.py --task-id "12345" --text "Текст комментария"
+python <skill_dir>/scripts/post_task_comment.py --task-id "12345" --text "Текст комментария"
 ```
 
 Опубликовать комментарий из файла:
 
 ```bash
-python C:/Users/<user>/.codex/skills/tasktracker-comment-task/scripts/post_task_comment.py --task-id "12345" --text-file "comment.md"
+python <skill_dir>/scripts/post_task_comment.py --task-id "12345" --text-file "comment.md"
 ```
 
 Опубликовать комментарий в другом ERP-контуре:
 
 ```bash
-python C:/Users/<user>/.codex/skills/tasktracker-comment-task/scripts/post_task_comment.py --base-url "https://erp.example.cloud" --task-id "12345" --text "Текст комментария"
+python <skill_dir>/scripts/post_task_comment.py --erp-base-url "<erp_base_url>" --task-id "12345" --text "Текст комментария"
 ```
+
+Где `<skill_dir>` — директория текущего скилла (путь, из которого открыт этот `SKILL.md`).
 
 Запускать команду с `workdir` в корень пользовательского проекта (где находится `.env`), а не из директории skill.
 
 ## Требования к устойчивости
 
 - Используй `.env` или переменные окружения `erp_client_id` и `erp_client_secret`.
+- Для домена ERP используй `erp_base_url` из `.env` (или `--erp-base-url` в явном виде).
 - Загружай `.env` из корня пользовательского проекта через корректный `workdir`; не запускай из директории skill.
 - Не отправляй пустой комментарий.
 - При ошибке API явно показывай код/причину и останавливай выполнение.
