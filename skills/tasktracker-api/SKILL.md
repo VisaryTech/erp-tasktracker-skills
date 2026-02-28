@@ -1,6 +1,6 @@
 ---
 name: tasktracker-api
-description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, чтение комментариев задачи, создание задачи и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи/эпика, прочитать комментарии задачи, создать новую задачу в проекте или добавить комментарий к задаче/эпику."
+description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, чтение комментариев задачи/эпика, создание задачи и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи/эпика, прочитать комментарии задачи/эпика, создать новую задачу в проекте или добавить комментарий к задаче/эпику."
 ---
 
 # TaskTracker API
@@ -44,23 +44,24 @@ python <skill_dir>/scripts/get_task_data.py --epic-id "<epic_id>" --erp-base-url
 3. Запусти `get_task_data.py`.
 4. Верни JSON-ответ API без изменений.
 
-## Read Task Comments
+## Read Comments
 
-Используй для чтения комментариев задачи по `TaskId`.
+Используй для чтения комментариев задачи по `TaskId` или эпика по `EpicId`.
 
 - Возвращай JSON-массив комментариев API как есть.
 
-Команда:
+Команды:
 
 ```bash
 python <skill_dir>/scripts/get_task_data.py --task-comments-id "<task_id>" --erp-base-url "<erp_base_url>"
+python <skill_dir>/scripts/get_task_data.py --epic-comments-id "<epic_id>" --erp-base-url "<erp_base_url>"
 ```
 
 Порядок:
 
-1. Проверь, что передан `taskCommentsId`.
+1. Проверь, что передан `taskCommentsId` или `epicCommentsId`.
 2. Проверь, что доступен базовый URL: `--erp-base-url` или `erp_base_url` в `.env`.
-3. Запусти `get_task_data.py` с `--task-comments-id`.
+3. Запусти `get_task_data.py` с `--task-comments-id` или `--epic-comments-id`.
 4. Верни JSON-ответ API без изменений.
 
 ## Create Task

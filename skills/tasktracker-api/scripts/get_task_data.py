@@ -37,7 +37,11 @@ def get_epic(base_url: str, epic_id: str, token: str, timeout: int) -> Dict[str,
     return http_get_json(epic_url, token, timeout)
 
 def get_task_comments(base_url: str, task_id: str, token: str, timeout: int) -> Any:
-    comments_url = f"{base_url.rstrip('/')}/api/tasktracker/taskComment?taskId={task_id}"
+    comments_url = f"{base_url.rstrip('/')}/api/tasktracker/TaskComment?taskId={task_id}"
+    return http_get_json(comments_url, token, timeout)
+
+def get_epic_comments(base_url: str, epic_id: str, token: str, timeout: int) -> Any:
+    comments_url = f"{base_url.rstrip('/')}/api/tasktracker/EpicComment?taskId={epic_id}"
     return http_get_json(comments_url, token, timeout)
 
 
@@ -60,9 +64,10 @@ def main() -> int:
     source_group.add_argument("--task-id", help="Task ID")
     source_group.add_argument("--epic-id", help="Epic ID")
     source_group.add_argument("--task-comments-id", help="Task ID for comments list")
+    source_group.add_argument("--epic-comments-id", help="Epic ID for comments list")
     parser.add_argument(
         "--erp-base-url",
-        help="ERP base URL; required with --task-id/--epic-id/--task-comments-id when erp_base_url is not set in env/.env",
+        help="ERP base URL; required with --task-id/--epic-id/--task-comments-id/--epic-comments-id when erp_base_url is not set in env/.env",
     )
     parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
 
@@ -70,7 +75,7 @@ def main() -> int:
 
     try:
         load_env_from_dotenv()
-        entity_type: Literal["task", "epic", "task_comments"]
+        entity_type: Literal["task", "epic", "task_comments", "epic_comments"]
         entity_id: str
 
         if args.url:
@@ -81,9 +86,12 @@ def main() -> int:
             if raw_entity_id is not None:
                 entity_type = "task" if args.task_id is not None else "epic"
                 entity_id = parse_entity_id(raw_entity_id, "Task ID" if entity_type == "task" else "Epic ID")
-            else:
+            elif args.task_comments_id is not None:
                 entity_type = "task_comments"
                 entity_id = parse_entity_id(args.task_comments_id, "Task comments ID")
+            else:
+                entity_type = "epic_comments"
+                entity_id = parse_entity_id(args.epic_comments_id, "Epic comments ID")
             base_url, auth_base_url = derive_base_urls(
                 get_base_url(args.erp_base_url),
                 invalid_message="Invalid base URL",
@@ -94,8 +102,10 @@ def main() -> int:
             result = get_task(base_url, entity_id, token, args.timeout)
         elif entity_type == "epic":
             result = get_epic(base_url, entity_id, token, args.timeout)
-        else:
+        elif entity_type == "task_comments":
             result = get_task_comments(base_url, entity_id, token, args.timeout)
+        else:
+            result = get_epic_comments(base_url, entity_id, token, args.timeout)
 
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
