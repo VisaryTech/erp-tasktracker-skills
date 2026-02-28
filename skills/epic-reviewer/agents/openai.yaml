@@ -1,0 +1,4 @@
+interface:
+  display_name: "Epic Readiness Check"
+  short_description: "Formal epic quality review against a strict checklist"
+  default_prompt: "Review this epic for development readiness and return Yes/No with structured gaps, conflicts, and risks"
