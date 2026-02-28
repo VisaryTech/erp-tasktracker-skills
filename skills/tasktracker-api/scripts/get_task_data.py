@@ -8,7 +8,6 @@ from urllib.error import HTTPError, URLError
 from common import (
     derive_base_urls,
     get_base_url,
-    get_first_present_value,
     get_token,
     http_get_json,
     load_env_from_dotenv,
@@ -37,21 +36,33 @@ def get_epic(base_url: str, epic_id: str, token: str, timeout: int) -> Dict[str,
     epic_url = f"{base_url.rstrip('/')}/api/tasktracker/epic/query/get/{epic_id}"
     return http_get_json(epic_url, token, timeout)
 
+def get_task_comments(base_url: str, task_id: str, token: str, timeout: int) -> Any:
+    comments_url = f"{base_url.rstrip('/')}/api/tasktracker/taskComment?taskId={task_id}"
+    return http_get_json(comments_url, token, timeout)
+
+
+def parse_entity_id(raw_value: Any, label: str) -> str:
+    value = str(raw_value).strip()
+    if not re.fullmatch(r"[0-9]+", value):
+        raise ValueError(f"{label} must contain only digits")
+    return value
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Get TaskTracker task or epic data by URL or ID using ERP client credentials token"
+        description="Get TaskTracker task/epic data or task comments by URL or ID using ERP client credentials token"
     )
     source_group = parser.add_mutually_exclusive_group(required=True)
     source_group.add_argument(
         "--url",
         help="Task or epic URL, e.g. <erp_base_url>/tasktracker/projects/{projectId}/tasks/{taskId} or /epics/{epicId}",
     )
-    source_group.add_argument("--task-id", help="Task ID, e.g. 12345")
-    source_group.add_argument("--epic-id", help="Epic ID, e.g. 191")
+    source_group.add_argument("--task-id", help="Task ID")
+    source_group.add_argument("--epic-id", help="Epic ID")
+    source_group.add_argument("--task-comments-id", help="Task ID for comments list")
     parser.add_argument(
         "--erp-base-url",
-        help="ERP base URL; required with --task-id/--epic-id when erp_base_url is not set in env/.env",
+        help="ERP base URL; required with --task-id/--epic-id/--task-comments-id when erp_base_url is not set in env/.env",
     )
     parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
 
@@ -59,7 +70,7 @@ def main() -> int:
 
     try:
         load_env_from_dotenv()
-        entity_type: Literal["task", "epic"]
+        entity_type: Literal["task", "epic", "task_comments"]
         entity_id: str
 
         if args.url:
@@ -67,12 +78,12 @@ def main() -> int:
             entity_type, entity_id = parse_url_entity(args.url)
         else:
             raw_entity_id = args.task_id if args.task_id is not None else args.epic_id
-            entity_type = "task" if args.task_id is not None else "epic"
-            entity_id = str(raw_entity_id).strip()
-            if not re.fullmatch(r"[0-9]+", entity_id):
-                if entity_type == "task":
-                    raise ValueError("Task ID must contain only digits")
-                raise ValueError("Epic ID must contain only digits")
+            if raw_entity_id is not None:
+                entity_type = "task" if args.task_id is not None else "epic"
+                entity_id = parse_entity_id(raw_entity_id, "Task ID" if entity_type == "task" else "Epic ID")
+            else:
+                entity_type = "task_comments"
+                entity_id = parse_entity_id(args.task_comments_id, "Task comments ID")
             base_url, auth_base_url = derive_base_urls(
                 get_base_url(args.erp_base_url),
                 invalid_message="Invalid base URL",
@@ -80,20 +91,11 @@ def main() -> int:
 
         token = get_token(auth_base_url, args.timeout)
         if entity_type == "task":
-            task = get_task(base_url, entity_id, token, args.timeout)
-            result = {
-                "TaskId": entity_id,
-                "Title": get_first_present_value(task, ("Title", "title")) if isinstance(task, dict) else None,
-                "Description": get_first_present_value(task, ("Description", "description")) if isinstance(task, dict) else None,
-            }
+            result = get_task(base_url, entity_id, token, args.timeout)
+        elif entity_type == "epic":
+            result = get_epic(base_url, entity_id, token, args.timeout)
         else:
-            epic = get_epic(base_url, entity_id, token, args.timeout)
-            result = {
-                "ID": int(entity_id),
-                "Title": get_first_present_value(epic, ("Title", "title")) if isinstance(epic, dict) else None,
-                "Description": get_first_present_value(epic, ("Description", "description")) if isinstance(epic, dict) else None,
-                "ProjectId": get_first_present_value(epic, ("ProjectId", "projectId")) if isinstance(epic, dict) else None,
-            }
+            result = get_task_comments(base_url, entity_id, token, args.timeout)
 
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0

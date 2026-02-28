@@ -61,7 +61,6 @@ def build_request(entity: str, entity_id: int, parent_id: Optional[int], text: s
                 "text": text,
                 "files": None,
             },
-            "result_id_field": "taskId",
         }
     if normalized == "epic":
         return {
@@ -71,7 +70,6 @@ def build_request(entity: str, entity_id: int, parent_id: Optional[int], text: s
                 "parentId": parent_id,
                 "text": text,
             },
-            "result_id_field": "epicId",
         }
     raise ValueError("Entity must be 'task' or 'epic'")
 
@@ -94,7 +92,7 @@ def main() -> int:
     parser.add_argument(
         "--id",
         required=True,
-        help="Entity ID (taskId or epicId), e.g. 12345 or 191",
+        help="Entity ID (taskId or epicId)",
     )
     parser.add_argument(
         "--parent-id",
@@ -119,16 +117,7 @@ def main() -> int:
         base_url, auth_base_url = derive_base_urls(get_base_url(args.erp_base_url))
         token = get_token(auth_base_url, args.timeout)
         response = create_comment(base_url, token, request_data, args.timeout)
-
-        result = {
-            "entity": args.entity,
-            request_data["result_id_field"]: entity_id,
-            "parentId": parent_id,
-            "baseUrl": base_url,
-            "commentText": comment_text,
-            "apiResponse": response,
-        }
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(response, ensure_ascii=False, indent=2))
         return 0
     except FileNotFoundError as exc:
         print_execution_error(Exception(f"file not found: {exc}"))

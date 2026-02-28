@@ -1,3 +1,3 @@
 interface:
   display_name: "TaskTracker API"
-  short_description: "Read task/epic by URL or ID, create tasks, and post task or epic comments via ERP API"
+  short_description: "Read task/epic by URL or ID, read task comments, create tasks, and post task or epic comments via ERP API"

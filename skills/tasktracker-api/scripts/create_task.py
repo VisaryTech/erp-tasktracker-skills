@@ -8,7 +8,6 @@ from urllib.error import HTTPError, URLError
 from common import (
     derive_base_urls,
     get_base_url,
-    get_first_present_value,
     get_token,
     http_post_json,
     load_env_from_dotenv,
@@ -102,7 +101,7 @@ def main() -> int:
         help="Project ID (fallback: .env erp_tasktracker_project_id)",
     )
     parser.add_argument("--epic-id", type=int, help="Epic ID")
-    parser.add_argument("--label-ids", help="Comma-separated label IDs, e.g. 6,73")
+    parser.add_argument("--label-ids", help="Comma-separated label IDs")
     parser.add_argument("--weight", type=int, help="Task weight")
     parser.add_argument("--sprint-id", type=int, help="Sprint ID")
     parser.add_argument("--milestone-id", type=int, help="Milestone ID")
@@ -120,30 +119,7 @@ def main() -> int:
         base_url, auth_base_url = derive_base_urls(get_base_url(args.erp_base_url))
         token = get_token(auth_base_url, args.timeout)
         response = create_task(base_url, token, payload, args.timeout)
-
-        if isinstance(response, dict):
-            task_id = get_first_present_value(response, ("TaskId", "taskId", "Id", "id"))
-            title = get_first_present_value(response, ("Title", "title")) or payload["Title"]
-            description = (
-                get_first_present_value(response, ("Description", "description"))
-                or payload["Description"]
-            )
-            project_id = get_first_present_value(response, ("projectId", "ProjectId")) or payload["projectId"]
-        else:
-            task_id = None
-            title = payload["Title"]
-            description = payload["Description"]
-            project_id = payload["projectId"]
-
-        result = {
-            "TaskId": task_id,
-            "Title": title,
-            "Description": description,
-            "projectId": project_id,
-            "baseUrl": base_url,
-            "apiResponse": response,
-        }
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(response, ensure_ascii=False, indent=2))
         return 0
     except HTTPError as exc:
         print_http_error(exc)
