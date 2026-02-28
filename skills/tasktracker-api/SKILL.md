@@ -1,6 +1,6 @@
 ---
 name: tasktracker-api
-description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, создание задачи и публикация комментария. Использовать, когда пользователь просит получить содержание задачи или эпика, создать новую задачу в проекте или добавить комментарий к задаче."
+description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, создание задачи и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи или эпика, создать новую задачу в проекте или добавить комментарий к задаче/эпику."
 ---
 
 # TaskTracker API
@@ -77,28 +77,33 @@ python <skill_dir>/scripts/create_task.py --title "test" --description "TEST" --
 3. Запусти `create_task.py`.
 4. Верни JSON-результат с `TaskId`, `Title`, `Description`, `projectId`, `apiResponse`.
 
-## Comment Task
+## Comment
 
-Используй для публикации комментария по `taskId`.
+Используй для публикации комментария к задаче или эпику.
 
 Обязательные параметры:
 
-- `--task-id`
+- `--entity` (`task` или `epic`)
+- `--id` (`taskId` или `epicId`)
 - `--text` или `--text-file`
+
+Опциональные параметры:
+
+- `--parent-id` (если это ответ на существующий комментарий)
 
 Команды:
 
 ```bash
-python <skill_dir>/scripts/post_task_comment.py --task-id "12345" --text "Текст комментария"
+python <skill_dir>/scripts/post_comment.py --entity task --id "12345" --text "Текст комментария"
 ```
 
 ```bash
-python <skill_dir>/scripts/post_task_comment.py --task-id "12345" --text-file "comment.md"
+python <skill_dir>/scripts/post_comment.py --entity epic --id "191" --parent-id "1234" --text-file "comment.md"
 ```
 
 Порядок:
 
-1. Получи `taskId` и текст комментария.
+1. Получи `entity`, `id`, текст комментария и опционально `parentId`.
 2. Убедись, что комментарий не пустой.
-3. Запусти `post_task_comment.py`.
-4. Верни `taskId` и `apiResponse`.
+3. Запусти `post_comment.py`.
+4. Верни `entity`, `taskId`/`epicId`, `parentId` и `apiResponse`.
