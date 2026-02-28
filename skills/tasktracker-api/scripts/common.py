@@ -53,6 +53,18 @@ def http_post_json(url: str, token: str, payload: Dict[str, Any], timeout: int) 
         return json.loads(body) if body else {"status": response.status}
 
 
+def http_patch_json(url: str, token: str, payload: Dict[str, Any], timeout: int) -> Any:
+    encoded = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    request = Request(url, data=encoded, method="PATCH")
+    request.add_header("Authorization", f"Bearer {token}")
+    request.add_header("Content-Type", "application/json")
+    request.add_header("Accept", "application/json")
+
+    with urlopen(request, timeout=timeout) as response:
+        body = response.read().decode("utf-8")
+        return json.loads(body) if body else {"status": response.status}
+
+
 def get_token(auth_base_url: str, timeout: int) -> str:
     client_id = os.getenv("erp_client_id")
     client_secret = os.getenv("erp_client_secret")
