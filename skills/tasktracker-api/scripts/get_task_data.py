@@ -3,14 +3,17 @@ import argparse
 import json
 import re
 from typing import Any, Dict, Literal, Tuple
+from urllib.parse import urlencode
 from urllib.error import HTTPError, URLError
 
 from common import (
     derive_base_urls,
     get_base_url,
+    get_project_id,
     get_token,
     http_get_json,
     load_env_from_dotenv,
+    parse_int_env,
     print_execution_error,
     print_http_error,
     print_network_error,
@@ -44,6 +47,26 @@ def get_epic_comments(base_url: str, epic_id: str, token: str, timeout: int) -> 
     comments_url = f"{base_url.rstrip('/')}/api/tasktracker/EpicComment?taskId={epic_id}"
     return http_get_json(comments_url, token, timeout)
 
+def get_epics_by_label(
+    base_url: str,
+    project_id: int,
+    label_id: int,
+    token: str,
+    timeout: int,
+    top: int,
+) -> Dict[str, Any]:
+    params = {
+        "projectId": str(project_id),
+        "$orderby": "ID",
+        "$top": str(top),
+        "$select": "ID,Title,CreatedAt,UpdatedAt,State,AuthorFullName",
+        "$expand": "Labels($orderby=Title asc)",
+        "$filter": f"(((State eq 10)) and (Labels/any(o: o/ID eq {label_id}) eq true)) and (Hidden eq false)",
+        "$count": "true",
+    }
+    odata_url = f"{base_url.rstrip('/')}/api/tasktracker/odata/Epic?{urlencode(params)}"
+    return http_get_json(odata_url, token, timeout)
+
 
 def parse_entity_id(raw_value: Any, label: str) -> str:
     value = str(raw_value).strip()
@@ -65,17 +88,29 @@ def main() -> int:
     source_group.add_argument("--epic-id", help="Epic ID")
     source_group.add_argument("--task-comments-id", help="Task ID for comments list")
     source_group.add_argument("--epic-comments-id", help="Epic ID for comments list")
+    source_group.add_argument(
+        "--epics-to-approve",
+        action="store_true",
+        help="Read epics in review queue using label id from .env erp_label_to_approve",
+    )
+    source_group.add_argument(
+        "--epics-approved",
+        action="store_true",
+        help="Read approved epics using label id from .env erp_label_approved",
+    )
     parser.add_argument(
         "--erp-base-url",
         help="ERP base URL; required with --task-id/--epic-id/--task-comments-id/--epic-comments-id when erp_base_url is not set in env/.env",
     )
+    parser.add_argument("--project-id", type=int, help="Project ID (fallback: .env projectId)")
+    parser.add_argument("--top", type=int, default=50, help="Top N for epic list endpoints")
     parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
 
     args = parser.parse_args()
 
     try:
         load_env_from_dotenv()
-        entity_type: Literal["task", "epic", "task_comments", "epic_comments"]
+        entity_type: Literal["task", "epic", "task_comments", "epic_comments", "epics_to_approve", "epics_approved"]
         entity_id: str
 
         if args.url:
@@ -89,9 +124,15 @@ def main() -> int:
             elif args.task_comments_id is not None:
                 entity_type = "task_comments"
                 entity_id = parse_entity_id(args.task_comments_id, "Task comments ID")
-            else:
+            elif args.epic_comments_id is not None:
                 entity_type = "epic_comments"
                 entity_id = parse_entity_id(args.epic_comments_id, "Epic comments ID")
+            elif args.epics_to_approve:
+                entity_type = "epics_to_approve"
+                entity_id = ""
+            else:
+                entity_type = "epics_approved"
+                entity_id = ""
             base_url, auth_base_url = derive_base_urls(
                 get_base_url(args.erp_base_url),
                 invalid_message="Invalid base URL",
@@ -104,8 +145,26 @@ def main() -> int:
             result = get_epic(base_url, entity_id, token, args.timeout)
         elif entity_type == "task_comments":
             result = get_task_comments(base_url, entity_id, token, args.timeout)
-        else:
+        elif entity_type == "epic_comments":
             result = get_epic_comments(base_url, entity_id, token, args.timeout)
+        elif entity_type == "epics_to_approve":
+            result = get_epics_by_label(
+                base_url=base_url,
+                project_id=get_project_id(args.project_id),
+                label_id=parse_int_env("erp_label_to_approve"),
+                token=token,
+                timeout=args.timeout,
+                top=args.top,
+            )
+        else:
+            result = get_epics_by_label(
+                base_url=base_url,
+                project_id=get_project_id(args.project_id),
+                label_id=parse_int_env("erp_label_approved"),
+                token=token,
+                timeout=args.timeout,
+                top=args.top,
+            )
 
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0

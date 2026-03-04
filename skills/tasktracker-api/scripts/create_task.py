@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import argparse
 import json
-import os
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 from urllib.error import HTTPError, URLError
 
 from common import (
     derive_base_urls,
     get_base_url,
+    get_project_id,
     get_token,
     http_post_json,
     load_env_from_dotenv,
@@ -31,27 +31,6 @@ def parse_csv_ints(raw: Optional[str], arg_name: str) -> List[int]:
         values.append(int(value))
 
     return values
-
-
-def get_project_id(cli_value: Optional[int]) -> int:
-    if cli_value is not None:
-        return cli_value
-
-    env_value = (
-        os.getenv("erp_tasktracker_project_id")
-        or os.getenv("erp-tasktracker-project-id")
-        or os.getenv("project-id")
-        or os.getenv("projectId")
-    )
-    if env_value is None:
-        raise ValueError(
-            "projectId is required: pass --project-id or set erp_tasktracker_project_id in .env"
-        )
-
-    env_value = env_value.strip()
-    if not env_value.isdigit():
-        raise ValueError("erp_tasktracker_project_id in .env must be an integer")
-    return int(env_value)
 
 
 def require_non_empty(value: str, field_name: str) -> str:
@@ -98,7 +77,7 @@ def main() -> int:
     parser.add_argument(
         "--project-id",
         type=int,
-        help="Project ID (fallback: .env erp_tasktracker_project_id)",
+        help="Project ID (fallback: .env projectId)",
     )
     parser.add_argument("--epic-id", type=int, help="Epic ID")
     parser.add_argument("--label-ids", help="Comma-separated label IDs")

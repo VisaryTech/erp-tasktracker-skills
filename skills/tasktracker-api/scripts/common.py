@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
@@ -111,6 +112,33 @@ def get_base_url(cli_base_url: Optional[str]) -> str:
     if not raw_value:
         raise ValueError("Base URL is required: pass --erp-base-url or set erp_base_url in .env")
     return raw_value.strip()
+
+
+def parse_int_env(var_name: str) -> int:
+    value = os.getenv(var_name)
+    if value is None:
+        raise ValueError(f"Missing env var: {var_name}")
+
+    parsed = value.strip()
+    if not re.fullmatch(r"[0-9]+", parsed):
+        raise ValueError(f"Env var {var_name} must be an integer")
+    return int(parsed)
+
+
+def get_project_id(cli_value: Optional[int]) -> int:
+    if cli_value is not None:
+        return cli_value
+
+    for key in ("projectId", "erp_tasktracker_project_id", "erp-tasktracker-project-id", "project-id"):
+        value = os.getenv(key)
+        if value is None:
+            continue
+        parsed = value.strip()
+        if not re.fullmatch(r"[0-9]+", parsed):
+            raise ValueError(f"Env var {key} must be an integer")
+        return int(parsed)
+
+    raise ValueError("projectId is required: pass --project-id or set projectId in .env")
 
 
 def get_first_present_value(data: Dict[str, Any], keys: Tuple[str, ...]) -> Any:

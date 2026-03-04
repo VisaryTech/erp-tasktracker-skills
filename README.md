@@ -11,7 +11,10 @@
 erp_base_url=
 erp_client_id=
 erp_client_secret=
-erp_tasktracker_project_id=
+projectId=
+erp_label_to_approve=
+erp_label_approved=
+erp_label_to_define=
 ```
 
 `erp_client_id` должен принадлежать пользователю ERP, который добавлен в проект с ролью `Разработчик`.
