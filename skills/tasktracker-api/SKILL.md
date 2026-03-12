@@ -1,12 +1,12 @@
 ---
 name: tasktracker-api
-description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, чтение комментариев задачи/эпика, создание задачи, смена меток задачи и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи/эпика, прочитать комментарии задачи/эпика, создать новую задачу в проекте, изменить метки задачи или добавить комментарий к задаче/эпику."
+description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, чтение комментариев задачи/эпика, создание задачи, смена меток, управление связями задач и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи/эпика, прочитать комментарии задачи/эпика, создать новую задачу в проекте, изменить метки/связи задачи или добавить комментарий к задаче/эпику."
 metadata: {"openclaw":{"requires":{"anyBins":["python","python3","py"],"env":["erp_client_id","erp_client_secret"]}}}
 ---
 
 # TaskTracker API
 
-Используй этот скилл как единую точку для операций TaskTracker: `read`, `read comments`, `create`, `change labels`, `comment`.
+Используй этот скилл как единую точку для операций TaskTracker: `read`, `read comments`, `create`, `change labels`, `manage links`, `comment`.
 
 Общие правила:
 
@@ -202,4 +202,44 @@ python <skill_dir>/scripts/change_epic_labels.py --epic-id "<epic_id>" --status 
 1. Получи `epicId` и статус (`checked` или `to-define`) либо явные `labelIds`.
 2. Для статуса возьми label ID из `.env` (`erp_label_approved` или `erp_label_to_define`).
 3. Запусти `change_epic_labels.py`.
+4. Верни JSON-ответ API без изменений.
+
+## Manage Task Links
+
+Используй для управления связями задач через endpoints:
+
+- `/Task/command/CreateLink/{taskId}`
+- `/Task/command/ChangeLinkType/{taskId}`
+- `/Task/command/DeleteLink/{taskId}`
+
+Поддерживаемые типы связи (`TaskLinkType`):
+
+- `RelatesTo = 0`
+- `Blocks = 1`
+- `IsBlocked = 2`
+
+Обязательные параметры:
+
+- `--action` (`create`, `change-type`, `delete`)
+- `--task-id`
+- `--other-task-id`
+
+Опциональные параметры:
+
+- `--type` (обязателен для `create` и `change-type`; принимает `0|1|2` или `RelatesTo|Blocks|IsBlocked`)
+- `--erp-base-url`
+
+Команды:
+
+```bash
+python <skill_dir>/scripts/manage_task_links.py --action create --task-id "<task_id>" --other-task-id "<other_task_id>" --type RelatesTo
+python <skill_dir>/scripts/manage_task_links.py --action change-type --task-id "<task_id>" --other-task-id "<other_task_id>" --type 1
+python <skill_dir>/scripts/manage_task_links.py --action delete --task-id "<task_id>" --other-task-id "<other_task_id>"
+```
+
+Порядок:
+
+1. Получи `action`, `taskId`, `otherTaskId` и при необходимости `type`.
+2. Для `create`/`change-type` проверь, что `type` задан и валиден.
+3. Запусти `manage_task_links.py`.
 4. Верни JSON-ответ API без изменений.
