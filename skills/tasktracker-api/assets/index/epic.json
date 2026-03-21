@@ -2,92 +2,92 @@
   "methods": [
     {
       "key": "GET /Epic",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_epic --arg project_id=<value>",
+      "cliShape": "python api.py -m get_epic --arg project_id=<value>",
       "summary": "get epic"
     },
     {
       "key": "GET /Epic/query/Get/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_query_get_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m get_epic_query_get_epic_id --posarg <epic_id>",
       "summary": "get epic epic id"
     },
     {
       "key": "GET /Epic/query/GetMetrics/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_query_get_metrics_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m get_epic_query_get_metrics_epic_id --posarg <epic_id>",
       "summary": "get epic metrics epic id"
     },
     {
       "key": "GET /Epic/query/GetObjectPermissions/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_query_get_object_permissions_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m get_epic_query_get_object_permissions_epic_id --posarg <epic_id>",
       "summary": "get epic object permissions epic id"
     },
     {
       "key": "GET /Epic/query/GetTypePermissions",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_query_get_type_permissions --arg project_id=<value>",
+      "cliShape": "python api.py -m get_epic_query_get_type_permissions --arg project_id=<value>",
       "summary": "get epic type permissions"
     },
     {
       "key": "POST /Epic/command/Create",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_epic_command_create --arg body=<json>",
+      "cliShape": "python api.py -m post_epic_command_create --arg body=<json>",
       "summary": "post epic create"
     },
     {
       "key": "PATCH /Epic/command/ChangeTitle/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_title_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_title_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change title epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeDescription/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_description_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_description_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change description epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeFiles/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_files_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_files_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change files epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangePeriod/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_period_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_period_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change period epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeMilestone/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_milestone_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_milestone_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change milestone epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeLabels/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_labels_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_labels_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change labels epic id"
     },
     {
       "key": "PATCH /Epic/command/Reopen/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_reopen_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m patch_epic_command_reopen_epic_id --posarg <epic_id>",
       "summary": "patch epic reopen epic id"
     },
     {
       "key": "PATCH /Epic/command/Close/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_close_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m patch_epic_command_close_epic_id --posarg <epic_id>",
       "summary": "patch epic close epic id"
     },
     {
       "key": "DELETE /Epic/command/Delete/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m delete_epic_command_delete_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m delete_epic_command_delete_epic_id --posarg <epic_id>",
       "summary": "delete epic epic id"
     },
     {
       "key": "POST /Epic/command/Restore/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_epic_command_restore_epic_id --posarg <epic_id>",
+      "cliShape": "python api.py -m post_epic_command_restore_epic_id --posarg <epic_id>",
       "summary": "post epic restore epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeParent/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_parent_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_parent_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change parent epic id"
     },
     {
       "key": "PATCH /Epic/command/ChangeRoadmapOrder/{epicId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_command_change_roadmap_order_epic_id --posarg <epic_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_epic_command_change_roadmap_order_epic_id --posarg <epic_id> --arg body=<json>",
       "summary": "patch epic change roadmap order epic id"
     }
   ]

@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /UserInProjectGroupMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_user_in_project_group_membership --arg project_group_id=<value>",
+      "cliShape": "python api.py -m get_user_in_project_group_membership --arg project_group_id=<value>",
       "summary": "get user in project group membership"
     }
   ]

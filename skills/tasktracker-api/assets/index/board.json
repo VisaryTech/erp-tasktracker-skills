@@ -2,42 +2,42 @@
   "methods": [
     {
       "key": "GET /Board",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board --arg project_id=<value>",
+      "cliShape": "python api.py -m get_board --arg project_id=<value>",
       "summary": "get board"
     },
     {
       "key": "GET /Board/query/Get/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_query_get_board_id --posarg <board_id>",
+      "cliShape": "python api.py -m get_board_query_get_board_id --posarg <board_id>",
       "summary": "get board board id"
     },
     {
       "key": "GET /Board/query/GetObjectPermissions/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_query_get_object_permissions_board_id --posarg <board_id>",
+      "cliShape": "python api.py -m get_board_query_get_object_permissions_board_id --posarg <board_id>",
       "summary": "get board object permissions board id"
     },
     {
       "key": "GET /Board/query/GetTypePermissions",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_query_get_type_permissions --arg project_id=<value>",
+      "cliShape": "python api.py -m get_board_query_get_type_permissions --arg project_id=<value>",
       "summary": "get board type permissions"
     },
     {
       "key": "POST /Board/command/Create",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_board_command_create --arg body=<json>",
+      "cliShape": "python api.py -m post_board_command_create --arg body=<json>",
       "summary": "post board create"
     },
     {
       "key": "PATCH /Board/command/Update/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_command_update_board_id --posarg <board_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_command_update_board_id --posarg <board_id> --arg body=<json>",
       "summary": "patch board update board id"
     },
     {
       "key": "DELETE /Board/command/Delete/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m delete_board_command_delete_board_id --posarg <board_id>",
+      "cliShape": "python api.py -m delete_board_command_delete_board_id --posarg <board_id>",
       "summary": "delete board board id"
     },
     {
       "key": "POST /Board/command/Restore/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_board_command_restore_board_id --posarg <board_id>",
+      "cliShape": "python api.py -m post_board_command_restore_board_id --posarg <board_id>",
       "summary": "post board restore board id"
     }
   ]

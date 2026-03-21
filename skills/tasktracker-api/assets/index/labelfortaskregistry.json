@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /LabelForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_label_for_task_registry",
+      "cliShape": "python api.py -m get_label_for_task_registry",
       "summary": "get label for task registry"
     }
   ]

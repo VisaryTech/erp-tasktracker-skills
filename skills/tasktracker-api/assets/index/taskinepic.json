@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /TaskInEpic",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_in_epic --arg epic_id=<value>",
+      "cliShape": "python api.py -m get_task_in_epic --arg epic_id=<value>",
       "summary": "get task in epic"
     }
   ]

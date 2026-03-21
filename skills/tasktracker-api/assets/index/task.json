@@ -2,187 +2,187 @@
   "methods": [
     {
       "key": "GET /Task",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task --arg project_id=<value> --arg search=<value>",
+      "cliShape": "python api.py -m get_task --arg project_id=<value> --arg search=<value>",
       "summary": "get task"
     },
     {
       "key": "GET /Task/query/Get/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m get_task_query_get_task_id --posarg <task_id>",
       "summary": "get task task id"
     },
     {
       "key": "GET /Task/query/GetAllProjectTasksAssignees/{projectId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_all_project_tasks_assignees_project_id --posarg <project_id>",
+      "cliShape": "python api.py -m get_task_query_get_all_project_tasks_assignees_project_id --posarg <project_id>",
       "summary": "get task all project tasks assignees project id"
     },
     {
       "key": "GET /Task/query/GetTaskAssigneeCandidates/{projectId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_task_assignee_candidates_project_id --posarg <project_id>",
+      "cliShape": "python api.py -m get_task_query_get_task_assignee_candidates_project_id --posarg <project_id>",
       "summary": "get task task assignee candidates project id"
     },
     {
       "key": "GET /Task/query/GetTaskParticipants/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_task_participants_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m get_task_query_get_task_participants_task_id --posarg <task_id>",
       "summary": "get task task participants task id"
     },
     {
       "key": "GET /Task/query/GetTaskAssignees/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_task_assignees_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m get_task_query_get_task_assignees_task_id --posarg <task_id>",
       "summary": "get task task assignees task id"
     },
     {
       "key": "GET /Task/query/GetBlockingTasks/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_blocking_tasks_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m get_task_query_get_blocking_tasks_task_id --posarg <task_id>",
       "summary": "get task blocking tasks task id"
     },
     {
       "key": "GET /Task/query/GetAllMilestoneTasksAssignees/{milestoneId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_all_milestone_tasks_assignees_milestone_id --posarg <milestone_id>",
+      "cliShape": "python api.py -m get_task_query_get_all_milestone_tasks_assignees_milestone_id --posarg <milestone_id>",
       "summary": "get task all milestone tasks assignees milestone id"
     },
     {
       "key": "GET /Task/query/GetAllMilestoneTasksLabels/{milestoneId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_all_milestone_tasks_labels_milestone_id --posarg <milestone_id>",
+      "cliShape": "python api.py -m get_task_query_get_all_milestone_tasks_labels_milestone_id --posarg <milestone_id>",
       "summary": "get task all milestone tasks labels milestone id"
     },
     {
       "key": "GET /Task/query/GetObjectPermissions/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_object_permissions_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m get_task_query_get_object_permissions_task_id --posarg <task_id>",
       "summary": "get task object permissions task id"
     },
     {
       "key": "GET /Task/query/GetTypePermissions",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_type_permissions --arg project_id=<value>",
+      "cliShape": "python api.py -m get_task_query_get_type_permissions --arg project_id=<value>",
       "summary": "get task type permissions"
     },
     {
       "key": "POST /Task/command/Create",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_task_command_create --arg body=<json>",
+      "cliShape": "python api.py -m post_task_command_create --arg body=<json>",
       "summary": "post task create"
     },
     {
       "key": "PATCH /Task/command/ChangeTitle/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_title_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_title_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change title task id"
     },
     {
       "key": "PATCH /Task/command/ChangeDescription/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_description_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_description_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change description task id"
     },
     {
       "key": "PATCH /Task/command/Reopen/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_reopen_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m patch_task_command_reopen_task_id --posarg <task_id>",
       "summary": "patch task reopen task id"
     },
     {
       "key": "PATCH /Task/command/Close/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_close_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m patch_task_command_close_task_id --posarg <task_id>",
       "summary": "patch task close task id"
     },
     {
       "key": "PATCH /Task/command/ChangePeriod/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_period_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_period_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change period task id"
     },
     {
       "key": "PATCH /Task/command/ChangeParent/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_parent_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_parent_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change parent task id"
     },
     {
       "key": "PATCH /Task/command/ChangeMilestone/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_milestone_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_milestone_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change milestone task id"
     },
     {
       "key": "PATCH /Task/command/ChangeSprint/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_sprint_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_sprint_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change sprint task id"
     },
     {
       "key": "PATCH /Task/command/ChangeEpic/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_epic_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_epic_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change epic task id"
     },
     {
       "key": "PATCH /Task/command/ChangeProgress/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_progress_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_progress_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change progress task id"
     },
     {
       "key": "PATCH /Task/command/ChangeWeight/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_weight_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_weight_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change weight task id"
     },
     {
       "key": "PATCH /Task/command/ChangeFiles/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_files_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_files_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change files task id"
     },
     {
       "key": "PATCH /Task/command/ChangeLabels/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_labels_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_labels_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change labels task id"
     },
     {
       "key": "PATCH /Task/command/ChangeAssignees/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_assignees_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_assignees_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change assignees task id"
     },
     {
       "key": "PATCH /Task/command/ChangeCurrentAssignee/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_current_assignee_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_current_assignee_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change current assignee task id"
     },
     {
       "key": "DELETE /Task/command/Delete/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m delete_task_command_delete_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m delete_task_command_delete_task_id --posarg <task_id>",
       "summary": "delete task task id"
     },
     {
       "key": "POST /Task/command/Restore/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_task_command_restore_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m post_task_command_restore_task_id --posarg <task_id>",
       "summary": "post task restore task id"
     },
     {
       "key": "PATCH /Task/command/CreateLink/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_create_link_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_create_link_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task create link task id"
     },
     {
       "key": "PATCH /Task/command/ChangeLinkType/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_change_link_type_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_change_link_type_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change link type task id"
     },
     {
       "key": "PATCH /Task/command/DeleteLink/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_delete_link_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_delete_link_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task link task id"
     },
     {
       "key": "PATCH /Task/command/DuplicateToProject/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_duplicate_to_project_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_duplicate_to_project_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task duplicate to project task id"
     },
     {
       "key": "PATCH /Task/command/MoveToProject/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_move_to_project_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_move_to_project_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task move to project task id"
     },
     {
       "key": "POST /Task/command/Subscribe/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_task_command_subscribe_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m post_task_command_subscribe_task_id --posarg <task_id>",
       "summary": "post task subscribe task id"
     },
     {
       "key": "POST /Task/command/Unsubscribe/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_task_command_unsubscribe_task_id --posarg <task_id>",
+      "cliShape": "python api.py -m post_task_command_unsubscribe_task_id --posarg <task_id>",
       "summary": "post task unsubscribe task id"
     },
     {
       "key": "PATCH /Task/command/BulkEdit",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_task_command_bulk_edit --arg body=<json>",
+      "cliShape": "python api.py -m patch_task_command_bulk_edit --arg body=<json>",
       "summary": "patch task bulk edit"
     }
   ]

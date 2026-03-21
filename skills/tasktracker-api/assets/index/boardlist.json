@@ -2,62 +2,62 @@
   "methods": [
     {
       "key": "GET /BoardList/query/GetLists/{boardId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_list_query_get_lists_board_id --posarg <board_id>",
+      "cliShape": "python api.py -m get_board_list_query_get_lists_board_id --posarg <board_id>",
       "summary": "get board list lists board id"
     },
     {
       "key": "GET /BoardList/query/GetLabeledList/{listId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_list_query_get_labeled_list_list_id --posarg <list_id>",
+      "cliShape": "python api.py -m get_board_list_query_get_labeled_list_list_id --posarg <list_id>",
       "summary": "get board list labeled list list id"
     },
     {
       "key": "GET /BoardList/query/GetSystemList/{listId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_board_list_query_get_system_list_list_id --posarg <list_id>",
+      "cliShape": "python api.py -m get_board_list_query_get_system_list_list_id --posarg <list_id>",
       "summary": "get board list system list list id"
     },
     {
       "key": "POST /BoardList/command/CreateList",
-      "cliShape": "python skills/tasktracker-api/api.py -m post_board_list_command_create_list --arg body=<json>",
+      "cliShape": "python api.py -m post_board_list_command_create_list --arg body=<json>",
       "summary": "post board list create list"
     },
     {
       "key": "PATCH /BoardList/command/ChangeListPosition",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_change_list_position --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_change_list_position --arg body=<json>",
       "summary": "patch board list change list position"
     },
     {
       "key": "DELETE /BoardList/command/DeleteList/{listId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m delete_board_list_command_delete_list_list_id --posarg <list_id>",
+      "cliShape": "python api.py -m delete_board_list_command_delete_list_list_id --posarg <list_id>",
       "summary": "delete board list list list id"
     },
     {
       "key": "PATCH /BoardList/command/ChangePositionInLabeledList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_change_position_in_labeled_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_change_position_in_labeled_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list change position in labeled list task id"
     },
     {
       "key": "PATCH /BoardList/command/ChangePositionInSystemList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_change_position_in_system_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_change_position_in_system_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list change position in system list task id"
     },
     {
       "key": "PATCH /BoardList/command/MoveTaskFromLabeledToLabeledList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_move_task_from_labeled_to_labeled_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_move_task_from_labeled_to_labeled_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list move task from labeled to labeled list task id"
     },
     {
       "key": "PATCH /BoardList/command/MoveTaskFromLabeledToSystemList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_move_task_from_labeled_to_system_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_move_task_from_labeled_to_system_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list move task from labeled to system list task id"
     },
     {
       "key": "PATCH /BoardList/command/MoveTaskFromSystemToLabeledList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_move_task_from_system_to_labeled_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_move_task_from_system_to_labeled_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list move task from system to labeled list task id"
     },
     {
       "key": "PATCH /BoardList/command/MoveTaskFromSystemToSystemList/{taskId}",
-      "cliShape": "python skills/tasktracker-api/api.py -m patch_board_list_command_move_task_from_system_to_system_list_task_id --posarg <task_id> --arg body=<json>",
+      "cliShape": "python api.py -m patch_board_list_command_move_task_from_system_to_system_list_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch board list move task from system to system list task id"
     }
   ]

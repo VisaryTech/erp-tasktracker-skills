@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /ProjectAccessibleForUser",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_project_accessible_for_user",
+      "cliShape": "python api.py -m get_project_accessible_for_user",
       "summary": "get project accessible for user"
     }
   ]

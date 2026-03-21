@@ -2,362 +2,362 @@
   "methods": [
     {
       "key": "GET /odata/Board",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_board --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_board --arg project_id=<value>",
       "summary": "odata board"
     },
     {
       "key": "GET /odata/Board/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_board_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_board_count --arg project_id=<value>",
       "summary": "odata board count"
     },
     {
       "key": "GET /odata/Epic",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_epic --arg project_id=<value>",
       "summary": "odata epic"
     },
     {
       "key": "GET /odata/Epic/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_epic_count --arg project_id=<value>",
       "summary": "odata epic count"
     },
     {
       "key": "GET /odata/EpicComment",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_comment --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_epic_comment --arg task_id=<value>",
       "summary": "odata epic comment"
     },
     {
       "key": "GET /odata/EpicComment/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_comment_count --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_epic_comment_count --arg task_id=<value>",
       "summary": "odata epic comment count"
     },
     {
       "key": "GET /odata/EpicForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_for_task_registry",
+      "cliShape": "python api.py -m odata_epic_for_task_registry",
       "summary": "odata epic for task registry"
     },
     {
       "key": "GET /odata/EpicForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_for_task_registry_count",
+      "cliShape": "python api.py -m odata_epic_for_task_registry_count",
       "summary": "odata epic for task registry count"
     },
     {
       "key": "GET /odata/EpicHistory",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_history --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_epic_history --arg task_id=<value>",
       "summary": "odata epic history"
     },
     {
       "key": "GET /odata/EpicHistory/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_epic_history_count --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_epic_history_count --arg task_id=<value>",
       "summary": "odata epic history count"
     },
     {
       "key": "GET /odata/Label",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label --arg scope_type=<value> --arg scope_id=<value>",
+      "cliShape": "python api.py -m odata_label --arg scope_type=<value> --arg scope_id=<value>",
       "summary": "odata label"
     },
     {
       "key": "GET /odata/Label/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_count --arg scope_type=<value> --arg scope_id=<value>",
+      "cliShape": "python api.py -m odata_label_count --arg scope_type=<value> --arg scope_id=<value>",
       "summary": "odata label count"
     },
     {
       "key": "GET /odata/LabelForGroup",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_group --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_label_for_group --arg project_group_id=<value>",
       "summary": "odata label for group"
     },
     {
       "key": "GET /odata/LabelForGroup/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_group_count --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_label_for_group_count --arg project_group_id=<value>",
       "summary": "odata label for group count"
     },
     {
       "key": "GET /odata/LabelForProject",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_project --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_label_for_project --arg project_id=<value>",
       "summary": "odata label for project"
     },
     {
       "key": "GET /odata/LabelForProject/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_project_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_label_for_project_count --arg project_id=<value>",
       "summary": "odata label for project count"
     },
     {
       "key": "GET /odata/LabelForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_task_registry",
+      "cliShape": "python api.py -m odata_label_for_task_registry",
       "summary": "odata label for task registry"
     },
     {
       "key": "GET /odata/LabelForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_label_for_task_registry_count",
+      "cliShape": "python api.py -m odata_label_for_task_registry_count",
       "summary": "odata label for task registry count"
     },
     {
       "key": "GET /odata/$metadata",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_metadata",
+      "cliShape": "python api.py -m odata_metadata",
       "summary": "odata metadata"
     },
     {
       "key": "GET /odata",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata",
+      "cliShape": "python api.py -m odata",
       "summary": "odata"
     },
     {
       "key": "GET /odata/Milestone",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_milestone --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_milestone --arg project_id=<value>",
       "summary": "odata milestone"
     },
     {
       "key": "GET /odata/Milestone/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_milestone_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_milestone_count --arg project_id=<value>",
       "summary": "odata milestone count"
     },
     {
       "key": "GET /odata/MilestoneForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_milestone_for_task_registry",
+      "cliShape": "python api.py -m odata_milestone_for_task_registry",
       "summary": "odata milestone for task registry"
     },
     {
       "key": "GET /odata/MilestoneForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_milestone_for_task_registry_count",
+      "cliShape": "python api.py -m odata_milestone_for_task_registry_count",
       "summary": "odata milestone for task registry count"
     },
     {
       "key": "GET /odata/Project",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project",
+      "cliShape": "python api.py -m odata_project",
       "summary": "odata project"
     },
     {
       "key": "GET /odata/Project/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_count",
+      "cliShape": "python api.py -m odata_project_count",
       "summary": "odata project count"
     },
     {
       "key": "GET /odata/ProjectAccessibleForUser",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_accessible_for_user",
+      "cliShape": "python api.py -m odata_project_accessible_for_user",
       "summary": "odata project accessible for user"
     },
     {
       "key": "GET /odata/ProjectAccessibleForUser/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_accessible_for_user_count",
+      "cliShape": "python api.py -m odata_project_accessible_for_user_count",
       "summary": "odata project accessible for user count"
     },
     {
       "key": "GET /odata/ProjectForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_for_task_registry",
+      "cliShape": "python api.py -m odata_project_for_task_registry",
       "summary": "odata project for task registry"
     },
     {
       "key": "GET /odata/ProjectForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_for_task_registry_count",
+      "cliShape": "python api.py -m odata_project_for_task_registry_count",
       "summary": "odata project for task registry count"
     },
     {
       "key": "GET /odata/ProjectGroup",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_group",
+      "cliShape": "python api.py -m odata_project_group",
       "summary": "odata project group"
     },
     {
       "key": "GET /odata/ProjectGroup/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_group_count",
+      "cliShape": "python api.py -m odata_project_group_count",
       "summary": "odata project group count"
     },
     {
       "key": "GET /odata/ProjectInRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_in_registry --arg kind=<value> --arg query_mode=<value> --arg group_id=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_project_in_registry --arg kind=<value> --arg query_mode=<value> --arg group_id=<value> --arg search=<value>",
       "summary": "odata project in registry"
     },
     {
       "key": "GET /odata/ProjectInRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_in_registry_count --arg kind=<value> --arg query_mode=<value> --arg group_id=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_project_in_registry_count --arg kind=<value> --arg query_mode=<value> --arg group_id=<value> --arg search=<value>",
       "summary": "odata project in registry count"
     },
     {
       "key": "GET /odata/ProjectTemplate",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_template",
+      "cliShape": "python api.py -m odata_project_template",
       "summary": "odata project template"
     },
     {
       "key": "GET /odata/ProjectTemplate/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_template_count",
+      "cliShape": "python api.py -m odata_project_template_count",
       "summary": "odata project template count"
     },
     {
       "key": "GET /odata/ProjectWithMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_with_membership",
+      "cliShape": "python api.py -m odata_project_with_membership",
       "summary": "odata project with membership"
     },
     {
       "key": "GET /odata/ProjectWithMembership/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_project_with_membership_count",
+      "cliShape": "python api.py -m odata_project_with_membership_count",
       "summary": "odata project with membership count"
     },
     {
       "key": "GET /odata/Sprint",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_sprint --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_sprint --arg project_id=<value>",
       "summary": "odata sprint"
     },
     {
       "key": "GET /odata/Sprint/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_sprint_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_sprint_count --arg project_id=<value>",
       "summary": "odata sprint count"
     },
     {
       "key": "GET /odata/SprintForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_sprint_for_task_registry",
+      "cliShape": "python api.py -m odata_sprint_for_task_registry",
       "summary": "odata sprint for task registry"
     },
     {
       "key": "GET /odata/SprintForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_sprint_for_task_registry_count",
+      "cliShape": "python api.py -m odata_sprint_for_task_registry_count",
       "summary": "odata sprint for task registry count"
     },
     {
       "key": "GET /odata/Task",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task --arg project_id=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_task --arg project_id=<value> --arg search=<value>",
       "summary": "odata task"
     },
     {
       "key": "GET /odata/Task/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_count --arg project_id=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_task_count --arg project_id=<value> --arg search=<value>",
       "summary": "odata task count"
     },
     {
       "key": "GET /odata/TaskComment",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_comment --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_comment --arg task_id=<value>",
       "summary": "odata task comment"
     },
     {
       "key": "GET /odata/TaskComment/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_comment_count --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_comment_count --arg task_id=<value>",
       "summary": "odata task comment count"
     },
     {
       "key": "GET /odata/TaskHistory",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_history --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_history --arg task_id=<value>",
       "summary": "odata task history"
     },
     {
       "key": "GET /odata/TaskHistory/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_history_count --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_history_count --arg task_id=<value>",
       "summary": "odata task history count"
     },
     {
       "key": "GET /odata/TaskInBoardLabeledList",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_board_labeled_list --arg board_list_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_board_labeled_list --arg board_list_id=<value>",
       "summary": "odata task in board labeled list"
     },
     {
       "key": "GET /odata/TaskInBoardLabeledList/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_board_labeled_list_count --arg board_list_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_board_labeled_list_count --arg board_list_id=<value>",
       "summary": "odata task in board labeled list count"
     },
     {
       "key": "GET /odata/TaskInBoardSystemList",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_board_system_list --arg board_list_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_board_system_list --arg board_list_id=<value>",
       "summary": "odata task in board system list"
     },
     {
       "key": "GET /odata/TaskInBoardSystemList/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_board_system_list_count --arg board_list_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_board_system_list_count --arg board_list_id=<value>",
       "summary": "odata task in board system list count"
     },
     {
       "key": "GET /odata/TaskInEpic",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_epic --arg epic_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_epic --arg epic_id=<value>",
       "summary": "odata task in epic"
     },
     {
       "key": "GET /odata/TaskInEpic/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_epic_count --arg epic_id=<value>",
+      "cliShape": "python api.py -m odata_task_in_epic_count --arg epic_id=<value>",
       "summary": "odata task in epic count"
     },
     {
       "key": "GET /odata/TaskInRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_registry --arg kind=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_task_in_registry --arg kind=<value> --arg search=<value>",
       "summary": "odata task in registry"
     },
     {
       "key": "GET /odata/TaskInRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_in_registry_count --arg kind=<value> --arg search=<value>",
+      "cliShape": "python api.py -m odata_task_in_registry_count --arg kind=<value> --arg search=<value>",
       "summary": "odata task in registry count"
     },
     {
       "key": "GET /odata/TaskTemplate",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_template --arg scope_type=<value> --arg scope_id=<value>",
+      "cliShape": "python api.py -m odata_task_template --arg scope_type=<value> --arg scope_id=<value>",
       "summary": "odata task template"
     },
     {
       "key": "GET /odata/TaskTemplate/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_template_count --arg scope_type=<value> --arg scope_id=<value>",
+      "cliShape": "python api.py -m odata_task_template_count --arg scope_type=<value> --arg scope_id=<value>",
       "summary": "odata task template count"
     },
     {
       "key": "GET /odata/TaskTemplateForProject",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_template_for_project --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_task_template_for_project --arg project_id=<value>",
       "summary": "odata task template for project"
     },
     {
       "key": "GET /odata/TaskTemplateForProject/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_template_for_project_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_task_template_for_project_count --arg project_id=<value>",
       "summary": "odata task template for project count"
     },
     {
       "key": "GET /odata/TaskTime",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_time --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_time --arg task_id=<value>",
       "summary": "odata task time"
     },
     {
       "key": "GET /odata/TaskTime/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_task_time_count --arg task_id=<value>",
+      "cliShape": "python api.py -m odata_task_time_count --arg task_id=<value>",
       "summary": "odata task time count"
     },
     {
       "key": "GET /odata/UserGroupInProjectGroupMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_group_in_project_group_membership --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_user_group_in_project_group_membership --arg project_group_id=<value>",
       "summary": "odata user group in project group membership"
     },
     {
       "key": "GET /odata/UserGroupInProjectGroupMembership/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_group_in_project_group_membership_count --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_user_group_in_project_group_membership_count --arg project_group_id=<value>",
       "summary": "odata user group in project group membership count"
     },
     {
       "key": "GET /odata/UserGroupInProjectMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_group_in_project_membership --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_user_group_in_project_membership --arg project_id=<value>",
       "summary": "odata user group in project membership"
     },
     {
       "key": "GET /odata/UserGroupInProjectMembership/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_group_in_project_membership_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_user_group_in_project_membership_count --arg project_id=<value>",
       "summary": "odata user group in project membership count"
     },
     {
       "key": "GET /odata/UserInProjectGroupMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_in_project_group_membership --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_user_in_project_group_membership --arg project_group_id=<value>",
       "summary": "odata user in project group membership"
     },
     {
       "key": "GET /odata/UserInProjectGroupMembership/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_in_project_group_membership_count --arg project_group_id=<value>",
+      "cliShape": "python api.py -m odata_user_in_project_group_membership_count --arg project_group_id=<value>",
       "summary": "odata user in project group membership count"
     },
     {
       "key": "GET /odata/UserInProjectMembership",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_in_project_membership --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_user_in_project_membership --arg project_id=<value>",
       "summary": "odata user in project membership"
     },
     {
       "key": "GET /odata/UserInProjectMembership/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_user_in_project_membership_count --arg project_id=<value>",
+      "cliShape": "python api.py -m odata_user_in_project_membership_count --arg project_id=<value>",
       "summary": "odata user in project membership count"
     },
     {
       "key": "GET /odata/WeightForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_weight_for_task_registry",
+      "cliShape": "python api.py -m odata_weight_for_task_registry",
       "summary": "odata weight for task registry"
     },
     {
       "key": "GET /odata/WeightForTaskRegistry/$count",
-      "cliShape": "python skills/tasktracker-api/api.py -m odata_weight_for_task_registry_count",
+      "cliShape": "python api.py -m odata_weight_for_task_registry_count",
       "summary": "odata weight for task registry count"
     }
   ]

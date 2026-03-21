@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /MilestoneForTaskRegistry",
-      "cliShape": "python skills/tasktracker-api/api.py -m get_milestone_for_task_registry",
+      "cliShape": "python api.py -m get_milestone_for_task_registry",
       "summary": "get milestone for task registry"
     }
   ]
