@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /LabelForGroup",
-      "cliShape": "python api.py -m get_label_for_group --arg project_group_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_label_for_group --arg project_group_id=<value>",
       "summary": "get label for group"
     }
   ]

@@ -11,6 +11,7 @@ Use this skill when you need to work with ERP TaskTracker strictly through Swagg
 Skill artifacts:
 
 - `assets/index/manifest.json` — the only entry point into runtime indexes.
+- `api.py` — the short CLI entry point from the skill root.
 - `scripts/tasktracker_api.py` — Python client `TaskTrackerAPI` generated from the same OpenAPI.
 - `scripts/tasktracker_call.py` — CLI wrapper for invoking TaskTracker API methods.
 
@@ -40,7 +41,7 @@ Workflow:
 5. Use the command from `cliShape`.
 6. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
 
-Use the short shell entry point `api.py`.
+Use the short shell entry point `api.py` from the skill root.
 
 CLI example:
 
@@ -49,13 +50,13 @@ CLI example:
 {
   "key": "GET /Task/query/Get/{taskId}",
   "summary": "get task task id",
-  "cliShape": "python api.py -m get_task_query_get_task_id --posarg <task_id>"
+  "cliShape": "python skills/tasktracker-api/api.py -m get_task_query_get_task_id --posarg <task_id>"
 }
 
-python api.py -m get_task_query_get_task_id --posarg 123
+python skills/tasktracker-api/api.py -m get_task_query_get_task_id --posarg 123
 
 # URL-based variant when taskId is inside the link
-python api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
+python skills/tasktracker-api/api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
 ```
 
 Notes:

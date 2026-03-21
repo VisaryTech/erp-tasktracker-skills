@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /WeightForTaskRegistry",
-      "cliShape": "python api.py -m get_weight_for_task_registry",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_weight_for_task_registry",
       "summary": "get weight for task registry"
     }
   ]

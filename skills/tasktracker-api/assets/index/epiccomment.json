@@ -2,47 +2,47 @@
   "methods": [
     {
       "key": "GET /EpicComment",
-      "cliShape": "python api.py -m get_epic_comment --arg task_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_comment --arg task_id=<value>",
       "summary": "get epic comment"
     },
     {
       "key": "GET /EpicComment/query/Get/{commentId}",
-      "cliShape": "python api.py -m get_epic_comment_query_get_comment_id --posarg <comment_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_comment_query_get_comment_id --posarg <comment_id>",
       "summary": "get epic comment comment id"
     },
     {
       "key": "GET /EpicComment/query/GetObjectPermissions/{commentId}",
-      "cliShape": "python api.py -m get_epic_comment_query_get_object_permissions_comment_id --posarg <comment_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_comment_query_get_object_permissions_comment_id --posarg <comment_id>",
       "summary": "get epic comment object permissions comment id"
     },
     {
       "key": "GET /EpicComment/query/GetTypePermissions",
-      "cliShape": "python api.py -m get_epic_comment_query_get_type_permissions --arg epic_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_epic_comment_query_get_type_permissions --arg epic_id=<value>",
       "summary": "get epic comment type permissions"
     },
     {
       "key": "POST /EpicComment/command/Create",
-      "cliShape": "python api.py -m post_epic_comment_command_create --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_epic_comment_command_create --arg body=<json>",
       "summary": "post epic comment create"
     },
     {
       "key": "PATCH /EpicComment/command/ChangeText/{commentId}",
-      "cliShape": "python api.py -m patch_epic_comment_command_change_text_comment_id --posarg <comment_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_comment_command_change_text_comment_id --posarg <comment_id> --arg body=<json>",
       "summary": "patch epic comment change text comment id"
     },
     {
       "key": "PATCH /EpicComment/command/ChangeFiles/{commentId}",
-      "cliShape": "python api.py -m patch_epic_comment_command_change_files_comment_id --posarg <comment_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_epic_comment_command_change_files_comment_id --posarg <comment_id> --arg body=<json>",
       "summary": "patch epic comment change files comment id"
     },
     {
       "key": "DELETE /EpicComment/command/Delete/{commentId}",
-      "cliShape": "python api.py -m delete_epic_comment_command_delete_comment_id --posarg <comment_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m delete_epic_comment_command_delete_comment_id --posarg <comment_id>",
       "summary": "delete epic comment comment id"
     },
     {
       "key": "POST /EpicComment/command/Restore/{commentId}",
-      "cliShape": "python api.py -m post_epic_comment_command_restore_comment_id --posarg <comment_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_epic_comment_command_restore_comment_id --posarg <comment_id>",
       "summary": "post epic comment restore comment id"
     }
   ]

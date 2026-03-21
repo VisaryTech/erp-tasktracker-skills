@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /TaskInBoardLabeledList",
-      "cliShape": "python api.py -m get_task_in_board_labeled_list --arg board_list_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_task_in_board_labeled_list --arg board_list_id=<value>",
       "summary": "get task in board labeled list"
     }
   ]

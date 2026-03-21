@@ -2,52 +2,52 @@
   "methods": [
     {
       "key": "GET /ProjectGroup",
-      "cliShape": "python api.py -m get_project_group",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_group",
       "summary": "get project group"
     },
     {
       "key": "GET /ProjectGroup/query/Get/{groupId}",
-      "cliShape": "python api.py -m get_project_group_query_get_group_id --posarg <group_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_group_query_get_group_id --posarg <group_id>",
       "summary": "get project group group id"
     },
     {
       "key": "GET /ProjectGroup/query/GetObjectPermissions/{groupId}",
-      "cliShape": "python api.py -m get_project_group_query_get_object_permissions_group_id --posarg <group_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_group_query_get_object_permissions_group_id --posarg <group_id>",
       "summary": "get project group object permissions group id"
     },
     {
       "key": "GET /ProjectGroup/query/GetTypePermissions",
-      "cliShape": "python api.py -m get_project_group_query_get_type_permissions",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_group_query_get_type_permissions",
       "summary": "get project group type permissions"
     },
     {
       "key": "POST /ProjectGroup/command/Create",
-      "cliShape": "python api.py -m post_project_group_command_create --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_group_command_create --arg body=<json>",
       "summary": "post project group create"
     },
     {
       "key": "PATCH /ProjectGroup/command/ChangeTitle/{groupId}",
-      "cliShape": "python api.py -m patch_project_group_command_change_title_group_id --posarg <group_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_project_group_command_change_title_group_id --posarg <group_id> --arg body=<json>",
       "summary": "patch project group change title group id"
     },
     {
       "key": "PATCH /ProjectGroup/command/ChangeDescription/{groupId}",
-      "cliShape": "python api.py -m patch_project_group_command_change_description_group_id --posarg <group_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_project_group_command_change_description_group_id --posarg <group_id> --arg body=<json>",
       "summary": "patch project group change description group id"
     },
     {
       "key": "PATCH /ProjectGroup/command/ChangePrivacyLevel/{groupId}",
-      "cliShape": "python api.py -m patch_project_group_command_change_privacy_level_group_id --posarg <group_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_project_group_command_change_privacy_level_group_id --posarg <group_id> --arg body=<json>",
       "summary": "patch project group change privacy level group id"
     },
     {
       "key": "DELETE /ProjectGroup/command/Delete/{groupId}",
-      "cliShape": "python api.py -m delete_project_group_command_delete_group_id --posarg <group_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m delete_project_group_command_delete_group_id --posarg <group_id>",
       "summary": "delete project group group id"
     },
     {
       "key": "POST /ProjectGroup/command/Restore/{groupId}",
-      "cliShape": "python api.py -m post_project_group_command_restore_group_id --posarg <group_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_group_command_restore_group_id --posarg <group_id>",
       "summary": "post project group restore group id"
     }
   ]

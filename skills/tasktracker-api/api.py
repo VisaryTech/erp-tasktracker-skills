@@ -3,13 +3,7 @@ from pathlib import Path
 import runpy
 
 
-SCRIPT_PATH = (
-    Path(__file__).resolve().parent
-    / "skills"
-    / "tasktracker-api"
-    / "scripts"
-    / "tasktracker_call.py"
-)
+SCRIPT_PATH = Path(__file__).resolve().parent / "scripts" / "tasktracker_call.py"
 
 
 if __name__ == "__main__":

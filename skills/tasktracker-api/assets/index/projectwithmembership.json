@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /ProjectWithMembership",
-      "cliShape": "python api.py -m get_project_with_membership",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_with_membership",
       "summary": "get project with membership"
     }
   ]

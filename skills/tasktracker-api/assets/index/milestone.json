@@ -2,57 +2,57 @@
   "methods": [
     {
       "key": "GET /Milestone",
-      "cliShape": "python api.py -m get_milestone --arg project_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_milestone --arg project_id=<value>",
       "summary": "get milestone"
     },
     {
       "key": "GET /Milestone/query/Get/{milestoneId}",
-      "cliShape": "python api.py -m get_milestone_query_get_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_milestone_query_get_milestone_id --posarg <milestone_id>",
       "summary": "get milestone milestone id"
     },
     {
       "key": "GET /Milestone/query/GetObjectPermissions/{milestoneId}",
-      "cliShape": "python api.py -m get_milestone_query_get_object_permissions_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_milestone_query_get_object_permissions_milestone_id --posarg <milestone_id>",
       "summary": "get milestone object permissions milestone id"
     },
     {
       "key": "GET /Milestone/query/GetTypePermissions",
-      "cliShape": "python api.py -m get_milestone_query_get_type_permissions --arg project_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_milestone_query_get_type_permissions --arg project_id=<value>",
       "summary": "get milestone type permissions"
     },
     {
       "key": "POST /Milestone/command/Create",
-      "cliShape": "python api.py -m post_milestone_command_create --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_milestone_command_create --arg body=<json>",
       "summary": "post milestone create"
     },
     {
       "key": "PATCH /Milestone/command/Update/{milestoneId}",
-      "cliShape": "python api.py -m patch_milestone_command_update_milestone_id --posarg <milestone_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_milestone_command_update_milestone_id --posarg <milestone_id> --arg body=<json>",
       "summary": "patch milestone update milestone id"
     },
     {
       "key": "PATCH /Milestone/command/Reopen/{milestoneId}",
-      "cliShape": "python api.py -m patch_milestone_command_reopen_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_milestone_command_reopen_milestone_id --posarg <milestone_id>",
       "summary": "patch milestone reopen milestone id"
     },
     {
       "key": "PATCH /Milestone/command/Close/{milestoneId}",
-      "cliShape": "python api.py -m patch_milestone_command_close_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_milestone_command_close_milestone_id --posarg <milestone_id>",
       "summary": "patch milestone close milestone id"
     },
     {
       "key": "DELETE /Milestone/command/Delete/{milestoneId}",
-      "cliShape": "python api.py -m delete_milestone_command_delete_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m delete_milestone_command_delete_milestone_id --posarg <milestone_id>",
       "summary": "delete milestone milestone id"
     },
     {
       "key": "POST /Milestone/command/Restore/{milestoneId}",
-      "cliShape": "python api.py -m post_milestone_command_restore_milestone_id --posarg <milestone_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_milestone_command_restore_milestone_id --posarg <milestone_id>",
       "summary": "post milestone restore milestone id"
     },
     {
       "key": "PATCH /Milestone/command/ChangeRoadmapOrder/{milestoneId}",
-      "cliShape": "python api.py -m patch_milestone_command_change_roadmap_order_milestone_id --posarg <milestone_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_milestone_command_change_roadmap_order_milestone_id --posarg <milestone_id> --arg body=<json>",
       "summary": "patch milestone change roadmap order milestone id"
     }
   ]

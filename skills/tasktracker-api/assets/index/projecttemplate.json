@@ -2,42 +2,42 @@
   "methods": [
     {
       "key": "GET /ProjectTemplate",
-      "cliShape": "python api.py -m get_project_template",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_template",
       "summary": "get project template"
     },
     {
       "key": "GET /ProjectTemplate/query/Get/{templateId}",
-      "cliShape": "python api.py -m get_project_template_query_get_template_id --posarg <template_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_template_query_get_template_id --posarg <template_id>",
       "summary": "get project template template id"
     },
     {
       "key": "GET /ProjectTemplate/query/GetObjectPermissions/{templateId}",
-      "cliShape": "python api.py -m get_project_template_query_get_object_permissions_template_id --posarg <template_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_template_query_get_object_permissions_template_id --posarg <template_id>",
       "summary": "get project template object permissions template id"
     },
     {
       "key": "GET /ProjectTemplate/query/GetTypePermissions",
-      "cliShape": "python api.py -m get_project_template_query_get_type_permissions",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_template_query_get_type_permissions",
       "summary": "get project template type permissions"
     },
     {
       "key": "POST /ProjectTemplate/command/Create",
-      "cliShape": "python api.py -m post_project_template_command_create --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_template_command_create --arg body=<json>",
       "summary": "post project template create"
     },
     {
       "key": "PATCH /ProjectTemplate/command/Update/{templateId}",
-      "cliShape": "python api.py -m patch_project_template_command_update_template_id --posarg <template_id> --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m patch_project_template_command_update_template_id --posarg <template_id> --arg body=<json>",
       "summary": "patch project template update template id"
     },
     {
       "key": "DELETE /ProjectTemplate/command/Delete/{templateId}",
-      "cliShape": "python api.py -m delete_project_template_command_delete_template_id --posarg <template_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m delete_project_template_command_delete_template_id --posarg <template_id>",
       "summary": "delete project template template id"
     },
     {
       "key": "POST /ProjectTemplate/command/Restore/{templateId}",
-      "cliShape": "python api.py -m post_project_template_command_restore_template_id --posarg <template_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_template_command_restore_template_id --posarg <template_id>",
       "summary": "post project template restore template id"
     }
   ]

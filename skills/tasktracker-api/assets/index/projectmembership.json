@@ -2,52 +2,52 @@
   "methods": [
     {
       "key": "GET /ProjectMembership/query/GetResultingMembership",
-      "cliShape": "python api.py -m get_project_membership_query_get_resulting_membership --arg user_id=<value> --arg project_id=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_membership_query_get_resulting_membership --arg user_id=<value> --arg project_id=<value>",
       "summary": "get project membership resulting membership"
     },
     {
       "key": "GET /ProjectMembership/query/GetPermissions/{projectId}",
-      "cliShape": "python api.py -m get_project_membership_query_get_permissions_project_id --posarg <project_id>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_project_membership_query_get_permissions_project_id --posarg <project_id>",
       "summary": "get project membership permissions project id"
     },
     {
       "key": "POST /ProjectMembership/command/Join",
-      "cliShape": "python api.py -m post_project_membership_command_join --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_join --arg body=<json>",
       "summary": "post project membership join"
     },
     {
       "key": "POST /ProjectMembership/command/Leave",
-      "cliShape": "python api.py -m post_project_membership_command_leave --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_leave --arg body=<json>",
       "summary": "post project membership leave"
     },
     {
       "key": "POST /ProjectMembership/command/AddUser",
-      "cliShape": "python api.py -m post_project_membership_command_add_user --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_add_user --arg body=<json>",
       "summary": "post project membership add user"
     },
     {
       "key": "POST /ProjectMembership/command/AddUserGroup",
-      "cliShape": "python api.py -m post_project_membership_command_add_user_group --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_add_user_group --arg body=<json>",
       "summary": "post project membership add user group"
     },
     {
       "key": "POST /ProjectMembership/command/ChangeUserAccessLevel",
-      "cliShape": "python api.py -m post_project_membership_command_change_user_access_level --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_change_user_access_level --arg body=<json>",
       "summary": "post project membership change user access level"
     },
     {
       "key": "POST /ProjectMembership/command/ChangeUserGroupAccessLevel",
-      "cliShape": "python api.py -m post_project_membership_command_change_user_group_access_level --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_change_user_group_access_level --arg body=<json>",
       "summary": "post project membership change user group access level"
     },
     {
       "key": "POST /ProjectMembership/command/RemoveUser",
-      "cliShape": "python api.py -m post_project_membership_command_remove_user --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_remove_user --arg body=<json>",
       "summary": "post project membership remove user"
     },
     {
       "key": "POST /ProjectMembership/command/RemoveUserGroup",
-      "cliShape": "python api.py -m post_project_membership_command_remove_user_group --arg body=<json>",
+      "cliShape": "python skills/tasktracker-api/api.py -m post_project_membership_command_remove_user_group --arg body=<json>",
       "summary": "post project membership remove user group"
     }
   ]

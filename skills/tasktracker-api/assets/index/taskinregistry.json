@@ -2,7 +2,7 @@
   "methods": [
     {
       "key": "GET /TaskInRegistry",
-      "cliShape": "python api.py -m get_task_in_registry --arg kind=<value> --arg search=<value>",
+      "cliShape": "python skills/tasktracker-api/api.py -m get_task_in_registry --arg kind=<value> --arg search=<value>",
       "summary": "get task in registry"
     }
   ]
