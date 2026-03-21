@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "key": "GET /TaskTemplateForProject",
+      "cliShape": "python api.py -m get_task_template_for_project --arg project_id=<value>",
+      "summary": "get task template for project"
+    }
+  ]
+}

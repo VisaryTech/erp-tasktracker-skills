@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "key": "GET /SprintForTaskRegistry",
+      "cliShape": "python api.py -m get_sprint_for_task_registry",
+      "summary": "get sprint for task registry"
+    }
+  ]
+}

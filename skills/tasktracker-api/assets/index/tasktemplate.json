@@ -1,0 +1,44 @@
+{
+  "methods": [
+    {
+      "key": "GET /TaskTemplate",
+      "cliShape": "python api.py -m get_task_template --arg scope_type=<value> --arg scope_id=<value>",
+      "summary": "get task template"
+    },
+    {
+      "key": "GET /TaskTemplate/query/Get/{templateId}",
+      "cliShape": "python api.py -m get_task_template_query_get_template_id --posarg <template_id>",
+      "summary": "get task template template id"
+    },
+    {
+      "key": "GET /TaskTemplate/query/GetObjectPermissions/{templateId}",
+      "cliShape": "python api.py -m get_task_template_query_get_object_permissions_template_id --posarg <template_id>",
+      "summary": "get task template object permissions template id"
+    },
+    {
+      "key": "GET /TaskTemplate/query/GetTypePermissions",
+      "cliShape": "python api.py -m get_task_template_query_get_type_permissions --arg scope_type=<value> --arg scope_id=<value>",
+      "summary": "get task template type permissions"
+    },
+    {
+      "key": "POST /TaskTemplate/command/Create",
+      "cliShape": "python api.py -m post_task_template_command_create --arg body=<json>",
+      "summary": "post task template create"
+    },
+    {
+      "key": "PATCH /TaskTemplate/command/Update/{templateId}",
+      "cliShape": "python api.py -m patch_task_template_command_update_template_id --posarg <template_id> --arg body=<json>",
+      "summary": "patch task template update template id"
+    },
+    {
+      "key": "DELETE /TaskTemplate/command/Delete/{templateId}",
+      "cliShape": "python api.py -m delete_task_template_command_delete_template_id --posarg <template_id>",
+      "summary": "delete task template template id"
+    },
+    {
+      "key": "POST /TaskTemplate/command/Restore/{templateId}",
+      "cliShape": "python api.py -m post_task_template_command_restore_template_id --posarg <template_id>",
+      "summary": "post task template restore template id"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "methods": [
+    {
+      "key": "GET /Label",
+      "cliShape": "python api.py -m get_label --arg scope_type=<value> --arg scope_id=<value>",
+      "summary": "get label"
+    },
+    {
+      "key": "GET /Label/query/Get/{labelId}",
+      "cliShape": "python api.py -m get_label_query_get_label_id --posarg <label_id>",
+      "summary": "get label label id"
+    },
+    {
+      "key": "GET /Label/query/GetObjectPermissions/{labelId}",
+      "cliShape": "python api.py -m get_label_query_get_object_permissions_label_id --posarg <label_id>",
+      "summary": "get label object permissions label id"
+    },
+    {
+      "key": "GET /Label/query/GetTypePermissions",
+      "cliShape": "python api.py -m get_label_query_get_type_permissions --arg scope_type=<value> --arg scope_id=<value>",
+      "summary": "get label type permissions"
+    },
+    {
+      "key": "POST /Label/command/Create",
+      "cliShape": "python api.py -m post_label_command_create --arg body=<json>",
+      "summary": "post label create"
+    },
+    {
+      "key": "PATCH /Label/command/Update/{labelId}",
+      "cliShape": "python api.py -m patch_label_command_update_label_id --posarg <label_id> --arg body=<json>",
+      "summary": "patch label update label id"
+    },
+    {
+      "key": "PATCH /Label/command/Promote/{labelId}",
+      "cliShape": "python api.py -m patch_label_command_promote_label_id --posarg <label_id> --arg body=<json>",
+      "summary": "patch label promote label id"
+    },
+    {
+      "key": "DELETE /Label/command/Delete/{labelId}",
+      "cliShape": "python api.py -m delete_label_command_delete_label_id --posarg <label_id>",
+      "summary": "delete label label id"
+    },
+    {
+      "key": "POST /Label/command/Restore/{labelId}",
+      "cliShape": "python api.py -m post_label_command_restore_label_id --posarg <label_id>",
+      "summary": "post label restore label id"
+    }
+  ]
+}

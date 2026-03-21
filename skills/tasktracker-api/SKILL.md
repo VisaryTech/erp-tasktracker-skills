@@ -1,245 +1,66 @@
 ---
 name: tasktracker-api
-description: "Унифицированная работа с ERP TaskTracker через API: чтение задачи/эпика по URL или ID, чтение комментариев задачи/эпика, создание задачи, смена меток, управление связями задач и публикация комментариев к задачам и эпикам. Использовать, когда пользователь просит получить содержание задачи/эпика, прочитать комментарии задачи/эпика, создать новую задачу в проекте, изменить метки/связи задачи или добавить комментарий к задаче/эпику."
+description: "Use this skill when you need to read or change ERP TaskTracker entities such as tasks, epics, projects, comments, boards, sprints, milestones, and labels."
 metadata: {"openclaw":{"requires":{"anyBins":["python","python3","py"]}}}
 ---
 
 # TaskTracker API
 
-Используй этот скилл как единую точку для операций TaskTracker: `read`, `read comments`, `create`, `change labels`, `manage links`, `comment`.
+Use this skill when you need to work with ERP TaskTracker strictly through Swagger documentation.
 
-Общие правила:
+Skill artifacts:
 
-- Используй только скрипты из `scripts/` этого скилла.
-- Запускай команды с `workdir` в корень пользовательского проекта, где находится `.env`.
-- Для авторизации используй `.env` или переменные окружения `erp_client_id` и `erp_client_secret`.
-- Для базового домена ERP используй `erp_base_url` из `.env` или аргумент `--erp-base-url` (где применимо).
-- Для Project ID используй `projectId` из `.env` (или аргумент `--project-id`, где применимо).
-- При ошибке API или сети явно показывай причину и останавливай выполнение.
-- Не выдумывай данные и идентификаторы.
+- `assets/index/manifest.json` — the only entry point into runtime indexes.
+- `scripts/tasktracker_api.py` — Python client `TaskTrackerAPI` generated from the same OpenAPI.
+- `scripts/tasktracker_call.py` — CLI wrapper for invoking TaskTracker API methods.
 
-## Read Task / Epic
+Rules:
 
-Используй для чтения задачи или эпика:
+- Swagger/OpenAPI TaskTracker is the only source of truth.
+- Before any call, open `assets/index/manifest.json` first.
+- Use only commands and fields that exist in indexes generated from Swagger.
+- If a field is missing in Swagger, do not invent it.
+- If a value is missing in Swagger and that matters for the data structure, use `unknown_from_swagger`.
+- Do not invent high-level scenarios such as "create task", "change labels", or "read epic" unless they are tied to a concrete documented endpoint.
+- The client always gets an access token through `client_credentials` using `ERP_CLIENT_ID` and `ERP_CLIENT_SECRET`.
 
-- Задача: по URL или по `TaskId`. Возвращай JSON-ответ API как есть.
-- Эпик: по URL или по `EpicId`. Возвращай JSON-ответ API как есть.
+## Configuration
 
-Команда (по URL задачи или эпика):
+- `client_id`: `ERP_CLIENT_ID` or `~/.config/erp/client_id`
+- `client_secret`: `ERP_CLIENT_SECRET` or `~/.config/erp/client_secret`
+- `base_url`: `config["endpoint"]` or `ERP_API_BASE_URL` or `erp_tasktracker_api_base_url` or `~/.config/erp/api_base_url`
+- `token_url`: `config["tokenUrl"]` or `ERP_TOKEN_URL` or `erp_tasktracker_token_url` or `~/.config/erp/token_url` or fallback `id-<host>/oidc/connect/token`
 
-```bash
-python <skill_dir>/scripts/get_task_data.py --url "<erp_base_url>/tasktracker/projects/{ProjectId}/tasks/{TaskId}"
-python <skill_dir>/scripts/get_task_data.py --url "<erp_base_url>/tasktracker/projects/{ProjectId}/epics/{EpicId}"
-```
+Workflow:
 
-Команда (по ID):
+1. Open `assets/index/manifest.json`.
+2. Select the relevant compact index only through entries listed in `assets/index/manifest.json`.
+3. Find the required endpoint by `key` or `summary`.
+4. Take the `cliShape` field from the matched entry.
+5. Use the command from `cliShape`.
+6. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
 
-```bash
-python <skill_dir>/scripts/get_task_data.py --task-id "<task_id>" --erp-base-url "<erp_base_url>"
-python <skill_dir>/scripts/get_task_data.py --epic-id "<epic_id>" --erp-base-url "<erp_base_url>"
-```
+Use the short shell entry point `api.py`.
 
-Порядок:
-
-1. Проверь, что передан `url`, `taskId` или `epicId`.
-2. Для `taskId`/`epicId` проверь, что доступен базовый URL: `--erp-base-url` или `erp_base_url` в `.env`.
-3. Запусти `get_task_data.py`.
-4. Верни JSON-ответ API без изменений.
-
-## Read Comments
-
-Используй для чтения комментариев задачи по `TaskId` или эпика по `EpicId`.
-
-- Возвращай JSON-массив комментариев API как есть.
-
-Команды:
+CLI example:
 
 ```bash
-python <skill_dir>/scripts/get_task_data.py --task-comments-id "<task_id>" --erp-base-url "<erp_base_url>"
-python <skill_dir>/scripts/get_task_data.py --epic-comments-id "<epic_id>" --erp-base-url "<erp_base_url>"
+# entry selected through assets/index/manifest.json
+{
+  "key": "GET /Task/query/Get/{taskId}",
+  "summary": "get task task id",
+  "cliShape": "python api.py -m get_task_query_get_task_id --posarg <task_id>"
+}
+
+python api.py -m get_task_query_get_task_id --posarg 123
+
+# URL-based variant when taskId is inside the link
+python api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
 ```
 
-Порядок:
+Notes:
 
-1. Проверь, что передан `taskCommentsId` или `epicCommentsId`.
-2. Проверь, что доступен базовый URL: `--erp-base-url` или `erp_base_url` в `.env`.
-3. Запусти `get_task_data.py` с `--task-comments-id` или `--epic-comments-id`.
-4. Верни JSON-ответ API без изменений.
-
-## Read Epic Lists
-
-Используй для чтения списков эпиков в статусах проверки.
-
-- На проверке (`to-approve`): фильтр по метке `erp_label_to_approve`.
-- Готовы (`approved`): фильтр по метке `erp_label_approved`.
-- По умолчанию читается top=50; можно изменить через `--top`.
-
-Команды:
-
-```bash
-python <skill_dir>/scripts/get_task_data.py --epics-to-approve --project-id "<project_id>" --erp-base-url "<erp_base_url>"
-python <skill_dir>/scripts/get_task_data.py --epics-approved --project-id "<project_id>" --erp-base-url "<erp_base_url>"
-```
-
-Порядок:
-
-1. Получи режим: `to-approve` или `approved`.
-2. Возьми `projectId` из `--project-id` или `.env` (`projectId`).
-3. Возьми ID метки из `.env` (`erp_label_to_approve` или `erp_label_approved`).
-4. Запусти `get_task_data.py` и верни JSON-ответ API без изменений.
-
-## Create Task
-
-Используй для создания новой задачи.
-
-Обязательные параметры:
-
-- `--title`
-- `--description`
-- `--project-id` или `projectId` в `.env`
-
-Опциональные параметры:
-
-- `--epic-id`
-- `--label-ids` (CSV)
-- `--weight`
-- `--sprint-id`
-- `--milestone-id`
-- `--erp-base-url`
-
-Команда:
-
-```bash
-python <skill_dir>/scripts/create_task.py --title "test" --description "TEST" --project-id "<project_id>"
-```
-
-Порядок:
-
-1. Получи `title`, `description`, `projectId`.
-2. Добавь только явно заданные опциональные параметры.
-3. Запусти `create_task.py`.
-4. Верни JSON-ответ API без изменений.
-
-## Comment
-
-Используй для публикации комментария к задаче или эпику.
-
-Обязательные параметры:
-
-- `--entity` (`task` или `epic`)
-- `--id` (`taskId` или `epicId`)
-- `--text` или `--text-file`
-
-Опциональные параметры:
-
-- `--parent-id` (если это ответ на существующий комментарий)
-
-Команды:
-
-```bash
-python <skill_dir>/scripts/post_comment.py --entity task --id "<task_id>" --text "Текст комментария"
-```
-
-```bash
-python <skill_dir>/scripts/post_comment.py --entity epic --id "<epic_id>" --parent-id "<parent_comment_id>" --text-file "comment.md"
-```
-
-Порядок:
-
-1. Получи `entity`, `id`, текст комментария и опционально `parentId`.
-2. Убедись, что комментарий не пустой.
-3. Запусти `post_comment.py`.
-4. Верни JSON-ответ API без изменений.
-
-## Change Task Labels
-
-Используй для изменения меток задачи через endpoint `/Task/command/ChangeLabels/{taskId}`.
-
-Обязательные параметры:
-
-- `--task-id`
-
-Опциональные параметры:
-
-- `--label-ids` (CSV; пустая строка очищает все метки)
-- `--erp-base-url`
-
-Команда:
-
-```bash
-python <skill_dir>/scripts/change_task_labels.py --task-id "<task_id>" --label-ids "1,2,3"
-```
-
-Порядок:
-
-1. Получи `taskId` и `labelIds` (если не переданы, отправляй пустой массив).
-2. Запусти `change_task_labels.py`.
-3. Верни JSON-ответ API без изменений.
-
-## Change Epic Labels / Status
-
-Используй для изменения меток эпика через endpoint `/epic/command/changeLabels/{epicId}`.
-
-Обязательные параметры:
-
-- `--epic-id`
-
-Один из вариантов:
-
-- `--status checked` (ставит метку из `erp_label_approved`)
-- `--status to-define` (ставит метку из `erp_label_to_define`)
-- `--label-ids` (CSV) для явного набора меток
-
-Команды:
-
-```bash
-python <skill_dir>/scripts/change_epic_labels.py --epic-id "<epic_id>" --status checked
-python <skill_dir>/scripts/change_epic_labels.py --epic-id "<epic_id>" --status to-define
-```
-
-Порядок:
-
-1. Получи `epicId` и статус (`checked` или `to-define`) либо явные `labelIds`.
-2. Для статуса возьми label ID из `.env` (`erp_label_approved` или `erp_label_to_define`).
-3. Запусти `change_epic_labels.py`.
-4. Верни JSON-ответ API без изменений.
-
-## Manage Task Links
-
-Используй для управления связями задач через endpoints:
-
-- `/Task/command/CreateLink/{taskId}`
-- `/Task/command/ChangeLinkType/{taskId}`
-- `/Task/command/DeleteLink/{taskId}`
-
-Поддерживаемые типы связи (`TaskLinkType`):
-
-- `RelatesTo = 0`
-- `Blocks = 1`
-- `IsBlocked = 2`
-
-Обязательные параметры:
-
-- `--action` (`create`, `change-type`, `delete`)
-- `--task-id`
-- `--other-task-id`
-
-Опциональные параметры:
-
-- `--type` (обязателен для `create` и `change-type`; принимает `0|1|2` или `RelatesTo|Blocks|IsBlocked`)
-- `--erp-base-url`
-
-Команды:
-
-```bash
-python <skill_dir>/scripts/manage_task_links.py --action create --task-id "<task_id>" --other-task-id "<other_task_id>" --type RelatesTo
-python <skill_dir>/scripts/manage_task_links.py --action change-type --task-id "<task_id>" --other-task-id "<other_task_id>" --type 1
-python <skill_dir>/scripts/manage_task_links.py --action delete --task-id "<task_id>" --other-task-id "<other_task_id>"
-```
-
-Порядок:
-
-1. Получи `action`, `taskId`, `otherTaskId` и при необходимости `type`.
-2. Для `create`/`change-type` проверь, что `type` задан и валиден.
-3. Запусти `manage_task_links.py`.
-4. Верни JSON-ответ API без изменений.
+- `api.py` invokes methods through compact indexes whose access starts at `assets/index/manifest.json`.
+- `api.py` supports `--task-url`, `--epic-url`, and `--project-url` for extracting IDs from links.
+- Runtime indexes contain `key`, `summary`, and `cliShape`.
+- Public method names in `scripts/tasktracker_api.py` are generated deterministically from the Swagger description.

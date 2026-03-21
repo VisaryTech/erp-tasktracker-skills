@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "key": "GET /TaskHistory",
+      "cliShape": "python api.py -m get_task_history --arg task_id=<value>",
+      "summary": "get task history"
+    }
+  ]
+}

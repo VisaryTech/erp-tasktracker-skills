@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "key": "GET /TaskInEpic",
+      "cliShape": "python api.py -m get_task_in_epic --arg epic_id=<value>",
+      "summary": "get task in epic"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "methods": [
+    {
+      "key": "GET /EpicForTaskRegistry",
+      "cliShape": "python api.py -m get_epic_for_task_registry",
+      "summary": "get epic for task registry"
+    }
+  ]
+}

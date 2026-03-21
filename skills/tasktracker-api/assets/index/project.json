@@ -1,0 +1,104 @@
+{
+  "methods": [
+    {
+      "key": "GET /Project",
+      "cliShape": "python api.py -m get_project",
+      "summary": "get project"
+    },
+    {
+      "key": "GET /Project/query/Get/{projectId}",
+      "cliShape": "python api.py -m get_project_query_get_project_id --posarg <project_id>",
+      "summary": "get project project id"
+    },
+    {
+      "key": "GET /Project/query/GetObjectPermissions/{projectId}",
+      "cliShape": "python api.py -m get_project_query_get_object_permissions_project_id --posarg <project_id>",
+      "summary": "get project object permissions project id"
+    },
+    {
+      "key": "GET /Project/query/GetTypePermissions",
+      "cliShape": "python api.py -m get_project_query_get_type_permissions --arg group_id=<value>",
+      "summary": "get project type permissions"
+    },
+    {
+      "key": "POST /Project/command/Create",
+      "cliShape": "python api.py -m post_project_command_create --arg body=<json>",
+      "summary": "post project create"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeTitle/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_title_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change title project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeDescription/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_description_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change description project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeGroup/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_group_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change group project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeLabels/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_labels_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change labels project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangePrivacyLevel/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_privacy_level_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change privacy level project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangePriority/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_priority_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change priority project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangePeriod/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_period_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change period project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeAvatar/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_avatar_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change avatar project id"
+    },
+    {
+      "key": "PATCH /Project/command/ChangeFiles/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_change_files_project_id --posarg <project_id> --arg body=<json>",
+      "summary": "patch project change files project id"
+    },
+    {
+      "key": "PATCH /Project/command/Reopen/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_reopen_project_id --posarg <project_id>",
+      "summary": "patch project reopen project id"
+    },
+    {
+      "key": "PATCH /Project/command/Close/{projectId}",
+      "cliShape": "python api.py -m patch_project_command_close_project_id --posarg <project_id>",
+      "summary": "patch project close project id"
+    },
+    {
+      "key": "DELETE /Project/command/Delete/{projectId}",
+      "cliShape": "python api.py -m delete_project_command_delete_project_id --posarg <project_id>",
+      "summary": "delete project project id"
+    },
+    {
+      "key": "POST /Project/command/Restore/{projectId}",
+      "cliShape": "python api.py -m post_project_command_restore_project_id --posarg <project_id>",
+      "summary": "post project restore project id"
+    },
+    {
+      "key": "POST /Project/command/AddToFavorites/{projectId}",
+      "cliShape": "python api.py -m post_project_command_add_to_favorites_project_id --posarg <project_id>",
+      "summary": "post project add to favorites project id"
+    },
+    {
+      "key": "POST /Project/command/RemoveFromFavorites/{projectId}",
+      "cliShape": "python api.py -m post_project_command_remove_from_favorites_project_id --posarg <project_id>",
+      "summary": "post project remove from favorites project id"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "methods": [
+    {
+      "key": "GET /Sprint",
+      "cliShape": "python api.py -m get_sprint --arg project_id=<value>",
+      "summary": "get sprint"
+    },
+    {
+      "key": "GET /Sprint/query/Get/{sprintId}",
+      "cliShape": "python api.py -m get_sprint_query_get_sprint_id --posarg <sprint_id>",
+      "summary": "get sprint sprint id"
+    },
+    {
+      "key": "GET /Sprint/query/GetBurndownChart/{sprintId}",
+      "cliShape": "python api.py -m get_sprint_query_get_burndown_chart_sprint_id --posarg <sprint_id>",
+      "summary": "get sprint burndown chart sprint id"
+    },
+    {
+      "key": "GET /Sprint/query/GetBurnupChart/{sprintId}",
+      "cliShape": "python api.py -m get_sprint_query_get_burnup_chart_sprint_id --posarg <sprint_id>",
+      "summary": "get sprint burnup chart sprint id"
+    },
+    {
+      "key": "GET /Sprint/query/GetCurrentSprint/{projectId}",
+      "cliShape": "python api.py -m get_sprint_query_get_current_sprint_project_id --posarg <project_id>",
+      "summary": "get sprint current sprint project id"
+    },
+    {
+      "key": "GET /Sprint/query/GetObjectPermissions/{sprintId}",
+      "cliShape": "python api.py -m get_sprint_query_get_object_permissions_sprint_id --posarg <sprint_id>",
+      "summary": "get sprint object permissions sprint id"
+    },
+    {
+      "key": "GET /Sprint/query/GetTypePermissions",
+      "cliShape": "python api.py -m get_sprint_query_get_type_permissions --arg project_id=<value>",
+      "summary": "get sprint type permissions"
+    },
+    {
+      "key": "POST /Sprint/command/Create",
+      "cliShape": "python api.py -m post_sprint_command_create --arg body=<json>",
+      "summary": "post sprint create"
+    },
+    {
+      "key": "PATCH /Sprint/command/Update/{sprintId}",
+      "cliShape": "python api.py -m patch_sprint_command_update_sprint_id --posarg <sprint_id> --arg body=<json>",
+      "summary": "patch sprint update sprint id"
+    },
+    {
+      "key": "DELETE /Sprint/command/Delete/{sprintId}",
+      "cliShape": "python api.py -m delete_sprint_command_delete_sprint_id --posarg <sprint_id>",
+      "summary": "delete sprint sprint id"
+    },
+    {
+      "key": "POST /Sprint/command/Restore/{sprintId}",
+      "cliShape": "python api.py -m post_sprint_command_restore_sprint_id --posarg <sprint_id>",
+      "summary": "post sprint restore sprint id"
+    }
+  ]
+}

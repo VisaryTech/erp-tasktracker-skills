@@ -1,0 +1,59 @@
+{
+  "methods": [
+    {
+      "key": "GET /TaskTime",
+      "cliShape": "python api.py -m get_task_time --arg task_id=<value>",
+      "summary": "get task time"
+    },
+    {
+      "key": "GET /TaskTime/query/Get/{timeId}",
+      "cliShape": "python api.py -m get_task_time_query_get_time_id --posarg <time_id>",
+      "summary": "get task time time id"
+    },
+    {
+      "key": "GET /TaskTime/query/GetTotalTimeSpent/{taskId}",
+      "cliShape": "python api.py -m get_task_time_query_get_total_time_spent_task_id --posarg <task_id>",
+      "summary": "get task time total time spent task id"
+    },
+    {
+      "key": "GET /TaskTime/query/GetUserTimeSpent/{taskId}/{userId}",
+      "cliShape": "python api.py -m get_task_time_query_get_user_time_spent_task_id_user_id --posarg <task_id> --posarg <user_id>",
+      "summary": "get task time user time spent task id user id"
+    },
+    {
+      "key": "GET /TaskTime/query/GetObjectPermissions/{commentId}",
+      "cliShape": "python api.py -m get_task_time_query_get_object_permissions_comment_id --arg time_id=<value> --posarg <comment_id>",
+      "summary": "get task time object permissions comment id"
+    },
+    {
+      "key": "GET /TaskTime/query/GetTypePermissions",
+      "cliShape": "python api.py -m get_task_time_query_get_type_permissions --arg task_id=<value>",
+      "summary": "get task time type permissions"
+    },
+    {
+      "key": "POST /TaskTime/command/CreateForDate",
+      "cliShape": "python api.py -m post_task_time_command_create_for_date --arg body=<json>",
+      "summary": "post task time create for date"
+    },
+    {
+      "key": "POST /TaskTime/command/CreateForDateRange",
+      "cliShape": "python api.py -m post_task_time_command_create_for_date_range --arg body=<json>",
+      "summary": "post task time create for date range"
+    },
+    {
+      "key": "PATCH /TaskTime/command/Update/{timeId}",
+      "cliShape": "python api.py -m patch_task_time_command_update_time_id --posarg <time_id> --arg body=<json>",
+      "summary": "patch task time update time id"
+    },
+    {
+      "key": "DELETE /TaskTime/command/Delete/{timeId}",
+      "cliShape": "python api.py -m delete_task_time_command_delete_time_id --posarg <time_id>",
+      "summary": "delete task time time id"
+    },
+    {
+      "key": "POST /TaskTime/command/Restore/{timeId}",
+      "cliShape": "python api.py -m post_task_time_command_restore_time_id --posarg <time_id>",
+      "summary": "post task time restore time id"
+    }
+  ]
+}
