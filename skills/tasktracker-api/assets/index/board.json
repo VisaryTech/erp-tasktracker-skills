@@ -1,4 +1,25 @@
 {
+  "model": {
+    "schema": "assets/index/board.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "projectId": "integer:int32",
+      "projectTitle": "string nullable",
+      "milestoneId": "integer:int32 nullable",
+      "milestoneTitle": "string nullable",
+      "sprintId": "integer:int32 nullable",
+      "sprintTitle": "string nullable",
+      "useCurrentSprint": "boolean",
+      "weight": "integer:int32 nullable",
+      "hideBacklogList": "boolean",
+      "hideClosedList": "boolean",
+      "assignees": "array[Visary.Users.Integration.UseCases.Users.Models.UserEasyReadModel]",
+      "labels": "array[assets/index/labelfortaskregistry.json#model]"
+    }
+  },
   "methods": [
     {
       "key": "GET /Board",

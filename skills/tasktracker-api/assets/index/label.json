@@ -1,4 +1,18 @@
 {
+  "model": {
+    "schema": "assets/index/label.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "scopeId": "integer:int32 nullable",
+      "scopeType": "Visary.TaskTracker.Entities.Enums.LabelScopeType",
+      "title": "string nullable",
+      "description": "string nullable",
+      "backgroundColor": "string nullable",
+      "taskStatus": "Visary.Tasks.Abstractions.Enums.VisaryTaskStatus"
+    }
+  },
   "methods": [
     {
       "key": "GET /Label",

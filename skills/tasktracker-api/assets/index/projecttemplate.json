@@ -1,4 +1,14 @@
 {
+  "model": {
+    "schema": "assets/index/projecttemplate.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "boardTemplates": "array[Visary.TaskTracker.Application.UseCases.ProjectTemplates.Models.BoardTemplateReadModel]"
+    }
+  },
   "methods": [
     {
       "key": "GET /ProjectTemplate",

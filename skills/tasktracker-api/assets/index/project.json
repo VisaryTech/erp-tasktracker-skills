@@ -1,4 +1,33 @@
 {
+  "model": {
+    "schema": "assets/index/project.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "groupTitle": "string nullable",
+      "groupId": "integer:int32 nullable",
+      "description": "string nullable",
+      "privacyLevel": "Visary.TaskTracker.Entities.Enums.PrivacyLevel",
+      "startDate": "string:date-time nullable",
+      "dueDate": "string:date-time nullable",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "priority": "Visary.TaskTracker.Entities.Enums.Priority",
+      "avatar": "string nullable",
+      "files": "string nullable",
+      "authorFullName": "string nullable",
+      "authorId": "integer:int32",
+      "createdAt": "string:date-time",
+      "updatedAt": "string:date-time nullable",
+      "closedByFullName": "string nullable",
+      "closedById": "integer:int32 nullable",
+      "closedAt": "string:date-time nullable",
+      "openTaskCount": "integer:int32",
+      "closedTaskCount": "integer:int32",
+      "isFavoriteForUser": "boolean"
+    }
+  },
   "methods": [
     {
       "key": "GET /Project",

@@ -1,4 +1,30 @@
 {
+  "model": {
+    "schema": "assets/index/tasktime.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "taskId": "integer:int32",
+      "userFullName": "string nullable",
+      "userId": "integer:int32",
+      "workDate": "string:date",
+      "durationMinutes": "integer:int32",
+      "comment": "string nullable",
+      "createdAt": "string:date-time",
+      "createdByFullName": "string nullable",
+      "createdById": "integer:int32",
+      "updatedAt": "string:date-time nullable",
+      "updatedByFullName": "string nullable",
+      "updatedById": "integer:int32 nullable",
+      "deletedAt": "string:date-time nullable",
+      "deletedByFullName": "string nullable",
+      "deletedById": "integer:int32 nullable",
+      "restoredAt": "string:date-time nullable",
+      "restoredByFullName": "string nullable",
+      "restoredById": "integer:int32 nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /TaskTime",

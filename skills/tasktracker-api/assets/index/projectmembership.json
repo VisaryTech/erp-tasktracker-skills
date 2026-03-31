@@ -1,4 +1,37 @@
 {
+  "model": {
+    "schemas": [
+      {
+        "schema": "assets/index/userinprojectmembership.json#model",
+        "fields": {
+          "id": "integer:int32",
+          "projectId": "integer:int32",
+          "userId": "integer:int32",
+          "userName": "string nullable",
+          "userFullName": "string nullable",
+          "accessLevel": "Visary.TaskTracker.Entities.Enums.AccessLevel",
+          "source": "Visary.TaskTracker.Application.UseCases.Membership.Entities.ProjectMembershipSource",
+          "createdAt": "string:date-time",
+          "createdByFullName": "string nullable",
+          "createdById": "integer:int32 nullable"
+        }
+      },
+      {
+        "schema": "assets/index/usergroupinprojectmembership.json#model",
+        "fields": {
+          "id": "integer:int32",
+          "projectId": "integer:int32",
+          "userGroupId": "integer:int32",
+          "userGroupTitle": "string nullable",
+          "accessLevel": "Visary.TaskTracker.Entities.Enums.AccessLevel",
+          "source": "Visary.TaskTracker.Application.UseCases.Membership.Entities.ProjectMembershipSource",
+          "createdAt": "string:date-time",
+          "createdByFullName": "string nullable",
+          "createdById": "integer:int32 nullable"
+        }
+      }
+    ]
+  },
   "methods": [
     {
       "key": "GET /ProjectMembership/query/GetResultingMembership",

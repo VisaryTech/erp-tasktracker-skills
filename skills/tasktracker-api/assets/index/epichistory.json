@@ -1,4 +1,19 @@
 {
+  "model": {
+    "schema": "assets/index/epichistory.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "epicId": "integer:int32",
+      "command": "Visary.TaskTracker.Entities.Enums.EpicCommand",
+      "commandName": "string nullable",
+      "createdAt": "string:date-time",
+      "executorId": "integer:int32 nullable",
+      "executorFullName": "string nullable",
+      "data": "string nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /EpicHistory",

@@ -1,4 +1,29 @@
 {
+  "model": {
+    "schema": "assets/index/task.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "weight": "integer:int32 nullable",
+      "authorId": "integer:int32",
+      "authorFullName": "string nullable",
+      "createdAt": "string:date-time",
+      "updatedAt": "string:date-time nullable",
+      "milestoneId": "integer:int32 nullable",
+      "milestoneTitle": "string nullable",
+      "sprintId": "integer:int32 nullable",
+      "sprintTitle": "string nullable",
+      "epicId": "integer:int32 nullable",
+      "epicTitle": "string nullable",
+      "currentAssigneeId": "integer:int32 nullable",
+      "currentAssigneeFullName": "string nullable",
+      "assignees": "array[Visary.Users.Integration.UseCases.Users.Models.UserEasyReadModel]",
+      "labels": "array[assets/index/labelfortaskregistry.json#model]"
+    }
+  },
   "methods": [
     {
       "key": "GET /TaskInEpic",

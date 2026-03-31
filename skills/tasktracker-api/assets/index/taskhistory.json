@@ -1,4 +1,19 @@
 {
+  "model": {
+    "schema": "assets/index/taskhistory.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "taskId": "integer:int32",
+      "command": "Visary.TaskTracker.Entities.Enums.TaskCommand",
+      "commandName": "string nullable",
+      "createdAt": "string:date-time",
+      "executorId": "integer:int32 nullable",
+      "executorFullName": "string nullable",
+      "data": "string nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /TaskHistory",

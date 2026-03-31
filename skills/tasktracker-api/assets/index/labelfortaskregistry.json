@@ -1,4 +1,15 @@
 {
+  "model": {
+    "schema": "assets/index/labelfortaskregistry.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "backgroundColor": "string nullable",
+      "taskStatus": "Visary.Tasks.Abstractions.Enums.VisaryTaskStatus"
+    }
+  },
   "methods": [
     {
       "key": "GET /LabelForTaskRegistry",

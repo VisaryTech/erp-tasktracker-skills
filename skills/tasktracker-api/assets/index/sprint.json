@@ -1,4 +1,24 @@
 {
+  "model": {
+    "schema": "assets/index/sprint.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "description": "string nullable",
+      "startDate": "string:date",
+      "dueDate": "string:date",
+      "projectTitle": "string nullable",
+      "projectId": "integer:int32",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "taskCount": "integer:int32",
+      "openTaskCount": "integer:int32",
+      "closedTaskCount": "integer:int32",
+      "totalTaskWeight": "integer:int32 nullable",
+      "progress": "integer:int32"
+    }
+  },
   "methods": [
     {
       "key": "GET /Sprint",

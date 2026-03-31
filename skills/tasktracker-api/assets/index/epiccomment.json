@@ -1,4 +1,27 @@
 {
+  "model": {
+    "schema": "assets/index/epiccomment.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "epicId": "integer:int32",
+      "parentId": "integer:int32 nullable",
+      "parentAuthorId": "integer:int32 nullable",
+      "parentAuthorUserName": "string nullable",
+      "parentAuthorFullName": "string nullable",
+      "authorId": "integer:int32",
+      "authorUserName": "string nullable",
+      "authorFullName": "string nullable",
+      "authorRole": "string nullable",
+      "createdAt": "string:date-time",
+      "editorId": "integer:int32 nullable",
+      "editorFullName": "string nullable",
+      "editedAt": "string:date-time nullable",
+      "text": "string nullable",
+      "files": "string nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /EpicComment",

@@ -1,4 +1,43 @@
 {
+  "model": {
+    "schema": "assets/index/epic.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "description": "string nullable",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "startDate": "string:date nullable",
+      "dueDate": "string:date nullable",
+      "projectId": "integer:int32",
+      "projectTitle": "string nullable",
+      "parentId": "integer:int32 nullable",
+      "parentTitle": "string nullable",
+      "parentStartDate": "string:date nullable",
+      "parentDueDate": "string:date nullable",
+      "authorId": "integer:int32",
+      "authorFullName": "string nullable",
+      "createdAt": "string:date-time",
+      "updatedAt": "string:date-time nullable",
+      "closedById": "integer:int32 nullable",
+      "closedByFullName": "string nullable",
+      "closedAt": "string:date-time nullable",
+      "milestoneId": "integer:int32 nullable",
+      "milestoneTitle": "string nullable",
+      "milestoneStartDate": "string:date nullable",
+      "milestoneDueDate": "string:date nullable",
+      "milestoneState": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "files": "string nullable",
+      "roadmapOrder": "integer:int32",
+      "taskCount": "integer:int32",
+      "openTaskCount": "integer:int32",
+      "closedTaskCount": "integer:int32",
+      "totalTaskWeight": "integer:int32 nullable",
+      "labels": "array[assets/index/labelfortaskregistry.json#model]",
+      "childEpics": "array[Visary.TaskTracker.Application.UseCases.Epics.Models.EpicEasyReadModel]"
+    }
+  },
   "methods": [
     {
       "key": "GET /Epic",

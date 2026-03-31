@@ -1,4 +1,19 @@
 {
+  "model": {
+    "schema": "assets/index/userinprojectgroupmembership.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "projectGroupId": "integer:int32",
+      "userId": "integer:int32",
+      "userName": "string nullable",
+      "userFullName": "string nullable",
+      "accessLevel": "Visary.TaskTracker.Entities.Enums.AccessLevel",
+      "createdAt": "string:date-time",
+      "createdByFullName": "string nullable",
+      "createdById": "integer:int32 nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /UserInProjectGroupMembership",

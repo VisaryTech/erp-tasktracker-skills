@@ -1,4 +1,25 @@
 {
+  "model": {
+    "schema": "assets/index/milestone.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "projectTitle": "string nullable",
+      "projectId": "integer:int32",
+      "title": "string nullable",
+      "description": "string nullable",
+      "startDate": "string:date",
+      "dueDate": "string:date",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "roadmapOrder": "integer:int32",
+      "taskCount": "integer:int32",
+      "openTaskCount": "integer:int32",
+      "closedTaskCount": "integer:int32",
+      "totalTaskWeight": "integer:int32 nullable",
+      "progress": "integer:int32"
+    }
+  },
   "methods": [
     {
       "key": "GET /Milestone",

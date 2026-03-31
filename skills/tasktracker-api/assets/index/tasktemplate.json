@@ -1,4 +1,20 @@
 {
+  "model": {
+    "schema": "assets/index/tasktemplate.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "taskDescription": "string nullable",
+      "authorFullName": "string nullable",
+      "authorId": "integer:int32",
+      "createdAt": "string:date-time",
+      "updatedAt": "string:date-time nullable",
+      "scopeId": "integer:int32 nullable",
+      "scopeType": "Visary.TaskTracker.Entities.Enums.TaskTemplateScopeType"
+    }
+  },
   "methods": [
     {
       "key": "GET /TaskTemplate",

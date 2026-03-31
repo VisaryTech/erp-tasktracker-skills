@@ -1,4 +1,13 @@
 {
+  "model": {
+    "schema": "assets/index/sprintfortaskregistry.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable"
+    }
+  },
   "methods": [
     {
       "key": "GET /SprintForTaskRegistry",

@@ -1,4 +1,19 @@
 {
+  "model": {
+    "schema": "assets/index/projectgroup.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "description": "string nullable",
+      "privacyLevel": "Visary.TaskTracker.Entities.Enums.PrivacyLevel",
+      "authorFullName": "string nullable",
+      "authorId": "integer:int32",
+      "createdAt": "string:date-time",
+      "projectCount": "integer:int32"
+    }
+  },
   "methods": [
     {
       "key": "GET /ProjectGroup",

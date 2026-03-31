@@ -1,4 +1,26 @@
 {
+  "model": {
+    "schema": "assets/index/projectinregistry.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "isFavoriteForUser": "boolean",
+      "title": "string nullable",
+      "avatar": "string nullable",
+      "startDate": "string:date-time nullable",
+      "dueDate": "string:date-time nullable",
+      "priority": "Visary.TaskTracker.Entities.Enums.Priority",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "privacyLevel": "Visary.TaskTracker.Entities.Enums.PrivacyLevel",
+      "groupTitle": "string nullable",
+      "groupId": "integer:int32 nullable",
+      "description": "string nullable",
+      "totalTaskCount": "integer:int32",
+      "closedTaskCount": "integer:int32",
+      "managers": "array[Visary.Users.Integration.UseCases.Users.Models.UserEasyReadModel]"
+    }
+  },
   "methods": [
     {
       "key": "GET /ProjectInRegistry",

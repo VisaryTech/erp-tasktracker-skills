@@ -1,4 +1,8 @@
 {
+  "model": {
+    "status": "missing_response_schema_in_swagger",
+    "note": "Swagger endpoints BoardList/query/GetLists, GetLabeledList и GetSystemList не публикуют response content schema, поэтому структура полей модели не может быть восстановлена без догадок."
+  },
   "methods": [
     {
       "key": "GET /BoardList/query/GetLists/{boardId}",

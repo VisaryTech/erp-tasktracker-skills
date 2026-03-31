@@ -1,4 +1,28 @@
 {
+  "model": {
+    "schema": "assets/index/taskinboardlabeledlist.json#model",
+    "collection": true,
+    "fields": {
+      "id": "integer:int32",
+      "hidden": "boolean",
+      "title": "string nullable",
+      "state": "Visary.TaskTracker.Entities.Enums.EntryState",
+      "dueDate": "string:date nullable",
+      "weight": "integer:int32 nullable",
+      "hasDescription": "boolean",
+      "hasFiles": "boolean",
+      "authorId": "integer:int32",
+      "milestoneId": "integer:int32 nullable",
+      "sprintId": "integer:int32 nullable",
+      "currentAssigneeId": "integer:int32 nullable",
+      "assignees": "array[Visary.Users.Integration.UseCases.Users.Models.UserEasyReadModel]",
+      "labels": "array[assets/index/labelfortaskregistry.json#model]",
+      "directLinks": "array[Visary.TaskTracker.Application.UseCases.Tasks.Models.TaskLinkReadModel]",
+      "indirectLinks": "array[Visary.TaskTracker.Application.UseCases.Tasks.Models.TaskLinkReadModel]",
+      "isBlocked": "boolean",
+      "order": "integer:int32"
+    }
+  },
   "methods": [
     {
       "key": "GET /TaskInBoardSystemList",

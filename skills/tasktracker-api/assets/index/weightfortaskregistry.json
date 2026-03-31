@@ -1,4 +1,11 @@
 {
+  "model": {
+    "schema": "assets/index/weightfortaskregistry.json#model",
+    "collection": true,
+    "fields": {
+      "weight": "integer:int32"
+    }
+  },
   "methods": [
     {
       "key": "GET /WeightForTaskRegistry",
