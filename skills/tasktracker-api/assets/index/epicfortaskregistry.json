@@ -4,6 +4,16 @@
       "key": "GET /EpicForTaskRegistry",
       "cliShape": "python api.py -m get_epic_for_task_registry",
       "summary": "get epic for task registry"
+    },
+    {
+      "key": "GET /odata/EpicForTaskRegistry",
+      "cliShape": "python api.py -m odata_epic_for_task_registry --odata-arg '$filter=<value>' --odata-arg '$select=<value>' --odata-arg '$expand=<value>' --odata-arg '$top=<value>' --odata-arg '$skip=<value>' --odata-arg '$orderby=<value>' --odata-arg '$count=<true|false>'",
+      "summary": "odata epic for task registry"
+    },
+    {
+      "key": "GET /odata/EpicForTaskRegistry/$count",
+      "cliShape": "python api.py -m odata_epic_for_task_registry_count --odata-arg '$filter=<value>'",
+      "summary": "odata epic for task registry count"
     }
   ]
 }

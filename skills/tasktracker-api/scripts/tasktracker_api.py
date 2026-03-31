@@ -109,14 +109,27 @@ class TaskTrackerAPI:
         self.headers = dict(headers or {})
         self.timeout = timeout
         self.token = self._get_access_token(self.base_url, timeout=timeout, config=self.config)
+        self._extra_query_params = None
 
-    def call_by_python_method(self, python_method, *args, **kwargs):
+    def call_by_python_method(self, python_method, *args, odata_params=None, **kwargs):
         method = getattr(self, python_method, None)
         if method is None:
             raise AttributeError(f"TaskTrackerAPI has no method {python_method}")
-        return method(*args, **kwargs)
+        previous_extra_query_params = self._extra_query_params
+        self._extra_query_params = dict(odata_params or {})
+        try:
+            return method(*args, **kwargs)
+        finally:
+            self._extra_query_params = previous_extra_query_params
 
     def _request(self, method, path, *, params=None, json_body=None, data=None, headers=None):
+        merged_params = {}
+        if params:
+            merged_params.update(params)
+        if self._extra_query_params:
+            merged_params.update(self._extra_query_params)
+        if not merged_params:
+            merged_params = None
         request_headers = dict(self.headers)
         if self.token is not None and "Authorization" not in request_headers:
             request_headers["Authorization"] = (
@@ -129,7 +142,7 @@ class TaskTrackerAPI:
             response = requests.request(
                 method=method,
                 url=url,
-                params=params,
+                params=merged_params,
                 json=json_body,
                 data=data,
                 headers=request_headers,

@@ -3,7 +3,7 @@
     {
       "name": "board",
       "file": "assets/index/board.json",
-      "count": 8
+      "count": 10
     },
     {
       "name": "boardlist",
@@ -13,77 +13,72 @@
     {
       "name": "epic",
       "file": "assets/index/epic.json",
-      "count": 19
+      "count": 21
     },
     {
       "name": "epiccomment",
       "file": "assets/index/epiccomment.json",
-      "count": 9
+      "count": 11
     },
     {
       "name": "epicfortaskregistry",
       "file": "assets/index/epicfortaskregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "epichistory",
       "file": "assets/index/epichistory.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "label",
       "file": "assets/index/label.json",
-      "count": 9
+      "count": 11
     },
     {
       "name": "labelforgroup",
       "file": "assets/index/labelforgroup.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "labelforproject",
       "file": "assets/index/labelforproject.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "labelfortaskregistry",
       "file": "assets/index/labelfortaskregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "milestone",
       "file": "assets/index/milestone.json",
-      "count": 11
+      "count": 13
     },
     {
       "name": "milestonefortaskregistry",
       "file": "assets/index/milestonefortaskregistry.json",
-      "count": 1
-    },
-    {
-      "name": "odata",
-      "file": "assets/index/odata.json",
-      "count": 72
+      "count": 3
     },
     {
       "name": "project",
       "file": "assets/index/project.json",
-      "count": 20
+      "count": 22
     },
     {
       "name": "projectaccessibleforuser",
       "file": "assets/index/projectaccessibleforuser.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "projectfortaskregistry",
       "file": "assets/index/projectfortaskregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "projectgroup",
       "file": "assets/index/projectgroup.json",
-      "count": 10
+      "count": 12
     },
     {
       "name": "projectgroupmembership",
@@ -93,7 +88,7 @@
     {
       "name": "projectinregistry",
       "file": "assets/index/projectinregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "projectmembership",
@@ -103,97 +98,97 @@
     {
       "name": "projecttemplate",
       "file": "assets/index/projecttemplate.json",
-      "count": 8
+      "count": 10
     },
     {
       "name": "projectwithmembership",
       "file": "assets/index/projectwithmembership.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "sprint",
       "file": "assets/index/sprint.json",
-      "count": 11
+      "count": 13
     },
     {
       "name": "sprintfortaskregistry",
       "file": "assets/index/sprintfortaskregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "task",
       "file": "assets/index/task.json",
-      "count": 38
+      "count": 40
     },
     {
       "name": "taskcomment",
       "file": "assets/index/taskcomment.json",
-      "count": 9
+      "count": 11
     },
     {
       "name": "taskhistory",
       "file": "assets/index/taskhistory.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "taskinboardlabeledlist",
       "file": "assets/index/taskinboardlabeledlist.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "taskinboardsystemlist",
       "file": "assets/index/taskinboardsystemlist.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "taskinepic",
       "file": "assets/index/taskinepic.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "taskinregistry",
       "file": "assets/index/taskinregistry.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "tasktemplate",
       "file": "assets/index/tasktemplate.json",
-      "count": 8
+      "count": 10
     },
     {
       "name": "tasktemplateforproject",
       "file": "assets/index/tasktemplateforproject.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "tasktime",
       "file": "assets/index/tasktime.json",
-      "count": 11
+      "count": 13
     },
     {
       "name": "usergroupinprojectgroupmembership",
       "file": "assets/index/usergroupinprojectgroupmembership.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "usergroupinprojectmembership",
       "file": "assets/index/usergroupinprojectmembership.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "userinprojectgroupmembership",
       "file": "assets/index/userinprojectgroupmembership.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "userinprojectmembership",
       "file": "assets/index/userinprojectmembership.json",
-      "count": 1
+      "count": 3
     },
     {
       "name": "weightfortaskregistry",
       "file": "assets/index/weightfortaskregistry.json",
-      "count": 1
+      "count": 3
     }
   ]
 }

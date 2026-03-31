@@ -40,6 +40,12 @@ def main():
         default=[],
         help="Named argument in key=value form; value is parsed as JSON when possible",
     )
+    parser.add_argument(
+        "--odata-arg",
+        action="append",
+        default=[],
+        help="OData query argument in key=value form, for example $filter=Status eq 'Open'",
+    )
     parser.add_argument("--task-url", help="Extract taskId from URL and prepend it to positional arguments")
     parser.add_argument("--epic-url", help="Extract epicId from URL and prepend it to positional arguments")
     parser.add_argument("--project-url", help="Extract projectId from URL and prepend it to positional arguments")
@@ -56,13 +62,15 @@ def main():
         derived_positional_args.append(get_project_id_from_url(args.project_url))
     positional_args = derived_positional_args + positional_args
     keyword_args = dict(parse_named_arg(value) for value in args.arg)
+    odata_args = dict(parse_named_arg(value) for value in args.odata_arg)
 
     api = TaskTrackerAPI()
-    method = getattr(api, python_method, None)
-    if method is None:
-        raise AttributeError(f"TaskTrackerAPI has no method {python_method}")
-
-    result = method(*positional_args, **keyword_args)
+    result = api.call_by_python_method(
+        python_method,
+        *positional_args,
+        odata_params=odata_args,
+        **keyword_args,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

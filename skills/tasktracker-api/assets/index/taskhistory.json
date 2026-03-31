@@ -4,6 +4,16 @@
       "key": "GET /TaskHistory",
       "cliShape": "python api.py -m get_task_history --arg task_id=<value>",
       "summary": "get task history"
+    },
+    {
+      "key": "GET /odata/TaskHistory",
+      "cliShape": "python api.py -m odata_task_history --arg task_id=<value> --odata-arg '$filter=<value>' --odata-arg '$select=<value>' --odata-arg '$expand=<value>' --odata-arg '$top=<value>' --odata-arg '$skip=<value>' --odata-arg '$orderby=<value>' --odata-arg '$count=<true|false>'",
+      "summary": "odata task history"
+    },
+    {
+      "key": "GET /odata/TaskHistory/$count",
+      "cliShape": "python api.py -m odata_task_history_count --arg task_id=<value> --odata-arg '$filter=<value>'",
+      "summary": "odata task history count"
     }
   ]
 }

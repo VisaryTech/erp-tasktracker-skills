@@ -28,8 +28,9 @@ Workflow:
 2. Select the relevant compact index only through entries listed in `assets/index/manifest.json`.
 3. Find the required endpoint by `key` or `summary`.
 4. Take the `cliShape` field from the matched entry.
-5. Use the command from `cliShape`.
-6. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
+5. For OData endpoints, preserve the base command from `cliShape` and add `--odata-arg key=value` as needed.
+6. Use the command from `cliShape`.
+7. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
 
 Use the short shell entry point `api.py` from the skill root.
 
@@ -47,10 +48,15 @@ python api.py -m get_task_query_get_task_id --posarg 123
 
 # URL-based variant when taskId is inside the link
 python api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
+
+# OData variant with explicit query options
+python api.py -m odata_task --arg project_id=10 --odata-arg '$filter=Status eq ''Open''' --odata-arg '$select=Id,Title' --odata-arg '$top=50'
 ```
 
 Notes:
 
 - `api.py` runs the CLI command selected by the agent from the compact indexes.
 - `api.py` supports `--task-url`, `--epic-url`, and `--project-url` for extracting IDs from links.
+- `api.py` supports repeated `--odata-arg key=value` for OData query options.
+- For OData endpoints, supported runtime query options are `$filter`, `$select`, `$expand`, `$top`, `$skip`, `$orderby`, `$count`.
 - Runtime indexes contain `key`, `summary`, and `cliShape`.
