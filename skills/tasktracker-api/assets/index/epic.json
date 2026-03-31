@@ -61,6 +61,11 @@
       "summary": "patch epic change labels epic id"
     },
     {
+      "key": "PATCH /Epic/command/AddLabel/{epicId}",
+      "cliShape": "python api.py -m patch_epic_command_add_label_epic_id --posarg <epic_id> --arg body=<json>",
+      "summary": "patch epic add label epic id"
+    },
+    {
       "key": "PATCH /Epic/command/Reopen/{epicId}",
       "cliShape": "python api.py -m patch_epic_command_reopen_epic_id --posarg <epic_id>",
       "summary": "patch epic reopen epic id"

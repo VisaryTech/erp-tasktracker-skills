@@ -1183,6 +1183,30 @@ class TaskTrackerAPI:
             headers=request_headers,
         )
 
+    def patch_epic_command_add_label_epic_id(self, epic_id, *, body=None):
+        """
+        AddLabel
+        """
+        path = f"/Epic/command/AddLabel/{quote(str(epic_id), safe="")}"
+        query_params = None
+        request_headers = {}
+        request_headers = None
+        json_body = None
+        data = None
+        if body is not None:
+            if request_headers is None:
+                request_headers = {}
+            request_headers.setdefault("Content-Type", "application/json;odata.metadata=minimal;odata.streaming=true")
+            json_body = body
+        return self._request(
+            "PATCH" ,
+            path,
+            params=query_params,
+            json_body=json_body,
+            data=data,
+            headers=request_headers,
+        )
+
     def patch_epic_command_reopen_epic_id(self, epic_id):
         """
         Reopen
@@ -4975,6 +4999,30 @@ class TaskTrackerAPI:
         ChangeLabels
         """
         path = f"/Task/command/ChangeLabels/{quote(str(task_id), safe="")}"
+        query_params = None
+        request_headers = {}
+        request_headers = None
+        json_body = None
+        data = None
+        if body is not None:
+            if request_headers is None:
+                request_headers = {}
+            request_headers.setdefault("Content-Type", "application/json;odata.metadata=minimal;odata.streaming=true")
+            json_body = body
+        return self._request(
+            "PATCH" ,
+            path,
+            params=query_params,
+            json_body=json_body,
+            data=data,
+            headers=request_headers,
+        )
+
+    def patch_task_command_add_label_task_id(self, task_id, *, body=None):
+        """
+        AddLabel
+        """
+        path = f"/Task/command/AddLabel/{quote(str(task_id), safe="")}"
         query_params = None
         request_headers = {}
         request_headers = None

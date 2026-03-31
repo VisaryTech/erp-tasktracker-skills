@@ -126,6 +126,11 @@
       "summary": "patch task change labels task id"
     },
     {
+      "key": "PATCH /Task/command/AddLabel/{taskId}",
+      "cliShape": "python api.py -m patch_task_command_add_label_task_id --posarg <task_id> --arg body=<json>",
+      "summary": "patch task add label task id"
+    },
+    {
       "key": "PATCH /Task/command/ChangeAssignees/{taskId}",
       "cliShape": "python api.py -m patch_task_command_change_assignees_task_id --posarg <task_id> --arg body=<json>",
       "summary": "patch task change assignees task id"

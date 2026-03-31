@@ -1,7 +1,7 @@
 ---
 name: tasktracker-api
 description: "Use this skill when you need to read or change ERP TaskTracker entities such as tasks, epics, projects, comments, boards, sprints, milestones, and labels."
-metadata: {"openclaw":{"requires":{"anyBins":["python","python3","py"]}}}
+metadata: {"openclaw":{"requires":{"anyBins":["python","python3","py"],"env":["ERP_CLIENT_ID","ERP_CLIENT_SECRET","ERP_API_BASE_URL","ERP_TOKEN_URL"]}}}
 ---
 
 # TaskTracker API
