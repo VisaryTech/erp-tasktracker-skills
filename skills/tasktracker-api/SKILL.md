@@ -12,6 +12,7 @@ Skill artifacts:
 
 - `assets/index/manifest.json` — the only entry point into runtime indexes.
 - `api.py` — the short CLI entry point from the skill root.
+- `assets/odata-examples.md` — validated OData examples and common pitfalls.
 
 Rules:
 
@@ -32,6 +33,15 @@ Workflow:
 6. Use the command from `cliShape`.
 7. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
 
+## OData Pitfalls
+
+- In PowerShell, wrap every `--odata-arg` in single quotes. Double quotes will expand `$select`, `$filter`, and similar names.
+- OData wire field names usually use `PascalCase`, for example `ID`, `Title`, `Labels`, even when the local Swagger index shows `camelCase`.
+- For collection filters, use `any(...)`, for example `Labels/any(l:l/Title eq 'Тестирование')`.
+- If you need nested collection objects in the response body, add `$expand`, for example `$expand=Labels`.
+- Treat `project_id` as required for project-scoped OData endpoints such as `odata_epic`, `odata_task`, `odata_board`, `odata_sprint`, and `odata_milestone`.
+- Before inventing a complex OData filter, open `assets/odata-examples.md` and reuse a validated pattern when possible.
+
 Use the short shell entry point `api.py` from the skill root.
 
 CLI example:
@@ -50,7 +60,13 @@ python api.py -m get_task_query_get_task_id --posarg 123
 python api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
 
 # OData variant with explicit query options
-python api.py -m odata_task --arg project_id=10 --odata-arg '$filter=Status eq ''Open''' --odata-arg '$select=Id,Title' --odata-arg '$top=50'
+python api.py -m odata_task --arg project_id=10 --odata-arg '$filter=State eq 10' --odata-arg '$select=ID,Title' --odata-arg '$top=50'
+
+# OData epic filter by label title
+python api.py -m odata_epic --arg project_id=12 --odata-arg '$filter=Labels/any(l:l/Title eq ''Тестирование'')' --odata-arg '$select=ID,Title,Labels' --odata-arg '$expand=Labels' --odata-arg '$top=10'
+
+# OData epic filter by label id
+python api.py -m odata_epic_count --arg project_id=12 --odata-arg '$filter=Labels/any(l:l/ID eq 80)'
 ```
 
 Notes:
@@ -60,3 +76,4 @@ Notes:
 - `api.py` supports repeated `--odata-arg key=value` for OData query options.
 - For OData endpoints, supported runtime query options are `$filter`, `$select`, `$expand`, `$top`, `$skip`, `$orderby`, `$count`.
 - Runtime indexes contain `key`, `summary`, and `cliShape`.
+- `api.py` prints UTF-8 JSON and emits OData hints to stderr for common filter mistakes.

@@ -1,9 +1,30 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import sys
 
 from tasktracker_api import TaskTrackerAPI
 from tasktracker_url_utils import get_epic_id_from_url, get_project_id_from_url, get_task_id_from_url
+
+
+ODATA_METHODS_REQUIRING_PROJECT_ID = {
+    "odata_board",
+    "odata_board_count",
+    "odata_epic",
+    "odata_epic_count",
+    "odata_milestone",
+    "odata_milestone_count",
+    "odata_sprint",
+    "odata_sprint_count",
+    "odata_task",
+    "odata_task_count",
+    "odata_task_template_for_project",
+    "odata_task_template_for_project_count",
+    "odata_user_group_in_project_membership",
+    "odata_user_group_in_project_membership_count",
+    "odata_user_in_project_membership",
+    "odata_user_in_project_membership_count",
+}
 
 
 def parse_value(raw_value):
@@ -19,11 +40,64 @@ def parse_named_arg(raw_arg):
     key, raw_value = raw_arg.split("=", 1)
     key = key.strip()
     if not key:
-        raise ValueError(f"Named argument key is empty: {raw_arg}")
+        raise ValueError(
+            "Named argument key is empty. In PowerShell wrap OData args in single quotes, "
+            "for example: --odata-arg '$select=ID,Title' --odata-arg '$filter=Labels/any()'. "
+            f"Received: {raw_arg}"
+        )
     return key, parse_value(raw_value)
 
 
+def configure_stdout():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+
+
+def validate_odata_usage(python_method, keyword_args, odata_args):
+    if not python_method.startswith("odata_"):
+        return
+
+    if python_method in ODATA_METHODS_REQUIRING_PROJECT_ID and "project_id" not in keyword_args:
+        raise ValueError(
+            f"{python_method} requires --arg project_id=<value>. "
+            "The API returns HTTP 400 without projectId for this endpoint."
+        )
+
+    field_options = [name for name in ("$select", "$expand", "$orderby", "$filter") if name in odata_args]
+    if field_options:
+        hint = (
+            "OData field names on the wire usually use PascalCase, for example ID, Title, Labels, "
+            "even if the local index shows camelCase names."
+        )
+        print(f"[tasktracker-api] Hint: {hint}", file=sys.stderr)
+
+    if "$select" in odata_args and isinstance(odata_args["$select"], str):
+        select_value = odata_args["$select"]
+        if any(token in select_value for token in ("id", "title", "labels")):
+            print(
+                "[tasktracker-api] Hint: prefer $select=ID,Title,Labels instead of camelCase names.",
+                file=sys.stderr,
+            )
+
+    if "$filter" in odata_args and isinstance(odata_args["$filter"], str):
+        filter_value = odata_args["$filter"]
+        if "labels/" in filter_value or "title" in filter_value or "id" in filter_value:
+            print(
+                "[tasktracker-api] Hint: for label filters use PascalCase field names, "
+                "for example Labels/any(l:l/Title eq 'Тестирование') or Labels/any(l:l/ID eq 80).",
+                file=sys.stderr,
+            )
+        if "Labels" in filter_value and "$expand" not in odata_args:
+            print(
+                "[tasktracker-api] Hint: add --odata-arg '$expand=Labels' if you need label objects in the response body.",
+                file=sys.stderr,
+            )
+
+
 def main():
+    configure_stdout()
     parser = argparse.ArgumentParser(
         description="Call TaskTrackerAPI method by method name"
     )
@@ -63,6 +137,7 @@ def main():
     positional_args = derived_positional_args + positional_args
     keyword_args = dict(parse_named_arg(value) for value in args.arg)
     odata_args = dict(parse_named_arg(value) for value in args.odata_arg)
+    validate_odata_usage(python_method, keyword_args, odata_args)
 
     api = TaskTrackerAPI()
     result = api.call_by_python_method(
