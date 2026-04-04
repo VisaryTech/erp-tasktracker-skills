@@ -22,6 +22,8 @@ Rules:
 - If a field is missing in Swagger, do not invent it.
 - Do not invent high-level scenarios such as "create task", "change labels", or "read epic" unless they are tied to a concrete documented endpoint.
 - The client always gets an access token through `client_credentials`.
+- OData read endpoints must exclude hidden entities by default with `Hidden eq false`; use `--include-hidden` only when reading deleted data is explicitly required.
+- Domain model field names are interpreted differently by API surface: REST-oriented model fields and request parameters use `camelCase`, while OData entity fields in `$select`, `$filter`, `$expand`, and `$orderby` use `PascalCase`.
 
 Workflow:
 
@@ -29,7 +31,7 @@ Workflow:
 2. Select the relevant compact index only through entries listed in `assets/index/manifest.json`.
 3. Find the required endpoint by `key` or `summary`.
 4. Take the `cliShape` field from the matched entry.
-5. For OData endpoints, preserve the base command from `cliShape` and add `--odata-arg key=value` as needed.
+5. For OData endpoints, preserve the base command from `cliShape` and add `--odata-arg key=value` as needed. The CLI will append `Hidden eq false` to `$filter` by default.
 6. Use the command from `cliShape`.
 7. If Swagger does not contain the required endpoint or there is no matching index entry, report that explicitly and stop.
 
@@ -37,6 +39,8 @@ Workflow:
 
 - In PowerShell, wrap every `--odata-arg` in single quotes. Double quotes will expand `$select`, `$filter`, and similar names.
 - OData wire field names usually use `PascalCase`, for example `ID`, `Title`, `Labels`, even when the local Swagger index shows `camelCase`.
+- Treat local model examples like `projectId`, `createdAt`, `childEpics`, `hidden` as REST-style names; for OData write them as `ProjectId`, `CreatedAt`, `ChildEpics`, `Hidden`.
+- Unless `--include-hidden` is passed, OData reads automatically apply `Hidden eq false`. If you pass your own `$filter`, the CLI combines it with `and Hidden eq false`.
 - For collection filters, use `any(...)`, for example `Labels/any(l:l/Title eq 'Тестирование')`.
 - If you need nested collection objects in the response body, add `$expand`, for example `$expand=Labels`.
 - Treat `project_id` as required for project-scoped OData endpoints such as `odata_epic`, `odata_task`, `odata_board`, `odata_sprint`, and `odata_milestone`.
@@ -60,13 +64,19 @@ python api.py -m get_task_query_get_task_id --posarg 123
 python api.py -m get_task_query_get_task_id --task-url https://example.local/tasktracker/projects/10/tasks/123
 
 # OData variant with explicit query options
+# effective filter: (State eq 10) and Hidden eq false
 python api.py -m odata_task --arg project_id=10 --odata-arg '$filter=State eq 10' --odata-arg '$select=ID,Title' --odata-arg '$top=50'
 
 # OData epic filter by label title
+# effective filter: (Labels/any(l:l/Title eq 'Тестирование')) and Hidden eq false
 python api.py -m odata_epic --arg project_id=12 --odata-arg '$filter=Labels/any(l:l/Title eq ''Тестирование'')' --odata-arg '$select=ID,Title,Labels' --odata-arg '$expand=Labels' --odata-arg '$top=10'
 
 # OData epic filter by label id
+# effective filter: (Labels/any(l:l/ID eq 80)) and Hidden eq false
 python api.py -m odata_epic_count --arg project_id=12 --odata-arg '$filter=Labels/any(l:l/ID eq 80)'
+
+# Explicit hidden read when deleted entities are required
+python api.py -m odata_task --arg project_id=10 --include-hidden --odata-arg '$filter=Hidden eq true' --odata-arg '$select=ID,Title,Hidden'
 ```
 
 Notes:
@@ -74,6 +84,7 @@ Notes:
 - `api.py` runs the CLI command selected by the agent from the compact indexes.
 - `api.py` supports `--task-url`, `--epic-url`, and `--project-url` for extracting IDs from links.
 - `api.py` supports repeated `--odata-arg key=value` for OData query options.
+- `api.py` supports `--include-hidden` to disable the default OData safety filter.
 - For OData endpoints, supported runtime query options are `$filter`, `$select`, `$expand`, `$top`, `$skip`, `$orderby`, `$count`.
 - Runtime indexes contain `key`, `summary`, and `cliShape`.
 - `api.py` prints UTF-8 JSON and emits OData hints to stderr for common filter mistakes.

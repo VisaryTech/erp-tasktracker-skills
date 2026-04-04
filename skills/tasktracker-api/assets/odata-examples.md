@@ -23,6 +23,7 @@ python api.py -m odata_epic --arg project_id=12 --odata-arg "$select=ID,Title,La
 Swagger indexes store model fields in `camelCase`, but the OData server typically expects `PascalCase` names in `$select`, `$expand`, `$orderby`, and `$filter`.
 
 Use `ID`, `Title`, `Labels`, not `id`, `title`, `labels`.
+Treat `projectId`, `createdAt`, `childEpics`, `hidden` as REST-style model names and convert them to `ProjectId`, `CreatedAt`, `ChildEpics`, `Hidden` in OData expressions.
 
 ## Epic labels
 

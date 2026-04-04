@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import re
 import sys
 
 from tasktracker_api import TaskTrackerAPI
@@ -25,6 +26,9 @@ ODATA_METHODS_REQUIRING_PROJECT_ID = {
     "odata_user_in_project_membership",
     "odata_user_in_project_membership_count",
 }
+
+
+HIDDEN_FILTER = "Hidden eq false"
 
 
 def parse_value(raw_value):
@@ -55,6 +59,56 @@ def configure_stdout():
         sys.stderr.reconfigure(encoding="utf-8")
 
 
+def has_exact_select_field(select_value, field_name):
+    if not isinstance(select_value, str):
+        return False
+    select_fields = [part.strip() for part in select_value.split(",")]
+    return field_name in select_fields
+
+
+def has_exact_orderby_field(orderby_value, field_name):
+    if not isinstance(orderby_value, str):
+        return False
+    orderby_fields = []
+    for part in orderby_value.split(","):
+        tokens = part.strip().split()
+        if tokens:
+            orderby_fields.append(tokens[0])
+    return field_name in orderby_fields
+
+
+def contains_filter_field_in_lowercase(filter_value, field_name):
+    if not isinstance(filter_value, str):
+        return False
+    return re.search(rf"(?<![A-Za-z0-9_]){re.escape(field_name)}(?![A-Za-z0-9_])", filter_value) is not None
+
+
+def apply_default_hidden_filter(python_method, odata_args, include_hidden=False):
+    if include_hidden or not python_method.startswith("odata_"):
+        return dict(odata_args)
+
+    normalized_args = dict(odata_args)
+    raw_filter = normalized_args.get("$filter")
+    if raw_filter is None:
+        normalized_args["$filter"] = HIDDEN_FILTER
+        return normalized_args
+
+    if not isinstance(raw_filter, str):
+        raise ValueError("$filter must be a string when passed through --odata-arg.")
+
+    stripped_filter = raw_filter.strip()
+    if not stripped_filter:
+        normalized_args["$filter"] = HIDDEN_FILTER
+        return normalized_args
+
+    if stripped_filter == HIDDEN_FILTER:
+        normalized_args["$filter"] = HIDDEN_FILTER
+        return normalized_args
+
+    normalized_args["$filter"] = f"({stripped_filter}) and {HIDDEN_FILTER}"
+    return normalized_args
+
+
 def validate_odata_usage(python_method, keyword_args, odata_args):
     if not python_method.startswith("odata_"):
         return
@@ -65,25 +119,30 @@ def validate_odata_usage(python_method, keyword_args, odata_args):
             "The API returns HTTP 400 without projectId for this endpoint."
         )
 
-    field_options = [name for name in ("$select", "$expand", "$orderby", "$filter") if name in odata_args]
-    if field_options:
-        hint = (
-            "OData field names on the wire usually use PascalCase, for example ID, Title, Labels, "
-            "even if the local index shows camelCase names."
-        )
-        print(f"[tasktracker-api] Hint: {hint}", file=sys.stderr)
+    should_print_pascal_case_hint = False
 
     if "$select" in odata_args and isinstance(odata_args["$select"], str):
         select_value = odata_args["$select"]
-        if any(token in select_value for token in ("id", "title", "labels")):
+        if any(has_exact_select_field(select_value, field_name) for field_name in ("id", "title", "labels")):
+            should_print_pascal_case_hint = True
             print(
                 "[tasktracker-api] Hint: prefer $select=ID,Title,Labels instead of camelCase names.",
                 file=sys.stderr,
             )
 
+    if "$orderby" in odata_args and isinstance(odata_args["$orderby"], str):
+        orderby_value = odata_args["$orderby"]
+        if any(has_exact_orderby_field(orderby_value, field_name) for field_name in ("id", "title", "labels")):
+            should_print_pascal_case_hint = True
+
     if "$filter" in odata_args and isinstance(odata_args["$filter"], str):
         filter_value = odata_args["$filter"]
-        if "labels/" in filter_value or "title" in filter_value or "id" in filter_value:
+        if (
+            contains_filter_field_in_lowercase(filter_value, "labels")
+            or contains_filter_field_in_lowercase(filter_value, "title")
+            or contains_filter_field_in_lowercase(filter_value, "id")
+        ):
+            should_print_pascal_case_hint = True
             print(
                 "[tasktracker-api] Hint: for label filters use PascalCase field names, "
                 "for example Labels/any(l:l/Title eq 'Тестирование') or Labels/any(l:l/ID eq 80).",
@@ -94,6 +153,13 @@ def validate_odata_usage(python_method, keyword_args, odata_args):
                 "[tasktracker-api] Hint: add --odata-arg '$expand=Labels' if you need label objects in the response body.",
                 file=sys.stderr,
             )
+
+    if should_print_pascal_case_hint:
+        hint = (
+            "OData field names on the wire usually use PascalCase, for example ID, Title, Labels, "
+            "even if the local index shows camelCase names."
+        )
+        print(f"[tasktracker-api] Hint: {hint}", file=sys.stderr)
 
 
 def main():
@@ -120,6 +186,11 @@ def main():
         default=[],
         help="OData query argument in key=value form, for example $filter=Status eq 'Open'",
     )
+    parser.add_argument(
+        "--include-hidden",
+        action="store_true",
+        help="Allow reading hidden entities in OData endpoints without the default Hidden eq false filter",
+    )
     parser.add_argument("--task-url", help="Extract taskId from URL and prepend it to positional arguments")
     parser.add_argument("--epic-url", help="Extract epicId from URL and prepend it to positional arguments")
     parser.add_argument("--project-url", help="Extract projectId from URL and prepend it to positional arguments")
@@ -137,6 +208,11 @@ def main():
     positional_args = derived_positional_args + positional_args
     keyword_args = dict(parse_named_arg(value) for value in args.arg)
     odata_args = dict(parse_named_arg(value) for value in args.odata_arg)
+    odata_args = apply_default_hidden_filter(
+        python_method,
+        odata_args,
+        include_hidden=args.include_hidden,
+    )
     validate_odata_usage(python_method, keyword_args, odata_args)
 
     api = TaskTrackerAPI()
