@@ -1,0 +1,40 @@
+{
+  "domain": "ExtractTextUpload",
+  "methods": [
+    {
+      "key": "POST /extractText/failed",
+      "summary": "Failed",
+      "tag": "ExtractTextUpload",
+      "pythonMethod": "post_extractText_failed",
+      "httpMethod": "POST",
+      "path": "/extractText/failed",
+      "pathParams": [],
+      "queryParams": [
+        "item_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_extractText_failed --arg item_id=<value>"
+    },
+    {
+      "key": "POST /extractText/upload",
+      "summary": "Upload",
+      "tag": "ExtractTextUpload",
+      "pythonMethod": "post_extractText_upload",
+      "httpMethod": "POST",
+      "path": "/extractText/upload",
+      "pathParams": [],
+      "queryParams": [
+        "fileGuid",
+        "item_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_extractText_upload --arg fileGuid=<value> --arg item_id=<value>"
+    }
+  ]
+}

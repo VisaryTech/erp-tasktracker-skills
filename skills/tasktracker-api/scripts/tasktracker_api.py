@@ -17,14 +17,21 @@ class TaskTrackerAPI:
             return None
 
     @classmethod
+    def _append_tasktracker_path(cls, base_url):
+        normalized = str(base_url).rstrip("/")
+        if normalized.lower().endswith("/tasktracker"):
+            return normalized
+        return f"{normalized}/tasktracker"
+
+    @classmethod
     def _resolve_base_url(cls, config=None):
         config = config or {}
-        resolved = (
-            config.get("endpoint")
-            or os.getenv("ERP_API_BASE_URL")
-            or os.getenv("erp_tasktracker_api_base_url")
-            or cls._read_file("~/.config/erp/api_base_url")
-        )
+        explicit_endpoint = config.get("endpoint") or os.getenv("erp_tasktracker_api_base_url")
+        if explicit_endpoint:
+            return explicit_endpoint.rstrip("/")
+
+        erp_base_url = os.getenv("ERP_API_BASE_URL") or cls._read_file("~/.config/erp/api_base_url")
+        resolved = cls._append_tasktracker_path(erp_base_url) if erp_base_url else None
         if not resolved:
             raise ValueError("Missing ERP endpoint")
         return resolved.rstrip("/")

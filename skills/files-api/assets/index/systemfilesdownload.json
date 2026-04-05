@@ -1,0 +1,22 @@
+{
+  "domain": "SystemFilesDownload",
+  "methods": [
+    {
+      "key": "GET /files/guid",
+      "summary": "DownloadGuid",
+      "tag": "SystemFilesDownload",
+      "pythonMethod": "get_files_guid",
+      "httpMethod": "GET",
+      "path": "/files/guid",
+      "pathParams": [],
+      "queryParams": [
+        "guid"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_files_guid --arg guid=<value> --save-to <path>"
+    }
+  ]
+}

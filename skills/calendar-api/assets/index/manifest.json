@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "name": "calendar",
+      "file": "assets/index/calendar.json",
+      "count": 8
+    },
+    {
+      "name": "event",
+      "file": "assets/index/event.json",
+      "count": 5
+    },
+    {
+      "name": "permission",
+      "file": "assets/index/permission.json",
+      "count": 5
+    }
+  ]
+}

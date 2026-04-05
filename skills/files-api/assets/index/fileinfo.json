@@ -1,0 +1,22 @@
+{
+  "domain": "FileInfo",
+  "methods": [
+    {
+      "key": "GET /info/size/{fileId}",
+      "summary": "GetSize",
+      "tag": "FileInfo",
+      "pythonMethod": "get_info_size_fileId",
+      "httpMethod": "GET",
+      "path": "/info/size/{fileId}",
+      "pathParams": [
+        "fileId"
+      ],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_info_size_fileId --posarg <value>"
+    }
+  ]
+}

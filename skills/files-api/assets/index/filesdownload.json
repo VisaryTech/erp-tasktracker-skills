@@ -1,0 +1,83 @@
+{
+  "domain": "FilesDownload",
+  "methods": [
+    {
+      "key": "GET /files/download",
+      "summary": "Download",
+      "tag": "FilesDownload",
+      "pythonMethod": "get_files_download",
+      "httpMethod": "GET",
+      "path": "/files/download",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "item_id",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_files_download --arg drive_id=<value> --arg item_id=<value> --arg inline=<value> --save-to <path>"
+    },
+    {
+      "key": "GET /files/version",
+      "summary": "DownloadVersion",
+      "tag": "FilesDownload",
+      "pythonMethod": "get_files_version",
+      "httpMethod": "GET",
+      "path": "/files/version",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "version",
+        "drive_id",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_files_version --arg item_id=<value> --arg version=<value> --arg drive_id=<value> --arg inline=<value>"
+    },
+    {
+      "key": "HEAD /files/download",
+      "summary": "Head",
+      "tag": "FilesDownload",
+      "pythonMethod": "head_files_download",
+      "httpMethod": "HEAD",
+      "path": "/files/download",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "item_id",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_files_download --arg drive_id=<value> --arg item_id=<value> --arg inline=<value>"
+    },
+    {
+      "key": "HEAD /files/version",
+      "summary": "HeadVersion",
+      "tag": "FilesDownload",
+      "pythonMethod": "head_files_version",
+      "httpMethod": "HEAD",
+      "path": "/files/version",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "version",
+        "drive_id",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_files_version --arg item_id=<value> --arg version=<value> --arg drive_id=<value> --arg inline=<value>"
+    }
+  ]
+}

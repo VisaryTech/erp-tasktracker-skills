@@ -1,0 +1,50 @@
+{
+  "domain": "Cleanup",
+  "methods": [
+    {
+      "key": "POST /cleanup/cancel",
+      "summary": "CancelDropDeleted",
+      "tag": "Cleanup",
+      "pythonMethod": "post_cleanup_cancel",
+      "httpMethod": "POST",
+      "path": "/cleanup/cancel",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_cleanup_cancel"
+    },
+    {
+      "key": "POST /cleanup/failed",
+      "summary": "DropUndeleted",
+      "tag": "Cleanup",
+      "pythonMethod": "post_cleanup_failed",
+      "httpMethod": "POST",
+      "path": "/cleanup/failed",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_cleanup_failed"
+    },
+    {
+      "key": "POST /cleanup/outdated",
+      "summary": "DropDeleted",
+      "tag": "Cleanup",
+      "pythonMethod": "post_cleanup_outdated",
+      "httpMethod": "POST",
+      "path": "/cleanup/outdated",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_cleanup_outdated"
+    }
+  ]
+}

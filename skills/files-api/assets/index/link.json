@@ -1,0 +1,115 @@
+{
+  "domain": "Link",
+  "methods": [
+    {
+      "key": "GET /link/info",
+      "summary": "GetInfo",
+      "tag": "Link",
+      "pythonMethod": "get_link_info",
+      "httpMethod": "GET",
+      "path": "/link/info",
+      "pathParams": [],
+      "queryParams": [
+        "link"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_link_info --arg link=<value>"
+    },
+    {
+      "key": "GET /link/revoke",
+      "summary": "RevokeFileLink",
+      "tag": "Link",
+      "pythonMethod": "get_link_revoke",
+      "httpMethod": "GET",
+      "path": "/link/revoke",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_link_revoke --arg item_id=<value> --arg drive_id=<value>"
+    },
+    {
+      "key": "POST /link/file_link/by_guid",
+      "summary": "GenerateFileLinkByGuid",
+      "tag": "Link",
+      "pythonMethod": "post_link_file_link_by_guid",
+      "httpMethod": "POST",
+      "path": "/link/file_link/by_guid",
+      "pathParams": [],
+      "queryParams": [
+        "item_guid",
+        "check_permission"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_link_file_link_by_guid --arg item_guid=<value> --arg check_permission=<value>"
+    },
+    {
+      "key": "POST /link/file_link/by_id",
+      "summary": "GenerateFileLinkById",
+      "tag": "Link",
+      "pythonMethod": "post_link_file_link_by_id",
+      "httpMethod": "POST",
+      "path": "/link/file_link/by_id",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id",
+        "check_permission"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_link_file_link_by_id --arg item_id=<value> --arg drive_id=<value> --arg check_permission=<value>"
+    },
+    {
+      "key": "POST /link/path_link/by_id",
+      "summary": "GeneratePathLink",
+      "tag": "Link",
+      "pythonMethod": "post_link_path_link_by_id",
+      "httpMethod": "POST",
+      "path": "/link/path_link/by_id",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id",
+        "check_permission"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_link_path_link_by_id --arg item_id=<value> --arg drive_id=<value> --arg check_permission=<value>"
+    },
+    {
+      "key": "POST /link/version_link/by_id",
+      "summary": "GenerateVersionLink",
+      "tag": "Link",
+      "pythonMethod": "post_link_version_link_by_id",
+      "httpMethod": "POST",
+      "path": "/link/version_link/by_id",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id",
+        "check_permission"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_link_version_link_by_id --arg item_id=<value> --arg drive_id=<value> --arg check_permission=<value>"
+    }
+  ]
+}

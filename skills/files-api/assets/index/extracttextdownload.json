@@ -1,0 +1,73 @@
+{
+  "domain": "ExtractTextDownload",
+  "methods": [
+    {
+      "key": "GET /extractText/download/by_id",
+      "summary": "DownloadById",
+      "tag": "ExtractTextDownload",
+      "pythonMethod": "get_extractText_download_by_id",
+      "httpMethod": "GET",
+      "path": "/extractText/download/by_id",
+      "pathParams": [],
+      "queryParams": [
+        "item_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_extractText_download_by_id --arg item_id=<value> --save-to <path>"
+    },
+    {
+      "key": "GET /extractText/download/by_link",
+      "summary": "DownloadByLink",
+      "tag": "ExtractTextDownload",
+      "pythonMethod": "get_extractText_download_by_link",
+      "httpMethod": "GET",
+      "path": "/extractText/download/by_link",
+      "pathParams": [],
+      "queryParams": [
+        "link"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_extractText_download_by_link --arg link=<value> --save-to <path>"
+    },
+    {
+      "key": "GET /extractText/status/by_id",
+      "summary": "StatusById",
+      "tag": "ExtractTextDownload",
+      "pythonMethod": "get_extractText_status_by_id",
+      "httpMethod": "GET",
+      "path": "/extractText/status/by_id",
+      "pathParams": [],
+      "queryParams": [
+        "item_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_extractText_status_by_id --arg item_id=<value>"
+    },
+    {
+      "key": "GET /extractText/status/by_link",
+      "summary": "StatusByLink",
+      "tag": "ExtractTextDownload",
+      "pythonMethod": "get_extractText_status_by_link",
+      "httpMethod": "GET",
+      "path": "/extractText/status/by_link",
+      "pathParams": [],
+      "queryParams": [
+        "link"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_extractText_status_by_link --arg link=<value>"
+    }
+  ]
+}

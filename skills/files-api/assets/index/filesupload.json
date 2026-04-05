@@ -1,0 +1,42 @@
+{
+  "domain": "FilesUpload",
+  "methods": [
+    {
+      "key": "POST /files/upload",
+      "summary": "Upload",
+      "tag": "FilesUpload",
+      "pythonMethod": "post_files_upload",
+      "httpMethod": "POST",
+      "path": "/files/upload",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id",
+        "replace"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_files_upload --arg drive_id=<value> --arg directory_id=<value> --arg replace=<value>"
+    },
+    {
+      "key": "PUT /files/replace",
+      "summary": "Replace",
+      "tag": "FilesUpload",
+      "pythonMethod": "put_files_replace",
+      "httpMethod": "PUT",
+      "path": "/files/replace",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m put_files_replace --arg item_id=<value> --arg drive_id=<value>"
+    }
+  ]
+}

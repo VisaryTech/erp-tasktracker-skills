@@ -1,0 +1,3 @@
+interface:
+  display_name: "Files API"
+  short_description: "Use Files Swagger artifacts and local CLI wrappers"

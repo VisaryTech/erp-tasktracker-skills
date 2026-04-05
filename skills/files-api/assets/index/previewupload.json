@@ -1,0 +1,40 @@
+{
+  "domain": "PreviewUpload",
+  "methods": [
+    {
+      "key": "POST /preview/failed",
+      "summary": "Failed",
+      "tag": "PreviewUpload",
+      "pythonMethod": "post_preview_failed",
+      "httpMethod": "POST",
+      "path": "/preview/failed",
+      "pathParams": [],
+      "queryParams": [
+        "itemId"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_preview_failed --arg itemId=<value>"
+    },
+    {
+      "key": "POST /preview/upload",
+      "summary": "Upload",
+      "tag": "PreviewUpload",
+      "pythonMethod": "post_preview_upload",
+      "httpMethod": "POST",
+      "path": "/preview/upload",
+      "pathParams": [],
+      "queryParams": [
+        "fileGuid",
+        "fileId"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_preview_upload --arg fileGuid=<value> --arg fileId=<value>"
+    }
+  ]
+}

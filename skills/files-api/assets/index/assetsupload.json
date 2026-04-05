@@ -1,0 +1,24 @@
+{
+  "domain": "AssetsUpload",
+  "methods": [
+    {
+      "key": "POST /assets/upload",
+      "summary": "Upload",
+      "tag": "AssetsUpload",
+      "pythonMethod": "post_assets_upload",
+      "httpMethod": "POST",
+      "path": "/assets/upload",
+      "pathParams": [],
+      "queryParams": [
+        "path",
+        "linkType",
+        "replace"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_assets_upload --arg path=<value> --arg linkType=<value> --arg replace=<value>"
+    }
+  ]
+}

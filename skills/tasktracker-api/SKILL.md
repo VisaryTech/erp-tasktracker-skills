@@ -22,6 +22,8 @@ Rules:
 - If a field is missing in Swagger, do not invent it.
 - Do not invent high-level scenarios such as "create task", "change labels", or "read epic" unless they are tied to a concrete documented endpoint.
 - The client always gets an access token through `client_credentials`.
+- `ERP_API_BASE_URL` and `~/.config/erp/api_base_url` are treated as the ERP base URL; the client calls TaskTracker at `ERP_API_BASE_URL + "/tasktracker"`.
+- `erp_tasktracker_api_base_url` or config `endpoint` can still override the fully qualified TaskTracker endpoint directly.
 - OData read endpoints must exclude hidden entities by default with `Hidden eq false`; use `--include-hidden` only when reading deleted data is explicitly required.
 - Domain model field names are interpreted differently by API surface: REST-oriented model fields and request parameters use `camelCase`, while OData entity fields in `$select`, `$filter`, `$expand`, and `$orderby` use `PascalCase`.
 

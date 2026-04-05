@@ -1,0 +1,76 @@
+{
+  "model": {
+    "schema": "assets/index/event.json#model",
+    "collection": true,
+    "status": "observed_from_live_response",
+    "fields": {
+      "ID": "integer",
+      "RowVersion": "integer",
+      "Hidden": "boolean",
+      "Calendar": "object",
+      "Title": "string",
+      "Description": "string",
+      "StartDate": "string:date-time",
+      "EndDate": "string:date-time",
+      "AllDay": "boolean",
+      "RecurrenceRule": "string",
+      "ReccurrenceRule": "string",
+      "RecurrenceException": "string",
+      "Notifications": "array",
+      "Users": "array",
+      "Groups": "array",
+      "Data": "null | object"
+    },
+    "sample": {
+      "ID": 1183,
+      "RowVersion": 1187439050,
+      "Hidden": false,
+      "Calendar": {
+        "ID": 240,
+        "Alias": "calendar_240",
+        "Title": "Codex Test Calendar Updated",
+        "Color": "#345678",
+        "IsPublic": false
+      },
+      "Title": "Codex API Import Test",
+      "Description": "Temporary event for calendar-api probing",
+      "StartDate": "2026-04-06T10:00:00Z",
+      "EndDate": "2026-04-06T10:30:00Z",
+      "AllDay": false,
+      "ReccurrenceRule": "",
+      "RecurrenceException": "",
+      "Notifications": [],
+      "Users": [],
+      "Groups": [],
+      "Data": null
+    },
+    "note": "Fields were observed from live GET /event and GET /event/{id} responses on 2026-04-05 after importing an ICS event into a temporary calendar. Swagger does not publish an Event response schema."
+  },
+  "methods": [
+    {
+      "key": "GET /event",
+      "cliShape": "python api.py -m get_event --arg calendar_id=<value> --arg start=<date-time> --arg end=<date-time>",
+      "summary": "get event"
+    },
+    {
+      "key": "POST /event",
+      "cliShape": "python api.py -m post_event --arg body=<json-object>",
+      "summary": "post event"
+    },
+    {
+      "key": "PATCH /event",
+      "cliShape": "python api.py -m patch_event --arg body=<json-object>",
+      "summary": "patch event"
+    },
+    {
+      "key": "GET /event/{id}",
+      "cliShape": "python api.py -m get_event_id --posarg <id>",
+      "summary": "get event id"
+    },
+    {
+      "key": "DELETE /event/{id}",
+      "cliShape": "python api.py -m delete_event_id --posarg <id>",
+      "summary": "delete event id"
+    }
+  ]
+}

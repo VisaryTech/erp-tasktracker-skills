@@ -1,0 +1,45 @@
+{
+  "domain": "Unzip",
+  "methods": [
+    {
+      "key": "GET /files/unzip",
+      "summary": "GetEntries",
+      "tag": "Unzip",
+      "pythonMethod": "get_files_unzip",
+      "httpMethod": "GET",
+      "path": "/files/unzip",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_files_unzip --arg item_id=<value> --arg drive_id=<value>"
+    },
+    {
+      "key": "POST /files/unzip",
+      "summary": "CanUnzip",
+      "tag": "Unzip",
+      "pythonMethod": "post_files_unzip",
+      "httpMethod": "POST",
+      "path": "/files/unzip",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "driveId",
+        "directoryId",
+        "name"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_files_unzip --arg item_id=<value> --arg drive_id=<value> --arg driveId=<value> --arg directoryId=<value> --arg name=<value> --arg body=<json-object>"
+    }
+  ]
+}

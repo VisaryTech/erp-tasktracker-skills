@@ -1,0 +1,83 @@
+{
+  "domain": "PreviewDownload",
+  "methods": [
+    {
+      "key": "GET /preview/download",
+      "summary": "Download",
+      "tag": "PreviewDownload",
+      "pythonMethod": "get_preview_download",
+      "httpMethod": "GET",
+      "path": "/preview/download",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "item_id",
+        "size"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_preview_download --arg drive_id=<value> --arg item_id=<value> --arg size=<value> --save-to <path>"
+    },
+    {
+      "key": "GET /preview/version",
+      "summary": "DownloadVersion",
+      "tag": "PreviewDownload",
+      "pythonMethod": "get_preview_version",
+      "httpMethod": "GET",
+      "path": "/preview/version",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "version",
+        "size",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_preview_version --arg item_id=<value> --arg version=<value> --arg size=<value> --arg drive_id=<value>"
+    },
+    {
+      "key": "HEAD /preview/download",
+      "summary": "DownloadHead",
+      "tag": "PreviewDownload",
+      "pythonMethod": "head_preview_download",
+      "httpMethod": "HEAD",
+      "path": "/preview/download",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "item_id",
+        "size"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_preview_download --arg drive_id=<value> --arg item_id=<value> --arg size=<value>"
+    },
+    {
+      "key": "HEAD /preview/version",
+      "summary": "DownloadVersionHead",
+      "tag": "PreviewDownload",
+      "pythonMethod": "head_preview_version",
+      "httpMethod": "HEAD",
+      "path": "/preview/version",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "version",
+        "size",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_preview_version --arg item_id=<value> --arg version=<value> --arg size=<value> --arg drive_id=<value>"
+    }
+  ]
+}

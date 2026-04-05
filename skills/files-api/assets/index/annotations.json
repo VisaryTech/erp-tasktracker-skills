@@ -1,0 +1,112 @@
+{
+  "domain": "Annotations",
+  "methods": [
+    {
+      "key": "DELETE /annotations/{id}",
+      "summary": "Delete",
+      "tag": "Annotations",
+      "pythonMethod": "delete_annotations_id",
+      "httpMethod": "DELETE",
+      "path": "/annotations/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "itemId",
+        "driveId",
+        "version"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m delete_annotations_id --posarg <value> --arg itemId=<value> --arg driveId=<value> --arg version=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "GET /annotations",
+      "summary": "Get",
+      "tag": "Annotations",
+      "pythonMethod": "get_annotations",
+      "httpMethod": "GET",
+      "path": "/annotations",
+      "pathParams": [],
+      "queryParams": [
+        "ItemId",
+        "Version",
+        "DriveId"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_annotations --arg ItemId=<value> --arg Version=<value> --arg DriveId=<value>"
+    },
+    {
+      "key": "POST /annotations",
+      "summary": "Add",
+      "tag": "Annotations",
+      "pythonMethod": "post_annotations",
+      "httpMethod": "POST",
+      "path": "/annotations",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "itemId",
+        "driveId",
+        "version",
+        "page",
+        "rect",
+        "contents",
+        "author",
+        "selection"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_annotations --arg itemId=<value> --arg driveId=<value> --arg version=<value> --arg page=<value> --arg rect=<value> --arg contents=<value> --arg author=<value> --arg selection=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /annotations/set_viewed/{id}",
+      "summary": "SetViewed",
+      "tag": "Annotations",
+      "pythonMethod": "post_annotations_set_viewed_id",
+      "httpMethod": "POST",
+      "path": "/annotations/set_viewed/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_annotations_set_viewed_id --posarg <value>"
+    },
+    {
+      "key": "PUT /annotations/{id}",
+      "summary": "Update",
+      "tag": "Annotations",
+      "pythonMethod": "put_annotations_id",
+      "httpMethod": "PUT",
+      "path": "/annotations/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "itemId",
+        "driveId",
+        "version",
+        "page",
+        "rect",
+        "contents",
+        "author",
+        "selection"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m put_annotations_id --posarg <value> --arg itemId=<value> --arg driveId=<value> --arg version=<value> --arg page=<value> --arg rect=<value> --arg contents=<value> --arg author=<value> --arg selection=<value> --arg body=<json-object>"
+    }
+  ]
+}

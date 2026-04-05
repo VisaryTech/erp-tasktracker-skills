@@ -1,0 +1,73 @@
+{
+  "model": {
+    "schema": "assets/index/calendar.json#model",
+    "collection": true,
+    "fields": {
+      "ID": "integer",
+      "Alias": "string",
+      "Title": "string",
+      "Color": "string",
+      "OwnerId": "integer",
+      "IsPublic": "boolean",
+      "IsDefault": "boolean",
+      "Permissions": "null | array",
+      "Hidden": "boolean",
+      "RowVersion": "integer"
+    },
+    "sample": {
+      "ID": 239,
+      "Alias": "calendar_239",
+      "Title": "AI Developer",
+      "Color": "#5cb85c",
+      "OwnerId": 212,
+      "IsPublic": false,
+      "IsDefault": false,
+      "Permissions": null,
+      "Hidden": false,
+      "RowVersion": 1187434380
+    },
+    "note": "Fields were observed from live GET /calendar, GET /calendar/{id}, POST /calendar, and PATCH /calendar/{id} responses on 2026-04-05. Swagger does not publish a Calendar response schema."
+  },
+  "methods": [
+    {
+      "key": "GET /calendar",
+      "cliShape": "python api.py -m get_calendar",
+      "summary": "get calendar"
+    },
+    {
+      "key": "POST /calendar",
+      "cliShape": "python api.py -m post_calendar --arg body=<json-object>",
+      "summary": "post calendar"
+    },
+    {
+      "key": "GET /calendar/byOwnerId/{ownerId}",
+      "cliShape": "python api.py -m get_calendar_by_owner_id_owner_id --posarg <owner_id>",
+      "summary": "get calendar by owner id owner id"
+    },
+    {
+      "key": "GET /calendar/{id}",
+      "cliShape": "python api.py -m get_calendar_id --posarg <id>",
+      "summary": "get calendar id"
+    },
+    {
+      "key": "PATCH /calendar/{id}",
+      "cliShape": "python api.py -m patch_calendar_id --posarg <id> --arg body=<json-object>",
+      "summary": "patch calendar id"
+    },
+    {
+      "key": "DELETE /calendar/{id}",
+      "cliShape": "python api.py -m delete_calendar_id --posarg <id>",
+      "summary": "delete calendar id"
+    },
+    {
+      "key": "GET /calendar/export/{id}",
+      "cliShape": "python api.py -m get_calendar_export_id --posarg <id> --arg start=<date-time> --arg end=<date-time> --arg file_name=<value> --output <path>",
+      "summary": "get calendar export id"
+    },
+    {
+      "key": "POST /calendar/import/{id}",
+      "cliShape": "python api.py -m post_calendar_import_id --posarg <id> --file <path>",
+      "summary": "post calendar import id"
+    }
+  ]
+}

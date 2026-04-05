@@ -1,0 +1,22 @@
+{
+  "domain": "Admin",
+  "methods": [
+    {
+      "key": "POST /admin/init",
+      "summary": "InitDrives",
+      "tag": "Admin",
+      "pythonMethod": "post_admin_init",
+      "httpMethod": "POST",
+      "path": "/admin/init",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "drives"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_admin_init --arg drives=<value> --arg body=<json-object>"
+    }
+  ]
+}

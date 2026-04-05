@@ -1,0 +1,213 @@
+{
+  "domain": "Drives",
+  "methods": [
+    {
+      "key": "DELETE /drives/by_id/{drive_id}",
+      "summary": "Delete",
+      "tag": "Drives",
+      "pythonMethod": "delete_drives_by_id_drive_id",
+      "httpMethod": "DELETE",
+      "path": "/drives/by_id/{drive_id}",
+      "pathParams": [
+        "drive_id"
+      ],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m delete_drives_by_id_drive_id --posarg <value>"
+    },
+    {
+      "key": "GET /drives",
+      "summary": "GetList",
+      "tag": "Drives",
+      "pythonMethod": "get_drives",
+      "httpMethod": "GET",
+      "path": "/drives",
+      "pathParams": [],
+      "queryParams": [
+        "skip",
+        "take",
+        "is_favorite",
+        "is_primary",
+        "is_owned",
+        "drive_id",
+        "owner",
+        "desc",
+        "is_system",
+        "order",
+        "total_count"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_drives --arg skip=<value> --arg take=<value> --arg is_favorite=<value> --arg is_primary=<value> --arg is_owned=<value> --arg drive_id=<value> --arg owner=<value> --arg desc=<value> --arg is_system=<value> --arg order=<value> --arg total_count=<value>"
+    },
+    {
+      "key": "GET /drives/by_id/{drive_id}",
+      "summary": "GetById",
+      "tag": "Drives",
+      "pythonMethod": "get_drives_by_id_drive_id",
+      "httpMethod": "GET",
+      "path": "/drives/by_id/{drive_id}",
+      "pathParams": [
+        "drive_id"
+      ],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_drives_by_id_drive_id --posarg <value>"
+    },
+    {
+      "key": "GET /drives/by_label/{label}",
+      "summary": "GetByLabel",
+      "tag": "Drives",
+      "pythonMethod": "get_drives_by_label_label",
+      "httpMethod": "GET",
+      "path": "/drives/by_label/{label}",
+      "pathParams": [
+        "label"
+      ],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_drives_by_label_label --posarg <value>"
+    },
+    {
+      "key": "POST /drives",
+      "summary": "Create",
+      "tag": "Drives",
+      "pythonMethod": "post_drives",
+      "httpMethod": "POST",
+      "path": "/drives",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "name",
+        "label",
+        "quota",
+        "permissions",
+        "itemsDefaultPermissions",
+        "isCrypted",
+        "isSystem",
+        "hasHistory",
+        "hasRecycleBin"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_drives --arg name=<value> --arg label=<value> --arg quota=<value> --arg permissions=<value> --arg itemsDefaultPermissions=<value> --arg isCrypted=<value> --arg isSystem=<value> --arg hasHistory=<value> --arg hasRecycleBin=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /drives/by_id/restore",
+      "summary": "Restore",
+      "tag": "Drives",
+      "pythonMethod": "post_drives_by_id_restore",
+      "httpMethod": "POST",
+      "path": "/drives/by_id/restore",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "driveId"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_drives_by_id_restore --arg driveId=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /drives/for_user/{owner_id}",
+      "summary": "Create",
+      "tag": "Drives",
+      "pythonMethod": "post_drives_for_user_owner_id",
+      "httpMethod": "POST",
+      "path": "/drives/for_user/{owner_id}",
+      "pathParams": [
+        "owner_id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "name",
+        "label",
+        "quota",
+        "permissions",
+        "itemsDefaultPermissions",
+        "isCrypted",
+        "isSystem",
+        "hasHistory",
+        "hasRecycleBin"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_drives_for_user_owner_id --posarg <value> --arg name=<value> --arg label=<value> --arg quota=<value> --arg permissions=<value> --arg itemsDefaultPermissions=<value> --arg isCrypted=<value> --arg isSystem=<value> --arg hasHistory=<value> --arg hasRecycleBin=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "PUT /drives/by_id/{drive_id}/edit",
+      "summary": "Edit",
+      "tag": "Drives",
+      "pythonMethod": "put_drives_by_id_drive_id_edit",
+      "httpMethod": "PUT",
+      "path": "/drives/by_id/{drive_id}/edit",
+      "pathParams": [
+        "drive_id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "name",
+        "label",
+        "quota",
+        "permissions",
+        "itemsDefaultPermissions"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m put_drives_by_id_drive_id_edit --posarg <value> --arg name=<value> --arg label=<value> --arg quota=<value> --arg permissions=<value> --arg itemsDefaultPermissions=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "PUT /drives/by_id/{drive_id}/favorive",
+      "summary": "SetFavorite",
+      "tag": "Drives",
+      "pythonMethod": "put_drives_by_id_drive_id_favorive",
+      "httpMethod": "PUT",
+      "path": "/drives/by_id/{drive_id}/favorive",
+      "pathParams": [
+        "drive_id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "isFavorite"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m put_drives_by_id_drive_id_favorive --posarg <value> --arg isFavorite=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "PUT /drives/by_id/{drive_id}/name",
+      "summary": "SetCustomName",
+      "tag": "Drives",
+      "pythonMethod": "put_drives_by_id_drive_id_name",
+      "httpMethod": "PUT",
+      "path": "/drives/by_id/{drive_id}/name",
+      "pathParams": [
+        "drive_id"
+      ],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "customName"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m put_drives_by_id_drive_id_name --posarg <value> --arg customName=<value> --arg body=<json-object>"
+    }
+  ]
+}

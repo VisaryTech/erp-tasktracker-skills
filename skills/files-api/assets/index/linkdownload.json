@@ -1,0 +1,41 @@
+{
+  "domain": "LinkDownload",
+  "methods": [
+    {
+      "key": "GET /link/download",
+      "summary": "Download",
+      "tag": "LinkDownload",
+      "pythonMethod": "get_link_download",
+      "httpMethod": "GET",
+      "path": "/link/download",
+      "pathParams": [],
+      "queryParams": [
+        "link",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": true,
+      "cliShape": "python api.py -m get_link_download --arg link=<value> --arg inline=<value> --save-to <path>"
+    },
+    {
+      "key": "HEAD /link/download",
+      "summary": "Head",
+      "tag": "LinkDownload",
+      "pythonMethod": "head_link_download",
+      "httpMethod": "HEAD",
+      "path": "/link/download",
+      "pathParams": [],
+      "queryParams": [
+        "link",
+        "inline"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_link_download --arg link=<value> --arg inline=<value>"
+    }
+  ]
+}

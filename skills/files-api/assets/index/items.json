@@ -1,0 +1,409 @@
+{
+  "domain": "Items",
+  "methods": [
+    {
+      "key": "DELETE /items",
+      "summary": "Delete",
+      "tag": "Items",
+      "pythonMethod": "delete_items",
+      "httpMethod": "DELETE",
+      "path": "/items",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "items",
+        "force"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m delete_items --arg drive_id=<value> --arg items=<value> --arg force=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "GET /items",
+      "summary": "GetList",
+      "tag": "Items",
+      "pythonMethod": "get_items",
+      "httpMethod": "GET",
+      "path": "/items",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id",
+        "take",
+        "skip",
+        "total_count",
+        "order",
+        "desc",
+        "order_directory",
+        "type"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items --arg drive_id=<value> --arg directory_id=<value> --arg take=<value> --arg skip=<value> --arg total_count=<value> --arg order=<value> --arg desc=<value> --arg order_directory=<value> --arg type=<value>"
+    },
+    {
+      "key": "GET /items/by_name",
+      "summary": "GetByName",
+      "tag": "Items",
+      "pythonMethod": "get_items_by_name",
+      "httpMethod": "GET",
+      "path": "/items/by_name",
+      "pathParams": [],
+      "queryParams": [
+        "name",
+        "drive_id",
+        "directory_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_by_name --arg name=<value> --arg drive_id=<value> --arg directory_id=<value>"
+    },
+    {
+      "key": "GET /items/deleted",
+      "summary": "GetDeletedList",
+      "tag": "Items",
+      "pythonMethod": "get_items_deleted",
+      "httpMethod": "GET",
+      "path": "/items/deleted",
+      "pathParams": [],
+      "queryParams": [
+        "take",
+        "skip",
+        "total_count",
+        "order",
+        "desc",
+        "order_directory",
+        "type"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_deleted --arg take=<value> --arg skip=<value> --arg total_count=<value> --arg order=<value> --arg desc=<value> --arg order_directory=<value> --arg type=<value>"
+    },
+    {
+      "key": "GET /items/detail",
+      "summary": "Detail",
+      "tag": "Items",
+      "pythonMethod": "get_items_detail",
+      "httpMethod": "GET",
+      "path": "/items/detail",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_detail --arg item_id=<value> --arg drive_id=<value>"
+    },
+    {
+      "key": "GET /items/path",
+      "summary": "GetPath",
+      "tag": "Items",
+      "pythonMethod": "get_items_path",
+      "httpMethod": "GET",
+      "path": "/items/path",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_path --arg item_id=<value> --arg drive_id=<value>"
+    },
+    {
+      "key": "GET /items/search",
+      "summary": "Search",
+      "tag": "Items",
+      "pythonMethod": "get_items_search",
+      "httpMethod": "GET",
+      "path": "/items/search",
+      "pathParams": [],
+      "queryParams": [
+        "search",
+        "searchContents",
+        "contentsSearchMode",
+        "drive_id",
+        "directory_id",
+        "take",
+        "skip",
+        "total_count",
+        "order",
+        "desc",
+        "order_directory",
+        "type"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_search --arg search=<value> --arg searchContents=<value> --arg contentsSearchMode=<value> --arg drive_id=<value> --arg directory_id=<value> --arg take=<value> --arg skip=<value> --arg total_count=<value> --arg order=<value> --arg desc=<value> --arg order_directory=<value> --arg type=<value>"
+    },
+    {
+      "key": "GET /items/versions",
+      "summary": "GetVersions",
+      "tag": "Items",
+      "pythonMethod": "get_items_versions",
+      "httpMethod": "GET",
+      "path": "/items/versions",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "total_count",
+        "drive_id",
+        "take",
+        "skip"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_items_versions --arg item_id=<value> --arg total_count=<value> --arg drive_id=<value> --arg take=<value> --arg skip=<value>"
+    },
+    {
+      "key": "POST /items",
+      "summary": "CreateDirectory",
+      "tag": "Items",
+      "pythonMethod": "post_items",
+      "httpMethod": "POST",
+      "path": "/items",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "name"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items --arg drive_id=<value> --arg directory_id=<value> --arg name=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/by_path",
+      "summary": "GetOrCreateByPath",
+      "tag": "Items",
+      "pythonMethod": "post_items_by_path",
+      "httpMethod": "POST",
+      "path": "/items/by_path",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "label",
+        "path"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_by_path --arg label=<value> --arg path=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/by_path_string",
+      "summary": "GetOrCreateByPath",
+      "tag": "Items",
+      "pythonMethod": "post_items_by_path_string",
+      "httpMethod": "POST",
+      "path": "/items/by_path_string",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "label",
+        "path"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_by_path_string --arg label=<value> --arg path=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/copy",
+      "summary": "CopyItems",
+      "tag": "Items",
+      "pythonMethod": "post_items_copy",
+      "httpMethod": "POST",
+      "path": "/items/copy",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "items",
+        "namePostfix"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_copy --arg drive_id=<value> --arg directory_id=<value> --arg items=<value> --arg namePostfix=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/create_directory",
+      "summary": "GetOrCreateByName",
+      "tag": "Items",
+      "pythonMethod": "post_items_create_directory",
+      "httpMethod": "POST",
+      "path": "/items/create_directory",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "name"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_create_directory --arg drive_id=<value> --arg directory_id=<value> --arg name=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/deleted/clear",
+      "summary": "ClearDeleted",
+      "tag": "Items",
+      "pythonMethod": "post_items_deleted_clear",
+      "httpMethod": "POST",
+      "path": "/items/deleted/clear",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_deleted_clear"
+    },
+    {
+      "key": "POST /items/deleted/restore",
+      "summary": "RestoreItem",
+      "tag": "Items",
+      "pythonMethod": "post_items_deleted_restore",
+      "httpMethod": "POST",
+      "path": "/items/deleted/restore",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "id",
+        "driveId",
+        "newDirectoryId",
+        "newName"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_deleted_restore --arg id=<value> --arg driveId=<value> --arg newDirectoryId=<value> --arg newName=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/description",
+      "summary": "SetDescription",
+      "tag": "Items",
+      "pythonMethod": "post_items_description",
+      "httpMethod": "POST",
+      "path": "/items/description",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "description"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_description --arg item_id=<value> --arg drive_id=<value> --arg description=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/move",
+      "summary": "MoveItems",
+      "tag": "Items",
+      "pythonMethod": "post_items_move",
+      "httpMethod": "POST",
+      "path": "/items/move",
+      "pathParams": [],
+      "queryParams": [
+        "drive_id",
+        "directory_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "items"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_move --arg drive_id=<value> --arg directory_id=<value> --arg items=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/rename",
+      "summary": "Rename",
+      "tag": "Items",
+      "pythonMethod": "post_items_rename",
+      "httpMethod": "POST",
+      "path": "/items/rename",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "newName"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_rename --arg item_id=<value> --arg drive_id=<value> --arg newName=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/restore",
+      "summary": "RestoreVersion",
+      "tag": "Items",
+      "pythonMethod": "post_items_restore",
+      "httpMethod": "POST",
+      "path": "/items/restore",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "version"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_restore --arg item_id=<value> --arg drive_id=<value> --arg version=<value> --arg body=<json-object>"
+    },
+    {
+      "key": "POST /items/tags",
+      "summary": "SetTags",
+      "tag": "Items",
+      "pythonMethod": "post_items_tags",
+      "httpMethod": "POST",
+      "path": "/items/tags",
+      "pathParams": [],
+      "queryParams": [
+        "item_id",
+        "drive_id"
+      ],
+      "hasBody": true,
+      "bodyRequired": false,
+      "bodyFields": [
+        "tags"
+      ],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m post_items_tags --arg item_id=<value> --arg drive_id=<value> --arg tags=<value> --arg body=<json-object>"
+    }
+  ]
+}

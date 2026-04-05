@@ -1,0 +1,55 @@
+{
+  "model": {
+    "schema": "assets/index/permission.json#model",
+    "collection": true,
+    "status": "observed_from_live_response",
+    "fields": {
+      "CalendarID": "integer",
+      "Calendar": "object nullable",
+      "UserOrGroupId": "integer",
+      "IsUser": "boolean",
+      "PermissionLevel": "integer",
+      "ID": "integer",
+      "Hidden": "boolean",
+      "RowVersion": "integer"
+    },
+    "sample": {
+      "CalendarID": 0,
+      "Calendar": null,
+      "UserOrGroupId": 0,
+      "IsUser": false,
+      "PermissionLevel": 0,
+      "ID": 0,
+      "Hidden": false,
+      "RowVersion": 0
+    },
+    "note": "Field names were observed on 2026-04-05 inside the live PATCH /calendar/{id} response when the request body included a non-empty Permissions array. Swagger does not publish a Permission schema. Direct POST /permission probing still returned generic HTTP 500, and GET /permission?calendarId=<owned-calendar> returned an empty array, so persisted sample values could not be recovered."
+  },
+  "methods": [
+    {
+      "key": "GET /permission",
+      "cliShape": "python api.py -m get_permission --arg calendar_id=<value>",
+      "summary": "get permission"
+    },
+    {
+      "key": "POST /permission",
+      "cliShape": "python api.py -m post_permission --arg body=<json-object>",
+      "summary": "post permission"
+    },
+    {
+      "key": "PATCH /permission",
+      "cliShape": "python api.py -m patch_permission --arg body=<json-object>",
+      "summary": "patch permission"
+    },
+    {
+      "key": "GET /permission/{id}",
+      "cliShape": "python api.py -m get_permission_id --posarg <id>",
+      "summary": "get permission id"
+    },
+    {
+      "key": "DELETE /permission/{id}",
+      "cliShape": "python api.py -m delete_permission_id --posarg <id>",
+      "summary": "delete permission id"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "domain": "Info",
+  "methods": [
+    {
+      "key": "GET /info/current",
+      "summary": "GetCurrent",
+      "tag": "Info",
+      "pythonMethod": "get_info_current",
+      "httpMethod": "GET",
+      "path": "/info/current",
+      "pathParams": [],
+      "queryParams": [],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_info_current"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "indexes": [
+    {
+      "name": "admin",
+      "file": "assets/index/admin.json",
+      "count": 1
+    },
+    {
+      "name": "annotations",
+      "file": "assets/index/annotations.json",
+      "count": 5
+    },
+    {
+      "name": "assetsupload",
+      "file": "assets/index/assetsupload.json",
+      "count": 1
+    },
+    {
+      "name": "cleanup",
+      "file": "assets/index/cleanup.json",
+      "count": 3
+    },
+    {
+      "name": "drives",
+      "file": "assets/index/drives.json",
+      "count": 10
+    },
+    {
+      "name": "extracttextdownload",
+      "file": "assets/index/extracttextdownload.json",
+      "count": 4
+    },
+    {
+      "name": "extracttextupload",
+      "file": "assets/index/extracttextupload.json",
+      "count": 2
+    },
+    {
+      "name": "fileinfo",
+      "file": "assets/index/fileinfo.json",
+      "count": 1
+    },
+    {
+      "name": "filesdownload",
+      "file": "assets/index/filesdownload.json",
+      "count": 4
+    },
+    {
+      "name": "filesupload",
+      "file": "assets/index/filesupload.json",
+      "count": 2
+    },
+    {
+      "name": "info",
+      "file": "assets/index/info.json",
+      "count": 1
+    },
+    {
+      "name": "items",
+      "file": "assets/index/items.json",
+      "count": 20
+    },
+    {
+      "name": "link",
+      "file": "assets/index/link.json",
+      "count": 6
+    },
+    {
+      "name": "linkdownload",
+      "file": "assets/index/linkdownload.json",
+      "count": 2
+    },
+    {
+      "name": "previewdownload",
+      "file": "assets/index/previewdownload.json",
+      "count": 4
+    },
+    {
+      "name": "previewlinkdownload",
+      "file": "assets/index/previewlinkdownload.json",
+      "count": 2
+    },
+    {
+      "name": "previewupload",
+      "file": "assets/index/previewupload.json",
+      "count": 2
+    },
+    {
+      "name": "systemfilesdownload",
+      "file": "assets/index/systemfilesdownload.json",
+      "count": 1
+    },
+    {
+      "name": "unzip",
+      "file": "assets/index/unzip.json",
+      "count": 2
+    }
+  ]
+}

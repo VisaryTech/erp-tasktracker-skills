@@ -1,0 +1,41 @@
+{
+  "domain": "PreviewLinkDownload",
+  "methods": [
+    {
+      "key": "GET /preview/link",
+      "summary": "Download",
+      "tag": "PreviewLinkDownload",
+      "pythonMethod": "get_preview_link",
+      "httpMethod": "GET",
+      "path": "/preview/link",
+      "pathParams": [],
+      "queryParams": [
+        "link",
+        "size"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m get_preview_link --arg link=<value> --arg size=<value>"
+    },
+    {
+      "key": "HEAD /preview/link",
+      "summary": "DownloadHead",
+      "tag": "PreviewLinkDownload",
+      "pythonMethod": "head_preview_link",
+      "httpMethod": "HEAD",
+      "path": "/preview/link",
+      "pathParams": [],
+      "queryParams": [
+        "link",
+        "size"
+      ],
+      "hasBody": false,
+      "bodyRequired": false,
+      "bodyFields": [],
+      "returnsBinary": false,
+      "cliShape": "python api.py -m head_preview_link --arg link=<value> --arg size=<value>"
+    }
+  ]
+}
