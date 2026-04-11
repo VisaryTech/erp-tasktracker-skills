@@ -43,6 +43,56 @@ class NormalizeKeywordArgsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.module.normalize_keyword_args("get_calendar", {}, "sample.ics")
 
+    def test_event_body_normalizes_calendar_id_and_user_ids(self):
+        result = self.module.normalize_keyword_args(
+            "post_event",
+            {
+                "body": {
+                    "calendarId": 12,
+                    "title": "Demo",
+                    "users": [1, 3, 4, 5],
+                }
+            },
+            None,
+        )
+        self.assertEqual({"ID": 12}, result["body"]["Calendar"])
+        self.assertEqual(
+            [{"UserId": 1}, {"UserId": 3}, {"UserId": 4}, {"UserId": 5}],
+            result["body"]["Users"],
+        )
+        self.assertEqual("Demo", result["body"]["Title"])
+        self.assertNotIn("calendarId", result["body"])
+        self.assertNotIn("users", result["body"])
+
+    def test_event_body_normalizes_nested_user_and_group_objects(self):
+        result = self.module.normalize_keyword_args(
+            "patch_event",
+            {
+                "body": {
+                    "Calendar": {"id": 12},
+                    "Users": [{"ID": 1}, {"UserId": 3}],
+                    "Groups": [7, {"Id": 9}],
+                    "Notifications": [15, {"minutes": 30}],
+                }
+            },
+            None,
+        )
+        self.assertEqual({"ID": 12}, result["body"]["Calendar"])
+        self.assertEqual([{"UserId": 1}, {"UserId": 3}], result["body"]["Users"])
+        self.assertEqual([{"GroupId": 7}, {"GroupId": 9}], result["body"]["Groups"])
+        self.assertEqual(
+            [{"NotificationTime": 15}, {"NotificationTime": 30}],
+            result["body"]["Notifications"],
+        )
+
+    def test_event_body_rejects_invalid_users_shape(self):
+        with self.assertRaises(ValueError):
+            self.module.normalize_keyword_args(
+                "post_event",
+                {"body": {"Calendar": {"ID": 12}, "Users": [{"name": "bad"}]}},
+                None,
+            )
+
 
 class WriteExportResponseTests(unittest.TestCase):
     @classmethod

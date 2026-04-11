@@ -37,6 +37,9 @@ Rules:
 - `PATCH /calendar/{id}` behaves like a replace-style update in practice; omitting `Alias` cleared it in a live probe.
 - `PATCH /calendar/{id}` echoes a typed `Permissions` collection in the response when the request body includes it, even when a subsequent `GET /calendar/{id}` still returns `Permissions: null`.
 - `PATCH /event` enforces optimistic concurrency; a body without the current `RowVersion` returned `ERROR_UpdateConcurrencyException`.
+- Calendar event bodies are patched into `Visary.Calendars.Entities.Event` on the server, not into a DTO contract.
+- Event payloads therefore need entity-compatible nested collections: `Users` items use `UserId`, `Groups` items use `GroupId`, and `Notifications` items use `NotificationTime`.
+- The CLI normalizes common shorthand event payloads such as `calendarId`, `users: [1,3]`, `groups: [7]`, and `notifications: [15,30]` into the server-compatible shape before sending the request.
 
 Workflow:
 
@@ -78,6 +81,7 @@ python api.py -m get_event --arg calendar_id=12 --arg start='2026-04-01T00:00:00
 # generic JSON body from user-provided payload
 python api.py -m post_calendar --arg body='{\"title\":\"Team calendar\",\"ownerId\":7}'
 python api.py -m patch_event --arg body='{\"id\":55,\"title\":\"Rescheduled demo\"}'
+python api.py -m post_event --arg body='{\"calendarId\":12,\"title\":\"Planning\",\"startDate\":\"2026-04-11T10:00:00Z\",\"endDate\":\"2026-04-11T11:00:00Z\",\"users\":[1,3,4,5]}'
 
 # export response to file
 python api.py -m get_calendar_export_id --posarg 12 --arg start='2026-04-01T00:00:00Z' --arg end='2026-04-30T23:59:59Z' --arg file_name='team.ics' --output .\\team.ics
@@ -93,3 +97,4 @@ Notes:
 - Use repeated `--arg key=value` for documented query parameters.
 - Runtime indexes contain `key`, `summary`, and `cliShape`.
 - For export without `--output`, the CLI prints JSON metadata and includes the response body as text when it is decodable.
+- For event create/update, prefer passing `calendarId`, `users`, `groups`, and `notifications` in shorthand form through the CLI; it will expand them to the entity contract expected by the API.

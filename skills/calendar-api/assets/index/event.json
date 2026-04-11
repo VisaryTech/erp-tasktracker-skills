@@ -45,6 +45,15 @@
       "Data": null
     },
     "note": "Fields were observed from live GET /event and GET /event/{id} responses on 2026-04-05 after importing an ICS event into a temporary calendar. Swagger does not publish an Event response schema."
+    ,
+    "requestNotes": [
+      "Server create/update endpoints patch JSON directly into Visary.Calendars.Entities.Event.",
+      "Calendar should be sent as an object with ID, for example {\"Calendar\":{\"ID\":245}}.",
+      "Users should be sent as objects with UserId, for example {\"Users\":[{\"UserId\":1},{\"UserId\":3}]}.",
+      "Groups should be sent as objects with GroupId.",
+      "Notifications should be sent as objects with NotificationTime.",
+      "PATCH /event requires the current RowVersion and, in practice, the current Calendar.ID."
+    ]
   },
   "methods": [
     {
