@@ -1,3 +1,3 @@
 interface:
   display_name: "TaskTracker API"
-  short_description: "Use TaskTracker strictly through generated Swagger artifacts and exclude Hidden=true in OData reads unless --include-hidden is explicit"
+  short_description: "Use TaskTracker strictly through generated runtime indexes and cliShape commands, treat State=10 as open and State=20 as closed for TaskTracker entries, and exclude Hidden=true in OData reads unless --include-hidden is explicit"

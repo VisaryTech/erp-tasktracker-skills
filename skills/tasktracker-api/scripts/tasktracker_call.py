@@ -29,6 +29,10 @@ ODATA_METHODS_REQUIRING_PROJECT_ID = {
 
 
 HIDDEN_FILTER = "Hidden eq false"
+ENTRY_STATE_HINTS = {
+    "10": "open entries",
+    "20": "closed entries",
+}
 
 
 def parse_value(raw_value):
@@ -81,6 +85,12 @@ def contains_filter_field_in_lowercase(filter_value, field_name):
     if not isinstance(filter_value, str):
         return False
     return re.search(rf"(?<![A-Za-z0-9_]){re.escape(field_name)}(?![A-Za-z0-9_])", filter_value) is not None
+
+
+def extract_state_equals_values(filter_value):
+    if not isinstance(filter_value, str):
+        return []
+    return re.findall(r"(?<![A-Za-z0-9_])State\s+eq\s+([0-9]+)(?![A-Za-z0-9_])", filter_value)
 
 
 def apply_default_hidden_filter(python_method, odata_args, include_hidden=False):
@@ -138,25 +148,43 @@ def validate_odata_usage(python_method, keyword_args, odata_args):
     if "$filter" in odata_args and isinstance(odata_args["$filter"], str):
         filter_value = odata_args["$filter"]
         if (
-            contains_filter_field_in_lowercase(filter_value, "labels")
+            contains_filter_field_in_lowercase(filter_value, "state")
+            or contains_filter_field_in_lowercase(filter_value, "labels")
             or contains_filter_field_in_lowercase(filter_value, "title")
             or contains_filter_field_in_lowercase(filter_value, "id")
         ):
             should_print_pascal_case_hint = True
-            print(
-                "[tasktracker-api] Hint: for label filters use PascalCase field names, "
-                "for example Labels/any(l:l/Title eq 'Тестирование') or Labels/any(l:l/ID eq 80).",
-                file=sys.stderr,
-            )
+            if contains_filter_field_in_lowercase(filter_value, "state"):
+                print(
+                    "[tasktracker-api] Hint: use PascalCase field names in OData filters, for example State eq 10 or State eq 20.",
+                    file=sys.stderr,
+                )
+            if (
+            contains_filter_field_in_lowercase(filter_value, "labels")
+            or contains_filter_field_in_lowercase(filter_value, "title")
+            or contains_filter_field_in_lowercase(filter_value, "id")
+            ):
+                print(
+                    "[tasktracker-api] Hint: for label filters use PascalCase field names, "
+                    "for example Labels/any(l:l/Title eq 'Тестирование') or Labels/any(l:l/ID eq 80).",
+                    file=sys.stderr,
+                )
         if "Labels" in filter_value and "$expand" not in odata_args:
             print(
                 "[tasktracker-api] Hint: add --odata-arg '$expand=Labels' if you need label objects in the response body.",
                 file=sys.stderr,
             )
+        for state_value in dict.fromkeys(extract_state_equals_values(filter_value)):
+            state_hint = ENTRY_STATE_HINTS.get(state_value)
+            if state_hint is not None:
+                print(
+                    f"[tasktracker-api] Hint: State eq {state_value} means {state_hint}.",
+                    file=sys.stderr,
+                )
 
     if should_print_pascal_case_hint:
         hint = (
-            "OData field names on the wire usually use PascalCase, for example ID, Title, Labels, "
+            "OData field names on the wire usually use PascalCase, for example ID, Title, Labels, State, "
             "even if the local index shows camelCase names."
         )
         print(f"[tasktracker-api] Hint: {hint}", file=sys.stderr)

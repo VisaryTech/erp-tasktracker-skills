@@ -114,6 +114,31 @@ class ValidateODataUsageHintTests(unittest.TestCase):
         self.assertIn("PascalCase", stderr_output)
         self.assertIn("for label filters use PascalCase", stderr_output)
 
+    def test_state_filter_value_10_triggers_open_hint(self):
+        stderr_output = self.capture_stderr(
+            "odata_task",
+            {"project_id": 10},
+            {"$filter": "State eq 10"},
+        )
+        self.assertIn("State eq 10 means open entries", stderr_output)
+
+    def test_state_filter_value_20_triggers_closed_hint(self):
+        stderr_output = self.capture_stderr(
+            "odata_task",
+            {"project_id": 10},
+            {"$filter": "State eq 20"},
+        )
+        self.assertIn("State eq 20 means closed entries", stderr_output)
+
+    def test_lowercase_state_filter_triggers_pascalcase_hint(self):
+        stderr_output = self.capture_stderr(
+            "odata_task",
+            {"project_id": 10},
+            {"$filter": "state eq 10"},
+        )
+        self.assertIn("use PascalCase field names in OData filters", stderr_output)
+        self.assertIn("PascalCase", stderr_output)
+
 
 if __name__ == "__main__":
     unittest.main()
